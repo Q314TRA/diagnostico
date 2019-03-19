@@ -1,0 +1,63 @@
+
+.App{
+  background-color:#4C9F38;
+  /* position: absolute; */
+  width: 100vw;
+  height: 100vh;
+  top:  0;
+  left: 0;
+  /* overflow: hidden; */
+}
+
+.wraperContent{
+  padding-top: 1rem;
+}
+
+
+.burbleConten{
+  display: flex;
+  overflow-x: scroll;
+  align-items: flex-start;
+  /* width: 100vw; */
+  height: 50vh;
+  flex-direction: row;
+  padding: 0 100px 2rem 100px;
+  /* margin-right: 100px; */
+}
+
+.burble{
+  width: 200px;
+  font-size: 2vmin;
+  overflow: unset;
+  color: white;
+  
+}
+
+.burble .quest:hover{
+  font-size: 2vmin;
+  
+}
+
+.burble .quest{
+  display: block;
+  transform: translate(-25%);
+  transition: 0.3s ease-in;
+  width: 350px;
+  text-align: center;
+}
+
+
+
+.burbleConten .burble:nth-child(2n){
+  align-self: flex-end;
+}
+
+
+.burbleConten .burble:nth-child(3n+3){
+  align-self: center;
+}
+
+
+
+
+/* 2vmin */

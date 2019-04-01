@@ -1,37 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat'); 
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Heebo'); 
 
 .App{
-  /* position: absolute; */
+  position: absolute;
   width: 100vw;
   height: 100vh;
   top:  0;
   left: 0;
-  background-color:#4C9F38;
+  /* background-color: #4C9F38; */
+  background-color: #F1EEDD;
+  /* background-color: white; */
+  overflow: hidden;
 }
 
+/* 88BE10 */
+/* 4D9027 */
+
 h1{
-  position: absolute;
-  color: white;
+  /* position: absolute; */
+  color: #88BE10;
   margin-left: 1rem;
   font-size: 50pt;
-  font-family: 'Ubuntu', sans-serif;
+  /* font-family: 'Ubuntu', sans-serif; */
+  /* font-family: 'Montserrat', sans-serif; */
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Heebo', sans-serif;
 }
 
 .home-message{
-  color: white;
+  height: 100vh;
+  height: 100vw;
+  display: block;
+
+  /* background-color: #4C9F38; */
+  /* background-color: #F1EEDD; */
+  /* background-color: white; */
+  background-color: #DEFBFE;
+  /* background-image: url('http://localhost:3000/fondos/coloresplanos-02.jpg'); */
+}
+
+.home-message .content_globe{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.home-message .content_globe img.globle{
+  position: fixed;
+  z-index: 1;
+  -webkit-transform: rotate(-120deg);
+  transform: rotate(-131deg);
+  width: 80vw;
+  top: -39vh;
+  right: -25vw;
+}
+
+.home-message .content_globe img.globle{
+  filter: blur(0.7px);
+}
+
+.home-message .content_globe .road-content{
+  background-image: url("~/CARRETERA.png");
+  background-position: bottom;
+  background-size: contain;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 20vh;
+  width: 100vw;
+}
+
+.car-animate{
+  width: 200px;
+  margin-top: 26px;
+  animation: run_car 20s linear infinite;
+}
+
+.content-callback{
   text-align: center;
+  padding: 1rem;
 }
 
-.home-message h1{
-  position: unset;
+.content-callback a{
+  font-family: 'Lato', sans-serif;
+  padding: 1rem;
+  font-size: 30px;
+  color: #41929A;
+  color: #215467;
+  border: 1.7px solid #41929A;
+  text-decoration: none;
 }
 
-.home-message p{
+.content-callback a:hover{
+  cursor: pointer;
+}
+
+
+.home-message .content_text{
+  height: 80vh;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+}
+
+
+.content_text h1{
+  /* position: unset; */
+  width: fit-content;
+  font-size: 119pt;
+  margin: 0 1rem;
+  display: inline-block;
+  line-height: 1;
+  color: #88BE10;
+  /* font-family: 'Ubuntu', sans-serif; */
+  /* font-family: 'Montserrat', sans-serif; */
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Heebo', sans-serif;
+}
+
+
+
+.content_text p{
   max-width: 100vmin;
+  color: #4D9027;
+  margin-left: 1.5rem;
+  margin-top: 0;
+  font-size: 12pt;
 }
 
 
 .contentSupperClass{
-  background-color:#4C9F38;
+  /* background-color:#4C9F38; */
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -298,3 +404,138 @@ h1{
   padding: 1rem;
   margin-bottom: 1rem;
 }
+
+
+@keyframes run_car{
+  from{
+    margin-left: -10vw;
+  }
+  to{
+    margin-left: 150vw;
+  }
+}
+
+
+.poll-content{
+  background-color:  #333;
+  /* // background-color:  #009688; */
+  width: 100vw;
+  height: 100vh;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.axis-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+.axis-container .axis{
+  width: 33%;
+  height: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
+
+}
+.axis-container .axis img , .axis-container .axis span{
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+  text-transform: capitalize;
+  /* // opacity: 0; */
+}
+
+.axis-container .axis-AMBIENTAL{ 
+/* //Ambiental */
+  background-color: #C08C30;  
+  background-image: url('~/fondos/PLANTILLA1-01-os-min.jpg');  
+  background-position: left;
+  /* background-size: 100%; */
+}
+.axis-container .axis-SOCIAL{
+/* //Social */
+  background-color: #A8274E;
+  background-image: url('~/fondos/PLANTILLA2-01-min.jpg');
+  background-position: left;
+  /* background-size: 100%; */
+}
+.axis-container .axis-ECONOMICO{
+/* //Economico */
+  background-color: #4C9F38;
+  background-image: url('~/fondos/PLANTILLA3-01-min.jpg');
+  background-position: left;
+  /* background-size: 100%; */
+}
+
+
+.axis-container.active .axis img , .axis-container.active .axis span{
+  opacity: 0;
+ }
+ .axis-container.active .axis:not(.open){
+     width: 0;
+     flex-shrink: 1;
+     flex-grow: 0;
+     overflow: hidden;
+}
+
+.visibiliti-hidden{
+  visibility: hidden !important;
+}
+
+.axis-container.active + .poll-content-body{
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+}
+
+.axis-container.active + .poll-content-body .axis.close-panel{
+  animation: out-of-panel 1s ;
+  z-index: 0 !important;
+  opacity: 0;
+}
+
+.axis-container.active + .poll-content-body .axis{
+  opacity: 1;
+  z-index: 1;
+  animation: in-panel 2s ;
+}
+
+
+.poll-content-body{
+  top: 0 ;
+  left: 0;
+  position: absolute;
+  width: 0vw;
+  height: 0vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  color: white;
+}
+
+.poll-content-body .close{
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 1.3rem;
+  color: white;
+  font-size: 20pt;
+  z-index: 15;
+}
+

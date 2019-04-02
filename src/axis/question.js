@@ -6,9 +6,23 @@ class Question extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            show: false
+        }
+
         this.mouseOverContent = React.createRef();
 
         this.getStyleItem = this.getStyleItem.bind(this);
+    }
+
+    componentDidMount(){
+        new Promise((resolve)=>{
+            setTimeout(() => {
+                resolve();
+            }, (Math.random() * 100) + 700 );
+        }).then(()=>{
+            this.setState({show: true});
+        })
     }
 
 
@@ -31,13 +45,15 @@ class Question extends Component {
     render() {
         const { item, itemIndex } = this.props;
         return (
-            <div className={`burble ${item.selected ? "selected" : ""}`} style={this.getStyleItem(itemIndex + 1)} onClick={() => {
+            <div className={`burble ${this.state.show?"show": ""} ${item.selected ? "selected" : ""}`} style={this.getStyleItem(itemIndex + 1)} onClick={() => {
                 item.selected = !item.selected;
                 this.forceUpdate();
             }} >
-                <span className="quest">
-                    {item.action}
-                </span>
+                <div className="conten-quest">
+                    <span className="quest">
+                        {item.action}
+                    </span>
+                </div>
             </div>
         );
     }
@@ -47,8 +63,8 @@ class Question extends Component {
 const mapStateToProps = state => ({});
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-  }, dispatch)
+    return bindActionCreators({
+    }, dispatch)
 }
 
 

@@ -1,0 +1,142 @@
+
+.App{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top:  0;
+    left: 0;
+    /* background-color: #4C9F38; */
+    /* background-color: #F1EEDD; */
+    /* background-color: white; */
+    overflow: hidden;
+  }
+  
+  /* 88BE10 */
+  /* 4D9027 */
+  
+  h1{
+    /* position: absolute; */
+    color: #88BE10;
+    margin-left: 1rem;
+    font-size: 50pt;
+    /* font-family: 'Ubuntu', sans-serif; */
+    /* font-family: 'Montserrat', sans-serif; */
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Heebo', sans-serif;
+  }
+  
+  .home-message{
+    height: 100vh;
+    width: 100vw;
+    display: block;
+  
+    /* background-color: #4C9F38; */
+    /* background-color: #F1EEDD; */
+    /* background-color: white; */
+    background-color: #DEFBFE;
+    /* background-image: url('http://localhost:3000/fondos/coloresplanos-02.jpg'); */
+  }
+  
+  .home-message .content_globe{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .home-message .content_globe img.globle{
+    position: fixed;
+    z-index: 1;
+    -webkit-transform: rotate(-120deg);
+    transform: rotate(-131deg);
+    width: 80vw;
+    top: -39vh;
+    right: -25vw;
+  }
+  
+  .home-message .content_globe img.globle{
+    filter: blur(0.7px);
+  }
+  
+  .home-message .content_globe .road-content{
+    background-image: url("~/CARRETERA.png");
+    background-position: bottom;
+    background-size: contain;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 20vh;
+    width: 100vw;
+  }
+  
+  .car-animate{
+    width: 200px;
+    margin-top: 26px;
+    animation: run_car 20s linear infinite;
+  }
+  
+  .content-callback{
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .content-callback a{
+    font-family: 'Lato', sans-serif;
+    padding: 1rem;
+    font-size: 30px;
+    color: #41929A;
+    color: #215467;
+    border: 1.7px solid #41929A;
+    text-decoration: none;
+  }
+  
+  .content-callback a:hover{
+    cursor: pointer;
+  }
+  
+  
+  .home-message .content_text{
+    height: 80vh;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    position: relative;
+  }
+  
+  
+  .content_text h1{
+    /* position: unset; */
+    width: fit-content;
+    font-size: 119pt;
+    margin: 0 1rem;
+    display: inline-block;
+    line-height: 1;
+    color: #88BE10;
+    /* font-family: 'Ubuntu', sans-serif; */
+    /* font-family: 'Montserrat', sans-serif; */
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Heebo', sans-serif;
+  }
+  
+  
+  
+  .content_text p{
+    max-width: 100vmin;
+    color: #4D9027;
+    margin-left: 1.5rem;
+    margin-top: 0;
+    font-size: 12pt;
+  }
+
+  @keyframes run_car{
+    from{
+      margin-left: -10vw;
+    }
+    to{
+      margin-left: 150vw;
+    }
+  }

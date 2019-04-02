@@ -1,0 +1,66 @@
+
+
+.resume-content{
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+  }
+  
+  .resume-content h1{
+    color: #333;
+    position: relative;
+  }
+  
+  .resume-content .item-resume{
+  } 
+  
+  .resume-content .item-resume h2{
+    /* position: absolute; */
+    margin-left: 1rem;
+    font-size: 25pt;
+    font-family: 'Ubuntu', sans-serif;
+    
+  }
+  
+  .resume-content .item-resume h2.AMBIENTAL{
+    color: #C08C30;
+  }
+  .resume-content .item-resume h2.SOCIAL{
+    color: #A8274E;
+  }
+  .resume-content .item-resume h2.ECONOMICO{
+    color:#4C9F38;
+  }
+  
+
+
+
+.item-aspects-reveal {
+    align-self: flex-start;
+  }
+  .item-aspects-reveal h3{
+    /* position: absolute; */
+    margin-left: 1rem;
+    font-size: 15pt;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .item-aspects-content{
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .item-aspects-item {
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }

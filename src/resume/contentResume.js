@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ItemResume from './itemResume';
 
+
+import '../styles/resume.css';
+
 class ContentResume extends Component {
 
 

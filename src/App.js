@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import logo from './logo.svg';
-import './App.css';
-// import questions from "./questions.json";
-import { PieChart, Pie, Sector } from 'recharts';
+import './styles/App.css';
 
 import Dashboard from "./dashboard/home";
 import Resume from "./resume/contentResume";
 import Axis from "./axis/questionContainerAxis";
 
 import { getAllQuestios } from './actions/actions'
+
+import { AnimatedSwitch } from 'react-router-transition';
+// import TransitionSwitch from 'react-router-dom-transition';
 
 
 import {
@@ -34,9 +34,18 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Route exact path='/' component={Dashboard}></Route>
-          <Route exact path='/resume' component={Resume}></Route>
-          <Route exact path='/diagnosis' component={Axis}></Route>
+          {/* <TransitionSwitch className="example2" duration={200}> */}
+          <AnimatedSwitch
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+            className="switch-wrapper"
+          >
+            <Route exact path='/' component={Dashboard}></Route>
+            <Route exact path='/resume' component={Resume}></Route>
+            <Route exact path='/diagnosis' component={Axis}></Route>
+          </AnimatedSwitch>
+          {/* </TransitionSwitch> */}
         </Router>
       </div>
     );
@@ -45,7 +54,7 @@ class App extends Component {
 
 
 const mapStateToProps = state => ({
-  
+
 });
 
 function mapDispatchToProps(dispatch) {

@@ -22,6 +22,12 @@ class questionContainer extends Component {
             window.clearInterval(window.intervalScroll);
         }
     }
+    componentDidMount() {
+        let maxScrollW = this.mouseOverContent.current.scrollWidth - this.mouseOverContent.current.clientWidth;
+        let maxScrollH = this.mouseOverContent.current.scrollHeight - this.mouseOverContent.current.clientHeight;
+        this.mouseOverContent.current.scrollLeft = maxScrollW != 0 ? (maxScrollW / 2) : 0;
+        this.mouseOverContent.current.scrollTop = maxScrollH != 0 ? (maxScrollH / 2) : 0;
+    }
 
 
     swminOverSpider(e) {
@@ -73,10 +79,7 @@ class questionContainer extends Component {
     }
 
     getStyleContent() {
-
-        const {currentQuest} = this.props;
-
-
+        const { currentQuest } = this.props;
         let coutItems = currentQuest.length;
         let styleItem = {};
         if (coutItems > 0) {
@@ -90,7 +93,7 @@ class questionContainer extends Component {
     }
 
     render() {
-        const {currentQuest} = this.props;
+        const { currentQuest } = this.props;
 
         // let currentQuest = questions.filter(quest => quest.eje == currentAxis);
 
@@ -98,7 +101,7 @@ class questionContainer extends Component {
             <div className="contentSupperClass" ref={this.mouseOverContent} onMouseLeave={this.leaveOf} onMouseMove={this.swminOverSpider} >
                 <div className="supper-grid" style={this.getStyleContent()}>
                     {currentQuest.map((item, itemIndex) => (
-                        <Question item= {item} itemIndex = {itemIndex} currentQuest={currentQuest} /> 
+                        <Question item={item} itemIndex={itemIndex} currentQuest={currentQuest} />
                     ))}
                 </div>
             </div>
@@ -113,8 +116,8 @@ const mapStateToProps = state => ({
 });
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-  }, dispatch)
+    return bindActionCreators({
+    }, dispatch)
 }
 
 

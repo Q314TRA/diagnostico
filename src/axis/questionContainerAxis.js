@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import '../styles/axis.css';
+
 import { setCurrentAxis, getAllQuestios } from '../actions/actions';
 
 import Panel from './panel';
 import QuestionContainer from './questionContainer';
+
+
+import Loading from '../dashboard/loading';
 
 
 class QuestionContainerAxis extends Component {
@@ -14,29 +20,25 @@ class QuestionContainerAxis extends Component {
 
     componentWillMount() {
         const { getAllQuestios } = this.props;
-        getAllQuestios();
-      }
-
+        getAllQuestios();   
+    }
 
     render() {
-     
-        const {currentAxis, setCurrentAxis} = this.props;
+
+        const { currentAxis, setCurrentAxis } = this.props;
         return (
-            <div className="poll-content" style={{ display: "none" }} >
-            <div className={`axis-container ${currentAxis ? 'active' : ''}`} >
-                <Panel axis="AMBIENTAL" />
-                <Panel axis="SOCIAL" />
-                <Panel axis="ECONOMICO" />
+            <div className="poll-content"  >
+                <Loading />
+                <div className={`axis-container ${currentAxis ? 'active' : ''}`} >
+                    <Panel axis="AMBIENTAL" />
+                    <Panel axis="SOCIAL" />
+                    <Panel axis="ECONOMICO" />
+                </div>
+                <div className="poll-content-body">
+                    <span className={`close-content-body ${currentAxis ? currentAxis : ""}`} onClick={() => setCurrentAxis("")}>X</span>
+                    {currentAxis && <QuestionContainer /> }
+                </div>
             </div>
-
-            <div className="poll-content-body">
-                <span onClick={() => setCurrentAxis("")} className="close">X</span>
-
-                <QuestionContainer/>
-
-
-            </div>
-        </div>
         );
     }
 }
@@ -47,10 +49,10 @@ const mapStateToProps = state => ({
 });
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    setCurrentAxis,
-    getAllQuestios
-  }, dispatch)
+    return bindActionCreators({
+        setCurrentAxis,
+        getAllQuestios
+    }, dispatch)
 }
 
 

@@ -1,0 +1,166 @@
+
+.load-content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F1EEDD;
+    /* 
+    background-color: #7BCFE4; 
+    */
+    /* background-color: #DEFBFE; */
+    transition: opacity 0.3s ease-in;
+    /* opacity: 1;
+    transform: scale(1);
+     */
+     font-family: 'Heebo', sans-serif;
+  
+  }
+
+  .load-content > div{
+    width: 60vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  } 
+  .load-content > div > div{
+    width: 100%;
+  }
+
+
+  .bottom-content{
+    height: 25vmin;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .top-content{
+    height: 80px;
+    flex-shrink: 0;
+  }
+
+  .top-content h2{
+   
+    /* color: white; */
+    color: #88BE10;
+    margin: 0;
+    line-height: 1;
+    text-align: center;
+    font-size: 50pt;
+
+  }
+  
+  .load-content .content{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .content > span{
+    height: 54%;
+    border-left: #7BCFE4 1.3px solid;
+    -webkit-align-self: center;
+    align-self: baseline;
+    margin-top: 4vmax;
+  }
+  
+  .content .item-step{
+    padding: 1rem 2rem;
+    text-align: center;
+    flex-shrink: 1;
+    flex-grow: 0;
+    width: 33%;
+  }
+
+  .content .item-step span{
+    background-color: #DEFBFE;
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-align: center;
+    font-size: 30pt;
+    border-radius: 50px;
+    margin: 0 auto 2rem auto;
+  }
+
+  .content .item-step img{
+    height: 5vmax;
+    margin-bottom: 2rem;
+  }
+
+  .content .item-step p{
+    color: #999;
+    font-size: 16pt;
+  }
+  .content .item-step p img{
+    height: 30px;
+    margin-bottom: -8px;
+    margin-left: 11px;
+  }
+
+/* 
+  .load-content .content div.item-step:nth-child(2){
+    border-left: white 1.3px solid;
+    border-right: white 1.3px solid;
+  } */
+
+  .bottom-content{
+    background-image: url("~/CARRETERA.png");
+    background-position: bottom;
+    background-size: contain;
+    background-repeat-y: no-repeat;
+  }
+  
+
+  
+  
+  
+  .load-content.fade-out{
+    /* display: none; */
+    opacity: 0;
+    /* transform: scale(0); */
+  }
+  
+  .load-content.remove{
+    display: none;
+  }
+  
+  .load-content:not(.remove) ~ *{
+    /* visibility: hidden;   */
+  }
+  
+  @keyframes leave-out-transition {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+
+  .callback-continue{
+    /* font-family: 'Lato', sans-serif; */
+    color: white;
+    /* background-color: #EA4933; */
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* background-color: #A8274E; */
+    font-size: 14pt;
+    margin: 1rem;
+    /* background-color: #b64f25; */
+    background-color: #bb5f26;
+    cursor: pointer;
+  }

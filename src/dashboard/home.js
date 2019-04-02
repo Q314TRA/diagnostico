@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-// BrowserRouter as Router,
-import {
-    HashRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom'
+
+import { Link } from 'react-router-dom'
+
+import '../styles/home.css';
 
 class Home extends Component {
     render() {
@@ -21,7 +19,7 @@ class Home extends Component {
                     <img className="globle" src="MUNDO.png" />
 
                     <div className="road-content">
-                    <img className="car-animate" src="CAR.png" />
+                        <img className="car-animate" src="CAR.png" />
                     </div>
                 </div>
             </div>

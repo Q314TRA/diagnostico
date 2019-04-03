@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import ItemResume from './itemResume';
-
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import '../styles/resume.css';
+
+import ItemResume from './itemResume';
 
 class ContentResume extends Component {
 
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            currentAxis: "SOCIAL"
+        };
+
         this.gestStatusResume = this.gestStatusResume.bind(this);
         this.getResourceBatery = this.getResourceBatery.bind(this);
     }
@@ -54,7 +60,7 @@ class ContentResume extends Component {
             return a;
         }, {});
 
-        return Object.keys(resumeStatusAxis).map((axisName) => {
+        let currentDAta = Object.keys(resumeStatusAxis).map((axisName) => {
             return {
                 axisName,
                 statusPercent: Math.round((resumeStatusAxis[axisName].checked * 100) / resumeStatusAxis[axisName].count),
@@ -63,6 +69,10 @@ class ContentResume extends Component {
                 aspectsPendings: Object.keys(resumeStatusAxisAspectChartPendings[axisName])
             }
         });
+
+        console.log(currentDAta);
+
+        return currentDAta;
     }
 
     getResourceBatery(resource) {
@@ -77,12 +87,41 @@ class ContentResume extends Component {
     }
 
     render() {
-      return  (<div className="resume-content">
-            <h1>Resumen diagnostico</h1>
-            {this.gestStatusResume().map((item) => <ItemResume resumeAxis={item} />)}
-        </div>)
+        const _resume = this.gestStatusResume();
+        return (
+            <div className="resume-content">
+                {/* <h1>Resumen diagnostico</h1> */}
+                {/* {this.gestStatusResume().map((item) => <ItemResume resumeAxis={item} />)} */}
+
+                <div className="main-content">
+                    <div>
+                        {_resume.filter((item) => item.axisName == this.state.currentAxis)
+                            .map((item) => <ItemResume resumeAxis={item} />)}
+                    </div>
+                </div>
+
+                <div className="bottom-content-nav">
+                    {this.gestStatusResume().map((item) => (
+                        <div onClick={() => this.setState({ currentAxis: item.axisName })}>
+                            <span>{String(item.axisName).toLowerCase()}</span>
+                        </div>
+                    ))}
+
+                </div>
+            </div>
+        )
     }
 
 }
 
-export default ContentResume;
+
+const mapStateToProps = state => ({
+    questions: state.diagnosis.questions
+});
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({}, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContentResume);

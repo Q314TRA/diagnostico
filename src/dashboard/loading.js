@@ -19,10 +19,12 @@ class Loading extends Component {
     }
 
     confirmStep(){
+        const {callback} = this.props;
         this.setState({ load_class: "fade-out" })
-        this.awaitFn(700).then(() => {
-            this.setState({ load_class: "remove" })
-        })
+        this.awaitFn(700).then(callback);
+        // () => {
+        //     this.setState({ load_class: "remove" })
+        // }
     }
 
     render() {

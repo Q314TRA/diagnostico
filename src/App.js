@@ -14,6 +14,7 @@ import { AnimatedSwitch } from 'react-router-transition';
 // import TransitionSwitch from 'react-router-dom-transition';
 
 
+// HashRouter as Router,
 import {
   BrowserRouter as Router,
   Route,

@@ -46,7 +46,7 @@
   
   .burble span{
     text-align: center;
-    font-family: 'Mukta', sans-serif;
+    font-family: 'Heebo', sans-serif;
     cursor: pointer;
   }
   
@@ -220,3 +220,32 @@
     background-color: rgba(91, 181, 107, 0.8);
   }
   
+
+ .axis-container.active .callback-resume{
+  display: none;
+ }
+
+.callback-resume{
+   /* font-family: 'Lato', sans-serif; */
+   color: white;
+   /* background-color: #EA4933; */
+   padding: 1rem;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   /* background-color: #A8274E; */
+   font-size: 14pt;
+   margin: 1rem;
+   /* background-color: #b64f25; */
+   background-color: #bb5f26;
+   cursor: pointer;
+   z-index: 1;
+}
+
+
+.callback-resume a{
+  text-decoration: none;
+  color: white;
+  /* font-family: 'Heebo', sans-serif; */
+
+}

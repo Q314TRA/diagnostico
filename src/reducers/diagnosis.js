@@ -8,7 +8,6 @@ const initialState = {
 function diagnosis(state = initialState, action) {
     switch (action.type) {
         case SET_ALL_QUESTIOS:
-            console.log(action.payload.data);
             return Object.assign({}, state, {
                 questions: action.payload.data
             });

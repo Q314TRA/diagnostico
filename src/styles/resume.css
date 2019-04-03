@@ -8,8 +8,165 @@
     width: 100vw;
     height: 100vh;
     background-color: white;
+    /* overflow: scroll; */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Heebo', sans-serif;
+
+  }
+
+  .resume-content .bottom-content-nav{
+    height: 5vmax;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .bottom-content-nav > div{
+    flex-grow: 1;
+    text-align: center;
+    font-size: 18pt;
+    color:white;
+    line-height: 3;
+    text-transform: capitalize;
+  }
+  .bottom-content-nav > div:nth-child(1){
+    background-color: #C08C30;
+  }
+  .bottom-content-nav > div:nth-child(2){
+    background-color: #A8274E;
+  }
+  .bottom-content-nav > div:nth-child(3){
+    background-color:#4C9F38;
+  }
+
+  .main-content{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("~/fondos/cityFlat.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .main-content > div {
+    /* height: 60vh; */
+    width: 60vw;
+    background-color: #F1EEDD;
+    display: flex;
+  }
+
+
+  .item-resume{
+    width: 100%;
+    position: relative;
+  }
+  .item-resume .item-status-info{
+    display: flex;
+    width: 100%;
+    padding-top: 1rem;
+  }
+  .item-resume .item-status-info > div{
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .item-resume h2{
+    text-align: center;
+    margin: 0;
+    font-size: 31pt;
+    /* margin-top: -49px; */
+    position: absolute;
+    width: 100%;
+    transform: translateY(-100%);
+  }
+
+
+  .item-resume h2.SOCIAL,
+  .item-resume h2.SOCIAL ~ .item-status-info h3{
+    color: #C08C30;
   }
   
+  .item-resume h2.SOCIAL + .batery-status {
+    background-color: #C08C30;
+  }
+  
+  .item-resume h2.ECONOMICO,
+  .item-resume h2.ECONOMICO ~ .item-status-info h3{
+    color: #4C9F38;
+  }
+  
+  .item-resume h2.ECONOMICO + .batery-status {
+    background-color: #4C9F38;
+  }
+  
+  .item-resume h2.AMBIENTAL,
+  .item-resume h2.AMBIENTAL ~ .item-status-info h3{
+    color: #A8274E;
+  }
+  
+  .item-resume h2.AMBIENTAL + .batery-status {
+    background-color: #A8274E;
+  }
+  
+
+  .item-resume .item-aspects-reveal{
+    padding-right: 1rem;
+
+  }
+
+  .item-resume .item-aspects-reveal ul li{
+    /* list-style: none; */
+    margin-bottom: 5px;
+    text-transform: capitalize;
+  }
+
+  .item-resume .batery-status{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    background-color: white;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50% );
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C08C30;
+  }
+
+
+  .item-resume .batery-status > div{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-image: url("~/sea_3.png");
+    background-size: cover;
+    z-index: 1;
+  }
+
+
+  .item-resume .batery-status > span{
+    font-size: 18pt;
+    color: #C08C30;
+    z-index: 5;
+    color: white;
+  }
+
+ 
+
+
+
+  
+
+
+
+/*   
   .resume-content h1{
     color: #333;
     position: relative;
@@ -19,7 +176,7 @@
   } 
   
   .resume-content .item-resume h2{
-    /* position: absolute; */
+    
     margin-left: 1rem;
     font-size: 25pt;
     font-family: 'Ubuntu', sans-serif;
@@ -43,7 +200,7 @@
     align-self: flex-start;
   }
   .item-aspects-reveal h3{
-    /* position: absolute; */
+    
     margin-left: 1rem;
     font-size: 15pt;
     font-family: 'Ubuntu', sans-serif;
@@ -63,4 +220,4 @@
     border-radius: 20px;
     padding: 1rem;
     margin-bottom: 1rem;
-  }
+  } */

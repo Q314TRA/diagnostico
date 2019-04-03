@@ -45,21 +45,29 @@ class ItemResume extends Component {
 
         return (
             <div className="item-resume">
-                <h2 className={resumeAxis.axisName}>{this.state.axisData[resumeAxis.axisName].name}</h2>
-                <div className="item-status-info" >
+                {/* <h2 className={resumeAxis.axisName}>{this.state.axisData[resumeAxis.axisName].name}</h2>
                     <div className="item-status">
                         <img src={resumeAxis.resource}></img>
                         <span>{resumeAxis.statusPercent}%</span>
-                    </div>
+                    </div> */}
+
+                <h2 className={resumeAxis.axisName}>{this.state.axisData[resumeAxis.axisName].name}</h2>
+
+                <div className="batery-status">
+                    <span className="percent-status">{resumeAxis.statusPercent}%</span>
+                    <div style={{ height: `${resumeAxis.statusPercent}%` }} className="status-level"></div>
+                </div>
+                
+                <div className="item-status-info" >
                     <div className="item-chat-aspects">
-                        <PieChart width={700} height={400}>
+                        <PieChart width={500} height={400}>
                             <Pie
                                 activeIndex={this.state.activeIndex}
                                 activeShape={(props) => <ActiveShape context={{ ...props }} />}
                                 data={resumeAxis.aspects}
-                                cx={300}
+                                cx={250}
                                 cy={200}
-                                innerRadius={60}
+                                innerRadius={50}
                                 outerRadius={80}
                                 fill={this.state.axisData[resumeAxis.axisName].color}
                                 onMouseEnter={this.onPieEnter}
@@ -69,10 +77,11 @@ class ItemResume extends Component {
                     <div className="item-aspects-reveal">
                         <h3>Aspectos faltantes</h3>
                         <div className="item-aspects-content">
-
-                            {resumeAxis.aspectsPendings.map((_aspect) => (
-                                <div className="item-aspects-item">{_aspect}</div>
-                            ))}
+                            <ul>
+                                {resumeAxis.aspectsPendings.map((_aspect) => (
+                                    <li className="item-aspects-item">{String(_aspect).toLowerCase()}</li>
+                                ))}
+                            </ul>
 
                         </div>
                     </div>

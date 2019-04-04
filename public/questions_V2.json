@@ -1,0 +1,387 @@
+[
+    {
+        "eje": "SOCIAL",
+        "action": "¿Cuenta su organización con plantas, jardines, muros verdes o espacios que hagan más agradable el lugar de trabajo?  ",
+        "aspect": "INFRAESTRUCTURA Y LUGAR DE TRABAJO"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Al interior de la organización cuenta con espacios donde los empleados puedan realizar alguna clase ejercicio físico o actividades recreativas?",
+        "aspect": "INFRAESTRUCTURA Y LUGAR DE TRABAJO"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Realiza revisiones  periódicas al mobiliario de la organización con el fin de prevenir problemas de salud a sus empleados?",
+        "aspect": "INFRAESTRUCTURA Y LUGAR DE TRABAJO"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Cuenta con un espacio con la infraestructura necesaria para que los empleados: refrigeren, calienten y disfruten de sus alimentos?",
+        "aspect": "INFRAESTRUCTURA Y LUGAR DE TRABAJO"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Cuenta con un programa de alimentacioón para sus empleados?",
+        "aspect": "INFRAESTRUCTURA Y LUGAR DE TRABAJO"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Cumple su organización con las normas mínimas de seguridad y salud en el trabajo?",
+        "aspect": "INFRAESTRUCTURA Y LUGAR DE TRABAJO"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿El salario que reciben los empleados, es mayor al promedio del sector por la realización de actividades similares?",
+        "aspect": "REMUNERACION E INCENTIVOS"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿El salario se divide en un porcentaje fijo y otro variable? ",
+        "aspect": "REMUNERACION E INCENTIVOS"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Cuenta la organización con un programa de salario emocional? Inclusión familiar,viajes, capacitaciones, charlas, cursos, tiempo libre, etc",
+        "aspect": "REMUNERACION E INCENTIVOS"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿La organización brinda periódicamente capacitaciones o entrenamientos a los empleados con el fin de promover su desarrollo profesional?",
+        "aspect": "DESARROLLO PERSONAL Y PROFESIONAL"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Remunera de igual forma a hombres y mujeres que ocupan cargos similares?",
+        "aspect": "EQUIDAD DE GENERO"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Tiene una política clara que no permita contratar  con proveedores que trabajen con menores de edad?",
+        "aspect": "PROVEEDORES"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Sus proveedores tienen prácticas de responsabilidad social y sostenibilidad?",
+        "aspect": "PROVEEDORES"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Cuenta su organización con una metodología y políticas para seleccionar  proveedores? ",
+        "aspect": "PROVEEDORES"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Prioriza proveedores locales?",
+        "aspect": "PROVEEDORES"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Ofrece la oportunidad de elegir a sus empleados diferentes horarios, con el fin de que  se acomoden a la mejor opción según sea el caso?",
+        "aspect": "BALANCE VIDA PERSONAL Y LABORAL"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Tiene opciones de teletrabajo con el fin de incentivar el tiempo personal y familiar?",
+        "aspect": "BALANCE VIDA PERSONAL Y LABORAL"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Tienen los empleados la oportunidad de escalar y desarrollarse profesionalmente al interior de la organización?",
+        "aspect": "OPORTUNIDAD DE CRECIMIENTO Y ESCALABILIDAD"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "Cuándo hay una vacante disponible ¿prefiere capacitar a algún empleado al interior de la organización que se podría proyectar al cargo, o prefiere contratar a una persona externa?",
+        "aspect": "OPORTUNIDAD DE CRECIMIENTO Y ESCALABILIDAD"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Ofrece a sus empleados la oportunidad de prestar algún servicio social por medio de actividades de voluntariado?",
+        "aspect": "RESPONSABILIDAD SOCIAL"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Realiza actividades que involucren a la comunidad?",
+        "aspect": "RESPONSABILIDAD SOCIAL"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Realiza periódicamente una encuesta de satisfación para conocer el estado del clima laboral?",
+        "aspect": "SALUD Y BIENESTAR"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Realiza periódicamente eventos o salidas que fomenten la interacción de los empleados logrando así un mejor clima laboral?",
+        "aspect": "SALUD Y BIENESTAR"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Realiza actividades físicas o deportivas que incentiven a los empleados a llevar un estilo de vida saludable?",
+        "aspect": "SALUD Y BIENESTAR"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Cuenta la organización con programas que desarrollen el SER?   entrenamiento en liderazgo, inteligencia emocional, yoga, meditación, respiración, inteligencia financiera, etc.",
+        "aspect": "SALUD Y BIENESTAR"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Implementa la organización estrategias que incentiven el car pooling, para ayudar en la movilidad a los empleados?",
+        "aspect": "SERVICIOS QUE GENERAN BIENESTAR"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿Cuenta con un canal por medio del cual los trabajadores de forma anónima puedan comunicar sus sentimientos, consejos u oportunidades de mejora al interior de la organización?",
+        "aspect": "SERVICIOS QUE GENERAN BIENESTAR"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿La organización cuenta con líderes que saben cómo comunicar efectiva y asertivamente sus ideas o apreciaciones?",
+        "aspect": "LIDERAZGO"
+    },
+    {
+        "eje": "SOCIAL",
+        "action": "¿En la organización se trabaja por resultados o por tiempo? ",
+        "aspect": "LIDERAZGO"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Realiza dentro de su organización capacitaciones en el manejo y separación de residuos?",
+        "aspect": "Manejo Integral de Residuos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Cuenta con plan de gestión integral de residuos?",
+        "aspect": "Manejo Integral de Residuos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Realiza actividades o cuenta con algún programa de valorización de residuos?",
+        "aspect": "Manejo Integral de Residuos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Realiza en su organización tratamiento de vertimientos según la normatividad colombiana vigente ?",
+        "aspect": "Manejo Integral de Residuos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Cuenta con programas de uso racional del agua?(capacitaciones, infraestructura, mantenimiento preventivo revision de fugas, plan de ahorro agua en actividades de limpieza, recoleccion agua lluvia)",
+        "aspect": "Recurso Hídrico"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Realiza dentro de su organización medición de huella hídrica?",
+        "aspect": "Recurso Hídrico"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Ha realizado cambios en maquinaria, tecnología e iluminación para reducción de consumo hídrico?",
+        "aspect": "Recurso Hídrico"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿ Cumple en su organización con los limites de emisión permisibles a la atmósfera?",
+        "aspect": "Recurso Hídrico"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Cuenta con programas de disminución de contaminantes a la atmósfera (capacitaciones, revision de fugas, mantenimiento preventivo, infraestructura)",
+        "aspect": "Calidad del aire"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Realiza Medicion de huella de carbono?",
+        "aspect": "Calidad del aire"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Cuenta su organzación con programas de uso racional de la energía? (capacitacion al personal, mantenimiento preventivo de equipos, infraestructura)",
+        "aspect": "Calidad del aire"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Cuenta su infraestructura con principios de bioclimatica?",
+        "aspect": "Calidad del aire"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Ha realizado cambios en maquinaria, tecnología e iluminación para reducción de consumo energético?",
+        "aspect": "Eficiencia Energética"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Usa su organización fuentes de energias renovables como uso de paneles solares,etc.?",
+        "aspect": "Eficiencia Energética"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Cuenta con programas que tengan como fin la disminución de materiales contaminantes?",
+        "aspect": "Eficiencia Energética"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Dentro de su organización cuenta con insumos para limpieza amigables con el medio ambiente (elaborados con mínimas cantidades de sustancias contaminantes, etc)?",
+        "aspect": "Eficiencia Energética"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Promueve dentro de su organización el uso de transporte público?",
+        "aspect": "Uso de materiales contaminantes (insumos de limpieza, tintas impresoras, “pitillos”,  etc)"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Programas para la reducción de consumo de combustible en carros y/o motos empresariales? (capacitacion buenas practicas de conduccion, etc. )",
+        "aspect": "Uso de materiales contaminantes (insumos de limpieza, tintas impresoras, “pitillos”,  etc)"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Cuenta con programas que disminuyan emisiones atmosféricas ocasionadas por la movilidad de sus empleados? como por ejemplo Pico y placa corporativo, planes de movilidad sostenibles, promoción del uso de bicicletas, estrategias de carpooling, etc.",
+        "aspect": "Movilidad"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Ha implementado dentro de su organización teletrabajo?",
+        "aspect": "Movilidad"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Dentro de su proceso de diseño incluye opciones de ecodiseño en sus productos?",
+        "aspect": "Productos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Realiza compras de productos sostenibles y poco contaminantes?",
+        "aspect": "Productos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Realiza análisis de ciclo de vida para sus productos/servicios?",
+        "aspect": "Productos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Patrocina campañas de mantenimiento y limpieza de las cuencas hídricas de la zona?",
+        "aspect": "Productos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Realiza campañas de sembratones de árboles para aportar con oxigeno de la ciudad?",
+        "aspect": "Productos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Crea y capacita sus empleados para la realización de huertas orgánicas caseras para la obtención de alimentos propios?",
+        "aspect": "Productos"
+    },
+    {
+        "eje": "AMBIENTAL",
+        "action": "¿Contempla la economia circular dentro de sus procesos?",
+        "aspect": "Productos"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Cuenta su organización con estrategias o programas de eficiencia para los recursos empleados en sus procesos productivos?",
+        "aspect": "Gestion de recurso e impacto"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Investiga su organización acerca de nuevas materias primas que hagan más eficientes sus procesos?",
+        "aspect": "Gestion de recurso e impacto"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Existen procesos que mitiguen los gastos financieros en su organización?",
+        "aspect": "Gestion de recurso e impacto"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Su organización investiga acerca de nuevas tecnologías o procesos que aumenten la productividad y la competitividad?",
+        "aspect": "Gestion de recurso e impacto"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "Dentro de sus procesos productivos, tienen la conciencia de obtener la máxima producción posible con los recursos existentes y con el mínimo costo posible?",
+        "aspect": "Gestion de recurso e impacto"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Existen en su organización programas e indicadores que aporten al mejoramiento continuo de los procesos?",
+        "aspect": "Gestion de recurso e impacto"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Investigan e implementan nuevas y mejores prácticas en sus procesos productivos?",
+        "aspect": "Gestion de recurso e impacto"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Realiza capacitaciones, manuales o infográficos que aporten a que no hayan accidentes laborales en su lugar de trabajo?",
+        "aspect": "Operación segura"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿El área de gestión humana realiza una adecuada planeación para la reducción de riesgos y accidentes laborales para sus empleados?",
+        "aspect": "Operación segura"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Cuenta su empresa con una políticaca anticorrupción?",
+        "aspect": "Ética y transparencia"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Su organización está domiciliada en Colombia y paga impuestos cumplidamente?",
+        "aspect": "Ética y transparencia"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Existe en su organización un manual de ética y conducta para la prevención de delitos para los colaboradores de su organización?",
+        "aspect": "Ética y transparencia"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Cuenta con un escalafon salarial basado en el mercado, para remuneración de sus empleados?",
+        "aspect": "Ética y transparencia"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Existen diferencias en cuanto a la remuneracion de acuerdo al género?",
+        "aspect": "Ética y transparencia"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Cuenta su organización con programas que incentiven la innovación o programas de intraemprendimiento corporativo, que lleven al crecimiento económico o a nuevas oportunidades de negocio?",
+        "aspect": "Desarrollo Economico"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Su organización busca dentro de su cadena de valor llegar a alcanzar una economía circualr y así lograr eficiencias con sus materias primas, insumos para mejorar eficiencias operativas y el aprovechamiento de los recursos?",
+        "aspect": "Desarrollo Economico"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Dentro de su organización se realizan encuestas de satisfacción del clima organizacional y satisfacción que provean informacion para el mejoramiento continuo?",
+        "aspect": "Desarrollo Economico"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Impulsa dentro de su organización la innovación tecnológica para la transformación de nuevos modelos de negocio más sostenibles?",
+        "aspect": "Innovacion"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Su organización cuenta con programas de financiación para educación superior, cursos y diplomados que ayuden a sus colaboradores a mejorar profesionalmente?",
+        "aspect": "Innovacion"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Existen metodologías de transferencia de conocimiento de los procesos y cargos de la organización?",
+        "aspect": "Innovacion"
+    },
+    {
+        "eje": "ECONOMICO",
+        "action": "¿Realiza dentro de su organización un mapeo de tendencias y nuevos procesos dentro de su sector?",
+        "aspect": "Innovacion"
+    }
+]

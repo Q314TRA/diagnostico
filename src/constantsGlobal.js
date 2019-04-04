@@ -1,5 +1,5 @@
 // API
-export const GET_ALL_QUESTIOS_API = "questions.json" ;
+export const GET_ALL_QUESTIOS_API = "questions_V2.json" ;
 
 //SAGA
 export const GET_ALL_QUESTIOS_SAGA = "GET_ALL_QUESTIOS_SAGA" ;

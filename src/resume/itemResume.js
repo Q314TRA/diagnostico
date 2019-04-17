@@ -57,7 +57,7 @@ class ItemResume extends Component {
                     <span className="percent-status">{resumeAxis.statusPercent}%</span>
                     <div style={{ height: `${resumeAxis.statusPercent}%` }} className="status-level"></div>
                 </div>
-                
+
                 <div className="item-status-info" >
                     <div className="item-chat-aspects">
                         <PieChart width={500} height={400}>
@@ -78,8 +78,15 @@ class ItemResume extends Component {
                         <h3>Aspectos faltantes</h3>
                         <div className="item-aspects-content">
                             <ul>
-                                {resumeAxis.aspectsPendings.map((_aspect) => (
-                                    <li className="item-aspects-item">{String(_aspect).toLowerCase()}</li>
+                                {Object.keys(resumeAxis.aspectsPendings).map((_aspect) => (
+                                    <li className="item-aspects-item">
+                                        <span> {String(_aspect).toLowerCase()} </span>
+                                        <ul>
+                                            {Object.assign([],resumeAxis.aspectsPendings[_aspect]).map((_challenge) => (
+                                                <li >{String(_challenge).toLowerCase()}</li>
+                                            ))}
+                                        </ul>
+                                    </li>
                                 ))}
                             </ul>
 

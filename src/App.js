@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 import './styles/App.css';
 
 import Dashboard from "./dashboard/home";
-import Resume from "./resume/contentResume";
+// import Resume from "./resume/contentResume";
+import Resume from "./resume/resume";
 import Axis from "./axis/questionContainerAxis";
 
 import { getAllQuestios } from './actions/actions'

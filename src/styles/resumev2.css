@@ -1,0 +1,14 @@
+.resume-content-v2{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.resume-section{
+  min-width: 100vmin;
+  width: 70vw;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: #F1EEDD;
+  margin: auto;
+}

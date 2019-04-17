@@ -49,16 +49,32 @@ class ContentResume extends Component {
         }, {});
 
 
+        // let resumeStatusAxisAspectChartPendings = questions.reduce((a, b, i) => {
+        //     if (a[b.eje] == undefined || a[b.eje] == null)
+        //         a[b.eje] = {};
+
+        //     let _aspects = Object.keys(resumeStatusAxisAspectChart[b.eje]);
+
+        //     if (_aspects.indexOf(b.aspect) == -1)
+        //         a[b.eje][b.aspect] = true;
+        //     return a;
+        // }, {});
         let resumeStatusAxisAspectChartPendings = questions.reduce((a, b, i) => {
             if (a[b.eje] == undefined || a[b.eje] == null)
                 a[b.eje] = {};
 
-            let _aspects = Object.keys(resumeStatusAxisAspectChart[b.eje]);
+            if (b.selected) {
+                if (a[b.eje][b.macroChallenge] == undefined || a[b.eje][b.macroChallenge] == null)
+                    a[b.eje][b.macroChallenge] = []
 
-            if (_aspects.indexOf(b.aspect) == -1)
-                a[b.eje][b.aspect] = true;
+                if (a[b.eje][b.macroChallenge].indexOf(b.challenge) == -1 )
+                    a[b.eje][b.macroChallenge].push(b.challenge);
+
+            }
             return a;
         }, {});
+
+        console.log(resumeStatusAxisAspectChartPendings);
 
         let currentDAta = Object.keys(resumeStatusAxis).map((axisName) => {
             return {
@@ -66,7 +82,7 @@ class ContentResume extends Component {
                 statusPercent: Math.round((resumeStatusAxis[axisName].checked * 100) / resumeStatusAxis[axisName].count),
                 resource: this.getResourceBatery(resumeStatusAxis[axisName]),
                 aspects: Object.keys(resumeStatusAxisAspectChart[axisName]).map(key => ({ name: key, value: resumeStatusAxisAspectChart[axisName][key] })),
-                aspectsPendings: Object.keys(resumeStatusAxisAspectChartPendings[axisName])
+                aspectsPendings: resumeStatusAxisAspectChartPendings[axisName]
             }
         });
 
@@ -101,7 +117,7 @@ class ContentResume extends Component {
                 </div>
 
                 <div className="bottom-content-nav">
-                    {this.gestStatusResume().map((item) => (
+                    {_resume.map((item) => (
                         <div onClick={() => this.setState({ currentAxis: item.axisName })}>
                             <span>{String(item.axisName).toLowerCase()}</span>
                         </div>

@@ -29,7 +29,6 @@ class Question extends Component {
     getStyleItem(index) {
         const { currentQuest } = this.props;
 
-        // let currentQuest = questions.filter(quest => quest.eje == currentAxis);
 
         let coutItems = currentQuest.length;
         let sqrtCountItems = Math.round(Math.sqrt(coutItems));

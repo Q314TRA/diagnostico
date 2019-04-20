@@ -1,5 +1,5 @@
 // API
-export const GET_ALL_QUESTIOS_API = "questions_V4.json" ;
+export const GET_ALL_QUESTIOS_API = "http://localhost:3000/diagnosis/" ;
 
 //SAGA
 export const GET_ALL_QUESTIOS_SAGA = "GET_ALL_QUESTIOS_SAGA" ;

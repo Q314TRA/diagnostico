@@ -112,7 +112,7 @@ class questionContainer extends Component {
 
 const mapStateToProps = state => ({
     questions: state.diagnosis.questions,
-    currentQuest: state.diagnosis.questions.filter(quest => quest.eje == state.diagnosis.currentAxis)
+    currentQuest: state.diagnosis.questions.filter(quest => quest.axis == state.diagnosis.currentAxis)
 });
 
 function mapDispatchToProps(dispatch) {

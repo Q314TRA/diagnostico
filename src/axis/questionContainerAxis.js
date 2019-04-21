@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom'
@@ -12,14 +13,39 @@ import question from './question';
 
 import { Scroller, scrollInitalState } from "react-skroll";
 
+let unmount = false;
 class QuestionContainerAxis extends Component {
     constructor(props) {
         super(props);
         this.state = {
             numItemsPerSection: 3,
-            scroll: scrollInitalState
+            scroll: scrollInitalState,
+            unmount: false
         }
+        this.goToResume = this.goToResume.bind(this);
 
+        this.myRef = React.createRef();
+
+    }
+
+    goToResume() {
+        const { history } = this.props;
+        this.setState({
+            unmount: true
+        })
+
+        // this.scroll.deleteRef();
+
+        
+
+        // let mountNode = ReactDOM.findDOMNode(this.scroll);
+        // let unmount = ReactDOM.unmountComponentAtNode(mountNode);
+
+
+        // this.forceUpdate()
+        // setTimeout(() => {
+        //     history.push(`/resume`);
+        // }, 100);
     }
 
     componentWillMount() {
@@ -29,6 +55,8 @@ class QuestionContainerAxis extends Component {
         }
 
     }
+
+
 
     render() {
 
@@ -49,11 +77,13 @@ class QuestionContainerAxis extends Component {
 
 
             <div className="poll-content" >
-                {company.companyId &&
+                {company.companyId && !this.state.unmount &&
                     <Scroller
-                        scrollRef={ref => this.scroll = ref}
+                        scrollRef={(ref) => {
+                            this.scroll = ref
+                        }}
                         autoScroll={true}
-                        autoFrame={false}
+                        autoFrame={true}
                         onScrollChange={(scroll) => {
                             let newScroll = Object.assign({}, scroll);
 
@@ -66,9 +96,9 @@ class QuestionContainerAxis extends Component {
 
                                 return scl;
                             });
-
                             newScroll.children = newChildens;
-                            this.setState({ newScroll })
+                            console.log(newScroll);
+                            this.setState({ scroll: newScroll })
                         }}
                     >
                         <TopSection />
@@ -77,9 +107,16 @@ class QuestionContainerAxis extends Component {
                                 <AspectSection quest={_quest} />
                             ))
                         }
-                        <BottomSection />
+                        <BottomSection goToResume={this.goToResume} gotScrollTop={() => this.scroll.scrollToPosition(scroll.start)} />
                     </Scroller>
                 }
+                <div className="navPanel">
+                    {
+                        scroll.children.map((child, i) =>
+                            <img onClick={() => this.scroll.scrollToPosition(child.start)} src={`resources/${child.active ? 'dot-active' : 'dot'}.svg`} />
+                        )
+                    }
+                </div>
 
 
             </div>

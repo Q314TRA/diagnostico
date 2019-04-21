@@ -11,6 +11,13 @@ import createSagaMiddleware from 'redux-saga'
 
 import sagas from './sagas/sagas'
 
+function ignoreerror()
+{
+   return true
+}
+
+window.onerror=ignoreerror();
+
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
 // mount it on the Store

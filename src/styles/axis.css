@@ -64,10 +64,20 @@
 .content-bottom .doots-content img{
     width: 5vmax;
     position: relative;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.7s ease-out;
 }
+
 .content-bottom .doots-content div{
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.content-bottom .doots-content div.image-doot-active img{
+    opacity: 1;
+
 }
 
 .content-bottom .doots-content div:nth-child(2){
@@ -77,25 +87,25 @@
 .content-bottom .doots-content div:nth-child(2)::before{
     content: "";
     display: block;
-    width: 5vmax;
+    width: 4.5vmax;
     /* height: 1px; */
-    border-top: 4px solid white;
+    border-top: 4px solid rgba(255,255,255,0.5);
     position: absolute;
     /* top: 0; */
     /* left: 0; */
-    transform: translate(-100%, calc(-50% + 2px));
+    transform: translate(-99%, calc(-50% + 2px));
 }
 
 .content-bottom .doots-content div:nth-child(2)::after{
     content: "";
     display: block;
-    width: 5vmax;
+    width: 4.5vmax;
     /* height: 1px; */
-    border-top: 4px solid white;
+    border-top: 4px solid rgba(255,255,255,0.5);
     position: absolute;
     /* top: 0; */
     /* left: 0; */
-    transform: translate(95%, calc(-50% + 2px));
+    transform: translate(111%, calc(-50% + 2px));
 }
 
 .content-bottom .nav-content-bottom{
@@ -116,10 +126,11 @@
     font-size: 2.3vmin;
 }
 
-.content-bottom .nav-content-bottom > span{
+.content-bottom .nav-content-bottom > span, .content-bottom .nav-content-bottom > a{
     display: flex;
     height: fit-content;
     align-items: center;
+    cursor: pointer;
 }
 .content-bottom .nav-content-bottom img{
     width: 3vmax;
@@ -201,3 +212,20 @@
     margin: 0 1rem;
 }
 
+
+.poll-content .navPanel{
+    display: flex;
+    position: absolute;
+    right: 1rem;
+    top: 0;
+    width: 5vmin;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.poll-content .navPanel img{
+    width: 2.3vmin;
+    opacity: 0.9;
+    cursor: pointer;
+}

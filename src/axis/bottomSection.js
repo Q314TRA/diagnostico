@@ -13,15 +13,15 @@ class bottomSection extends Component {
         this.state = {
             "AMBIENTAL": {
                 text: "ambiental",
-                icon: ""
+                icon: "resources/icono-ambiental.png"
             },
             "SOCIAL": {
                 text: "aocial",
-                icon: ""
+                icon: "resources/icono-social.png"
             },
             "ECONOMICO": {
                 text: "económico",
-                icon: ""
+                icon: "resources/icono-economico.png"
             },
         };
 
@@ -32,12 +32,14 @@ class bottomSection extends Component {
     componentDidMount() { }
 
     goToAxis(axis) {
-        const { setCurrentAxis } = this.props;
+        const { setCurrentAxis, gotScrollTop } = this.props;
         setCurrentAxis(axis);
+        gotScrollTop();
     }
 
+
     render() {
-        const { currentAxis } = this.props;
+        const { currentAxis, goToResume } = this.props;
         let axies = Object.keys(this.state);
         let currentItem = Object.keys(this.state).map((item, index) => ({ index, item }))
             .find(item => item.item == currentAxis)
@@ -45,37 +47,36 @@ class bottomSection extends Component {
         return (
             <section className="content-bottom">
                 <div className="doots-content" >
-                    <div>
-                        <img src="resources/icono-ambiental.png" />
-                    </div>
-                    <div>
-                        <img src="resources/icono-social.png" />
-                    </div>
-                    <div>
-                        <img src="resources/icono-economico.png" />
-                    </div>
+                    {
+                        axies.map((axis) => (
+                            <div className={currentAxis == axis ? "image-doot-active" : ""}>
+                                <img title={this.state[axis].text} onClick={() => this.goToAxis(axis)} src={this.state[axis].icon} />
+                            </div>
+                        ))
+                    }
+
                 </div>
                 <div className="nav-content-bottom" >
 
-                    {axies[currentItem.index - 1] != undefined &&
-                        <span onClick={() => this.goToAxis(axies[currentItem.index - 1])}>Atras</span>
-                    }
 
                     <div >
                         <h4>felicitaciones</h4>
-                        <p>Has terminado con el formulario {this.state[currentAxis].text}, <br/>
-                        continua con la siguqiente categoría haciendo <br/> click en la flecha</p>
+                        <p>Has terminado con el formulario {this.state[currentAxis].text}, <br />
+                            continua con la siguqiente categoría haciendo <br /> click en la flecha</p>
                     </div>
+
 
                     {axies[currentItem.index + 1] != undefined &&
                         <span onClick={() => this.goToAxis(axies[currentItem.index + 1])}>
-                            <img src="resources/icono-siguiente.png"/>
+                            <img src="resources/icono-siguiente.png" />
+                        </span>
+                    }
+                    {axies[currentItem.index + 1] == undefined &&
+                        <span onClick={goToResume}>
+                            <img src="resources/icono-siguiente.png" />
                         </span>
                     }
 
-                    {axies[currentItem.index + 1] == undefined &&
-                        <Link to="/resume"> Finalizar </Link>
-                    }
 
                 </div>
             </section>

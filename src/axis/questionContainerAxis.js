@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom'
 
 import '../styles/axis.css';
-
 import { setCurrentAxis, getAllQuestios } from '../actions/actions';
-import Panel from './panel';
-import QuestionContainer from './questionContainer';
-import Loading from '../dashboard/loading';
+import AspectSection from "./aspectSection";
+import TopSection from "./topSection";
+import BottomSection from "./bottomSection";
+import question from './question';
 
 
 
@@ -16,40 +16,43 @@ class QuestionContainerAxis extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loadign: true
+            numItemsPerSection: 3
         }
-        this.loadingCallback = this.loadingCallback.bind(this);
+
     }
 
     componentWillMount() {
-        const { getAllQuestios } = this.props;
-        getAllQuestios();
-    }
+        const { company, history } = this.props;
+        if (!company.companyId) {
+            history.push(`/`);
+        }
 
-    loadingCallback() {
-        this.setState({ loadign: false })
     }
 
     render() {
 
-        const { currentAxis, setCurrentAxis } = this.props;
+        const { currentAxis, setCurrentAxis, currentQuests } = this.props;
+
+        let nItems = this.state.numItemsPerSection;
+
+        let _currentQuests = currentQuests
+            .sort((a, b) => a.aspect - b.aspect)
+            .map((question, index) => {
+                question.questNumer = index + 1 < 10 ? `0${index + 1}` : `${index + 1}`;
+                return question;
+            })
+            .reduce((a, b, i, g) => !(i % nItems) ? a.concat([g.slice(i, i + nItems)]) : a, []);
+
         return (
-            <div className="poll-content"  >
-                {this.state.loadign &&
-                    <Loading callback={this.loadingCallback} />
+            <div className="poll-content" >
+                <TopSection />
+
+                {
+                    _currentQuests.map((_quest) => (
+                        <AspectSection quest={_quest} />
+                    ))
                 }
-                <div className={`axis-container ${currentAxis ? 'active' : ''}`} >
-                    <Panel axis="AMBIENTAL" />
-                    <Panel axis="SOCIAL" />
-                    <Panel axis="ECONOMICO" />
-                    <span className="callback-resume" >
-                        <Link to="/resume"> Resultado </Link>
-                    </span>
-                </div>
-                <div className="poll-content-body">
-                    <span className={`close-content-body ${currentAxis ? currentAxis : ""}`} onClick={() => setCurrentAxis("")}>X</span>
-                    {currentAxis && <QuestionContainer />}
-                </div>
+                <BottomSection />
 
             </div>
         );
@@ -58,7 +61,10 @@ class QuestionContainerAxis extends Component {
 
 
 const mapStateToProps = state => ({
-    currentAxis: state.diagnosis.currentAxis
+    currentAxis: state.diagnosis.currentAxis,
+    currentQuests: state.diagnosis.questions
+        .filter(quest => quest.axis == state.diagnosis.currentAxis),
+    company: state.diagnosis.company
 });
 
 function mapDispatchToProps(dispatch) {

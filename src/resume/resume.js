@@ -37,7 +37,7 @@ class Resume extends Component {
         const { questions } = this.props;
 
         
-        let result = questions.filter(question => question.eje == axis && question.aspectMerge == aspect)
+        let result = questions.filter(question => question.axis == axis && question.aspectMerge == aspect)
             .reduce((a, b) => {
                 a[b.macroChallenge] = Object.assign([], a[b.macroChallenge]);
 
@@ -59,7 +59,7 @@ class Resume extends Component {
     selectPie(params) {
         const { questions } = this.props;
 
-        let axis = questions.filter(question => question.eje == params.name);
+        let axis = questions.filter(question => question.axis == params.name);
 
         let resume = axis.reduce((a, b, i, o) => {
 
@@ -139,17 +139,17 @@ class Resume extends Component {
 
         let axis_resume = {};
         questions.forEach(question => {
-            axis_resume[question.eje] = Object.assign({ numChecks: 0, sumChecks: 0 }, axis_resume[question.eje]);
-            axis_resume[question.eje].numChecks += 1;
-            axis_resume[question.eje].sumChecks += parseInt(question.weight ? question.weight : 0);
+            axis_resume[question.axis] = Object.assign({ numChecks: 0, sumChecks: 0 }, axis_resume[question.axis]);
+            axis_resume[question.axis].numChecks += 1;
+            axis_resume[question.axis].sumChecks += parseInt(question.weight ? question.weight : 0);
         });
 
         let axis = {};
         questions.filter(question => question.selected)
             .forEach(question => {
-                axis[question.eje] = Object.assign({ numChecks: 0, sumChecks: 0 }, axis[question.eje]);
-                axis[question.eje].numChecks += 1;
-                axis[question.eje].sumChecks += parseInt(question.weight ? question.weight : 0);
+                axis[question.axis] = Object.assign({ numChecks: 0, sumChecks: 0 }, axis[question.axis]);
+                axis[question.axis].numChecks += 1;
+                axis[question.axis].sumChecks += parseInt(question.weight ? question.weight : 0);
             });
 
         let result = Object.keys(axis).map(_axis => {

@@ -9,7 +9,7 @@ import diagnosis from './reducers'
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
-import getQuestiosSaga from './sagas/sagas'
+import sagas from './sagas/sagas'
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
@@ -19,7 +19,7 @@ const store = createStore(diagnosis,
 )
 
 // then run the saga
-sagaMiddleware.run(getQuestiosSaga)
+sagaMiddleware.run(sagas)
 
 
 ReactDOM.render(

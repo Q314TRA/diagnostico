@@ -77,6 +77,63 @@
     animation: run_car 20s linear infinite;
   }
   
+  
+  .home-message .content_text{
+    height: 80vh;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .content_text img.brand-logo{
+    width: 54vw;
+    margin-left: 1rem;
+  }
+
+  .content_text .content-callback{
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    height: 60px;
+
+    background-color: rgba(80, 172, 168, 0.3);
+    margin: 1rem 1rem;
+  }
+  .content_text .content-callback > *{
+    flex-grow: 1;
+    font-family: 'Heebo', sans-serif;
+  }
+ 
+  .content_text .content-callback input{
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    padding: 1rem;
+    font-size: 16pt;
+    color:rgb(57, 133, 153);
+  }
+
+  .content_text .content-callback button{
+    background-color: #398599;
+    color: white;
+    font-size: 20pt;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .content_text .content-callback input::placeholder{
+    color: rgba(57, 133, 153, 0.7);
+    line-height: 1.3;
+  }
+
+ 
+
+
+/* 
   .content-callback{
     text-align: center;
     padding: 1rem;
@@ -95,18 +152,9 @@
   .content-callback a:hover{
     cursor: pointer;
   }
-  
-  
-  .home-message .content_text{
-    height: 80vh;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    z-index: 2;
-    position: relative;
-  }
-  
+   */
+
+
   
   .content_text h1{
     /* position: unset; */
@@ -139,4 +187,46 @@
     to{
       margin-left: 150vw;
     }
+  }
+
+  .modal{
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    width: 40vw;
+    min-width: 70vmin;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 2rem 0;
+
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    background-color: white;
+  }
+
+  .modal h3{
+    width: 100%;
+    text-align: center;
+    background: #50ACA8;
+    line-height: 1;
+    margin: 0;
+    padding: 1rem 0;
+    color: white;
+  }
+
+
+  .modal a{
+    padding: 0.7rem 1rem;
+    color: white;
+    background-color: #89bf11;
+    font-size: 16pt;
+    text-decoration: none;
+  }
+
+
+  .modal div{
+    height: 100px;
   }

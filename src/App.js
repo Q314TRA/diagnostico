@@ -9,7 +9,7 @@ import Dashboard from "./dashboard/home";
 import Resume from "./resume/resume";
 import Axis from "./axis/questionContainerAxis";
 
-import { getAllQuestios } from './actions/actions'
+// import { getAllQuestios } from './actions/actions'
 
 import { AnimatedSwitch } from 'react-router-transition';
 // import TransitionSwitch from 'react-router-dom-transition';
@@ -27,8 +27,8 @@ class App extends Component {
 
 
   componentWillMount() {
-    const { getAllQuestios } = this.props;
-    getAllQuestios();
+    // const { getAllQuestios } = this.props;
+    // getAllQuestios();
   }
 
   render() {
@@ -61,9 +61,9 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getAllQuestios
   }, dispatch)
 }
+// getAllQuestios
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -69,7 +69,7 @@ class bottomSection extends Component {
 
                     {axies[currentItem.index + 1] != undefined &&
                         <span onClick={() => this.goToAxis(axies[currentItem.index + 1])}>
-                            <img src="resources/icono-aplica.png"/>
+                            <img src="resources/icono-siguiente.png"/>
                         </span>
                     }
 

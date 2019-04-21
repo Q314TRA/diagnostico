@@ -2,7 +2,7 @@
     position: relative;
     width: 100w;
     height: 100vh;
-    overflow: scroll;
+    /* overflow: scroll; */
     color: white;
     font-family: 'Heebo', sans-serif;
 }
@@ -19,6 +19,7 @@
     justify-content: center;
     -webkit-align-items: center;
     align-items: center;
+    position: relative;
 }
 
 .content-top .content-image{
@@ -136,13 +137,38 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgb(87, 180, 210);
+    position: relative;
 }
+
+.poll-content .section-quest .scroll-gide{
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 2.5vmin;
+
+}
+
+.poll-content .section-quest .scroll-gide span{
+    transform: rotate(-90deg);
+    display: none;
+    
+}
+.poll-content .section-quest:nth-child(2) .scroll-gide span{
+    display: block;
+}
+
+.poll-content .section-quest .scroll-gide img{
+    width: 100%;
+}
+
 
 
 .poll-content .section-quest .quest:first-child{
     margin-left: 3rem;
 }
-.poll-content .section-quest .quest:last-child{
+.poll-content .section-quest div:nth-last-child(2){
     margin-right: 3rem;
 }
 

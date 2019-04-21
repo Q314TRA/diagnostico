@@ -17,6 +17,11 @@ class aspectSection extends Component {
                 {quest.map((_quest, i) => (
                     <Question index={i} quest={_quest} />
                 ))}
+                <div className="scroll-gide">
+                    <span>SCROLL</span>
+                    <img  src="resources/icono-scroll.png" />
+                </div>
+
             </section>
         );
     }

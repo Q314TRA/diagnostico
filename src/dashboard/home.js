@@ -23,7 +23,7 @@ class Home extends Component {
         validateCompany(this.state.hash);
 
 
-        history.push(`/diagnosis`);
+        // history.push(`/diagnosis`);
     }
 
     render() {

@@ -10,13 +10,14 @@ import TopSection from "./topSection";
 import BottomSection from "./bottomSection";
 import question from './question';
 
-
+import { Scroller, scrollInitalState } from "react-skroll";
 
 class QuestionContainerAxis extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            numItemsPerSection: 3
+            numItemsPerSection: 3,
+            scroll: scrollInitalState
         }
 
     }
@@ -31,7 +32,8 @@ class QuestionContainerAxis extends Component {
 
     render() {
 
-        const { currentAxis, setCurrentAxis, currentQuests } = this.props;
+        const { currentAxis, setCurrentAxis, currentQuests, company } = this.props;
+        const { scroll } = this.state
 
         let nItems = this.state.numItemsPerSection;
 
@@ -44,15 +46,41 @@ class QuestionContainerAxis extends Component {
             .reduce((a, b, i, g) => !(i % nItems) ? a.concat([g.slice(i, i + nItems)]) : a, []);
 
         return (
-            <div className="poll-content" >
-                <TopSection />
 
-                {
-                    _currentQuests.map((_quest) => (
-                        <AspectSection quest={_quest} />
-                    ))
+
+            <div className="poll-content" >
+                {company.companyId &&
+                    <Scroller
+                        scrollRef={ref => this.scroll = ref}
+                        autoScroll={true}
+                        autoFrame={false}
+                        onScrollChange={(scroll) => {
+                            let newScroll = Object.assign({}, scroll);
+
+                            let newChildens = newScroll.children.map((scl) => {
+                                // scl.position = scl.position == 0? scl.position : scl.position - 30;
+                                if (scl.start > 0) {
+                                    let ofside = ((newScroll.viewHeight - scl.viewHeight) / 2);
+                                    scl.start = scl.start - ofside;
+                                }
+
+                                return scl;
+                            });
+
+                            newScroll.children = newChildens;
+                            this.setState({ newScroll })
+                        }}
+                    >
+                        <TopSection />
+                        {
+                            _currentQuests.map((_quest) => (
+                                <AspectSection quest={_quest} />
+                            ))
+                        }
+                        <BottomSection />
+                    </Scroller>
                 }
-                <BottomSection />
+
 
             </div>
         );

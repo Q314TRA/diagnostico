@@ -2,20 +2,20 @@
     position: relative;
     width: 100w;
     height: 100vh;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     color: white;
     font-family: 'Heebo', sans-serif;
-    -webkit-scroll-snap-type: mandatory;
+    /* -webkit-scroll-snap-type: mandatory;
     scroll-snap-type: y mandatory;
     -webkit-scroll-snap-points-y: repeat(100%);
     scroll-snap-points-y: repeat(100%);
     -webkit-scroll-snap-destination: 50% 50%;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; */
 }
 .poll-content > section{
     width: 100vw;
-    scroll-snap-align: center;
-    -webkit-scroll-snap-coordinate: 50% 50%;
+    /* scroll-snap-align: center;
+    -webkit-scroll-snap-coordinate: 50% 50%; */
 }
 
 .poll-content .content-top{

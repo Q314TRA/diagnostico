@@ -2,25 +2,69 @@
     position: relative;
     width: 100w;
     height: 100vh;
-    /* overflow: scroll; */
+    overflow-y: scroll;
     color: white;
     font-family: 'Heebo', sans-serif;
+    -webkit-scroll-snap-type: mandatory;
+    scroll-snap-type: y mandatory;
+    -webkit-scroll-snap-points-y: repeat(100%);
+    scroll-snap-points-y: repeat(100%);
+    -webkit-scroll-snap-destination: 50% 50%;
+    scroll-behavior: smooth;
 }
 .poll-content > section{
     width: 100vw;
+    scroll-snap-align: center;
+    -webkit-scroll-snap-coordinate: 50% 50%;
 }
 
 .poll-content .content-top{
     height: 70vh;
     display: -webkit-flex;
     display: flex;
-    background-color: rgb(51, 133, 182);
+    
     -webkit-justify-content: center;
     justify-content: center;
     -webkit-align-items: center;
     align-items: center;
     position: relative;
 }
+
+.poll-content.AMBIENTAL .content-top,
+.poll-content.AMBIENTAL .content-bottom{
+    background-color: rgb(51, 133, 182);
+}
+.poll-content.SOCIAL .content-top,
+.poll-content.SOCIAL .content-bottom{
+    background-color: rgb(235, 130, 40);
+}
+.poll-content.ECONOMICO .content-top,
+.poll-content.ECONOMICO .content-bottom{
+    background-color: rgb(75,173,132);
+    /* 325,230,40 */
+}
+
+
+.poll-content.AMBIENTAL .section-quest:nth-child(odd){
+    background-color: rgb(194, 229, 241);
+}
+.poll-content.SOCIAL .section-quest:nth-child(odd){
+    background-color: rgb(251, 230, 194);
+}
+.poll-content.ECONOMICO .section-quest:nth-child(odd){
+    background-color: rgb(194, 239, 228);
+}
+
+.poll-content.AMBIENTAL .section-quest{
+    background-color: rgb(87, 180, 210);
+}
+.poll-content.SOCIAL .section-quest{
+    background-color: rgb(243, 179, 83);
+}
+.poll-content.ECONOMICO .section-quest{
+    background-color: rgb(88, 204, 180);
+}
+
 
 .content-top .content-image{
     width: fit-content;
@@ -49,7 +93,6 @@
 .poll-content .content-bottom{
     height: 45vh;
     display: flex;
-    background-color: rgb(51, 133, 182);
     align-items: center;
     justify-content: center;
 }
@@ -138,7 +181,6 @@
 
 
 .poll-content .section-quest:nth-child(odd){
-    background-color: rgb(194, 229, 241);
     color: rgb(82, 84, 83);
 }
 
@@ -147,7 +189,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(87, 180, 210);
     position: relative;
 }
 
@@ -215,7 +256,7 @@
 
 .poll-content .navPanel{
     display: flex;
-    position: absolute;
+    position: fixed;
     right: 1rem;
     top: 0;
     width: 5vmin;

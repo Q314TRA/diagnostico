@@ -19,6 +19,17 @@ class ActiveShape extends Component {
         const ey = my;
         const textAnchor = cos >= 0 ? 'start' : 'end';
 
+        let _percent = (percent * 100).toFixed(2);
+        let textStatus = "Alto"
+
+        if(_percent < 11){
+            textStatus = "Bajo"
+        }else if(_percent < 22){
+            textStatus = "Medio"
+        }else{
+            textStatus = "Alto"
+        }
+
         return (
             <g>
                 <text x={cx} y={cy} dy={8} style={{transform:"translateY(-34%)"}} textAnchor="middle" fill={fill}>{payload.name}</text>
@@ -42,9 +53,9 @@ class ActiveShape extends Component {
                 />
                 <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
                 <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-                <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`# Acciones ${value}`}</text>
+                <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`# Nivel: ${textStatus}`}</text>
                 <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-                    {`(Pct ${(percent * 100).toFixed(2)}%)`}
+                    {`(Pct ${_percent}%)`}
                 </text>
             </g>
         );

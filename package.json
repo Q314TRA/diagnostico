@@ -20,7 +20,7 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "typescript": "^3.4.4",
-    "webpack": "^4.30.0"
+    "webpack": "^4.28.3"
   },
   "scripts": {
     "start": "PORT=7070 react-scripts start",

@@ -16,7 +16,7 @@ class bottomSection extends Component {
                 icon: "resources/icono-ambiental.png"
             },
             "SOCIAL": {
-                text: "aocial",
+                text: "social",
                 icon: "resources/icono-social.png"
             },
             "ECONOMICO": {

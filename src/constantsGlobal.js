@@ -1,8 +1,8 @@
 // API
-export const GET_ALL_QUESTIOS_API = "http://localhost:3000/diagnosis/" ;
-export const GET_VALIDATE_COMPANY_API = "http://localhost:3000/diagnosis/validateCompany" ;
-export const PUT_ANSWER_API = "http://localhost:3000/diagnosis/" ;
-export const DELETE_ANSWER_API = "http://localhost:3000/diagnosis/removeAnswer" ;
+export const GET_ALL_QUESTIOS_API = "https://biotica-api.herokuapp.com/diagnosis/" ;
+export const GET_VALIDATE_COMPANY_API = "https://biotica-api.herokuapp.com/diagnosis/validateCompany" ;
+export const PUT_ANSWER_API = "https://biotica-api.herokuapp.com/diagnosis/" ;
+export const DELETE_ANSWER_API = "https://biotica-api.herokuapp.com/diagnosis/removeAnswer" ;
 
 //SAGA -> REDUCERS
 export const GET_ALL_QUESTIOS_SAGA = "GET_ALL_QUESTIOS_SAGA" ;

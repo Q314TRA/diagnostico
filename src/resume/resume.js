@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../styles/resumev2.css';
+import ActiveShape from './activeShape';
 
 import ItemResume from './itemResume';
 
@@ -22,7 +23,25 @@ class Resume extends Component {
 
         this.state = {
             mergeAspects: [],
-            macroChallenge: {}
+            macroChallenge: {},
+            axis: {
+                "AMBIENTAL": {
+                    text: "ambiental",
+                    icon: "resources/icono-ambiental.png",
+                    color: "#8884d8"
+                },
+                "SOCIAL": {
+                    text: "social",
+                    icon: "resources/icono-social.png",
+                    color: "#8884d8"
+                },
+                "ECONOMICO": {
+                    text: "económico",
+                    icon: "resources/icono-economico.png",
+                    color: "#8884d8"
+                }
+            },
+            activeIndex: 0
         }
 
         this.renderCustomizedLabel = this.renderCustomizedLabel.bind(this);
@@ -30,13 +49,14 @@ class Resume extends Component {
         this.CustomTooltip = this.CustomTooltip.bind(this);
         this.selectPie = this.selectPie.bind(this);
         this.selectAspectMerge = this.selectAspectMerge.bind(this);
+        this.onPieEnter = this.onPieEnter.bind(this);
     }
 
 
     selectAspectMerge(axis, aspect) {
         const { questions } = this.props;
 
-        
+
         let result = questions.filter(question => question.axis == axis && question.aspectMerge == aspect)
             .reduce((a, b) => {
                 a[b.macroChallenge] = Object.assign([], a[b.macroChallenge]);
@@ -54,7 +74,12 @@ class Resume extends Component {
 
     }
 
-
+    componentWillMount() {
+        const { company, history } = this.props;
+        if (!company.companyId) {
+            history.push(`/`);
+        }
+    }
 
     selectPie(params) {
         const { questions } = this.props;
@@ -178,6 +203,11 @@ class Resume extends Component {
         return null;
     };
 
+    onPieEnter(data, index) {
+        this.setState({
+            activeIndex: index,
+        });
+    }
 
     render() {
 
@@ -185,53 +215,78 @@ class Resume extends Component {
 
         return (
             <div className="resume-content-v2">
-                <div className="resume-section">
-                    <div className="content-chart">
-                        <h3>Ejes</h3>
-                        <div>
-                            <PieChart width={400} height={400}>
-                                <Pie
-                                    onClick={this.selectPie}
-                                    data={data}
-                                    cx={200}
-                                    cy={200}
-                                    labelLine={false}
-                                    label={this.renderCustomizedLabel}
-                                    outerRadius={150}
-                                    fill="#8884d8"
-                                    dataKey="value"
-                                >
-                                    {
-                                        data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-                                    }
-                                </Pie>
-                                <Tooltip content={this.CustomTooltip} />
-                            </PieChart>
-                        </div>
-                    </div>
-                    <div className="content-chart">
-                        <h3>Capacidad</h3>
-                        <div>
-                            {this.state.mergeAspects.map(aspect => (
-                                <p onClick={() => this.selectAspectMerge(aspect.axis, aspect.aspect)}>{`${aspect.aspect} ${aspect.percent}%`}</p>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="content-chart">
-                        <h3>Potencialidad</h3>
-                        
-                        {Object.keys(this.state.macroChallenge).map((macroCh) => (
-                            <div>
-                                <h4>{macroCh}</h4>
-                                <ul>
-                                    {this.state.macroChallenge[macroCh].map((ch) => (
-                                        <li>{ch}</li>
-                                    ))}
-                                </ul>
 
+                <div className="top-nav-content">
+                    <img src="resources/logo-biotica-color.png" />
+                </div>
+                <div className="resume-section">
+                    <div>
+                        <div className="content-chart">
+
+
+                            <PieChart width={500} height={400}>
+                                <Pie
+                                    activeIndex={this.state.activeIndex}
+                                    activeShape={(props) => <ActiveShape context={{ ...props }} />}
+                                    data={data}
+                                    cx={250}
+                                    cy={200}
+                                    innerRadius={50}
+                                    outerRadius={80}
+                                    fill="#8884d8"
+                                    onMouseEnter={this.onPieEnter}
+                                    onClick={this.selectPie}
+                                />
+                                {
+                                    data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                                }
+                            </PieChart>
+
+                        </div>
+                        <div className="section-aspects">
+                            <div className="content-aspects">
+                                <div className="content-nav">
+                                    {
+                                        Object.keys(this.state.axis).map((ax) => (
+                                            <span className={ax} onClick={() => this.selectPie({ name: ax })}>
+                                                {this.state.axis[ax].text}
+                                            </span>
+                                        ))
+                                    }
+                                </div>
+
+                                <div>
+                                    <h3>Logros</h3>
+                                    <ul>
+                                        {this.state.mergeAspects.map(aspect => (
+                                            <li onClick={() => this.selectAspectMerge(aspect.axis, aspect.aspect)}>{`${aspect.aspect} ${aspect.percent}%`}
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                </div>
                             </div>
-                        ))}
-                        <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</div>
+
+                            {Object.keys(this.state.macroChallenge).length > 0 &&
+                                <div className="content-goals">
+                                    <h3>Retos</h3>
+
+                                    {Object.keys(this.state.macroChallenge).map((macroCh) => (
+                                        <div>
+                                            <h4>{macroCh}</h4>
+                                            <ul>
+                                                {this.state.macroChallenge[macroCh].map((ch) => (
+                                                    <li>{ch}</li>
+                                                ))}
+                                            </ul>
+
+                                        </div>
+                                    ))}
+
+                                </div>
+                            }
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -242,7 +297,9 @@ class Resume extends Component {
 
 
 const mapStateToProps = state => ({
-    questions: state.diagnosis.questions
+    questions: state.diagnosis.questions,
+    currentAxis: state.diagnosis.currentAxis,
+    company: state.diagnosis.company
 });
 
 function mapDispatchToProps(dispatch) {

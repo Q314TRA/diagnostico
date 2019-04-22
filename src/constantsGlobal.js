@@ -1,10 +1,10 @@
 export const API_SERVER = process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000";
 
 // API
-export const GET_ALL_QUESTIOS_API = API_SERVER + "/diagnosis/";
-export const GET_VALIDATE_COMPANY_API = API_SERVER + "/diagnosis/validateCompany";
-export const PUT_ANSWER_API = API_SERVER + "/diagnosis/";
-export const DELETE_ANSWER_API = API_SERVER + "/diagnosis/removeAnswer";
+export const GET_ALL_QUESTIOS_API = (process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000") + "/diagnosis/";
+export const GET_VALIDATE_COMPANY_API = (process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000") + "/diagnosis/validateCompany";
+export const PUT_ANSWER_API = (process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000") + "/diagnosis/";
+export const DELETE_ANSWER_API = (process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000") + "/diagnosis/removeAnswer";
 
 //SAGA -> REDUCERS
 export const GET_ALL_QUESTIOS_SAGA = "GET_ALL_QUESTIOS_SAGA";

@@ -53,7 +53,14 @@ class Home extends Component {
                     <div className="modal">
                         <h3>Hola {company.name}</h3>
                         <div>
-                            <p>Juras decir la verdad solo la verdad y nada mas que la verdad</p>
+                            <p>
+                                Con el fin de identificar el estado actual de su empresa en términos ambientales, sociales y
+    económicos es muy importante contestar las siguientes preguntas con total consciencia y con
+    la transparencia necesaria, pues este será el insumo para avanzar con nuestro diagnóstico
+    inicial.
+    <br /><br />
+                                Debe seleccionar las preguntas para las cuales la respuesta sea SI, con total certeza.
+                            </p>
                         </div>
                         <Link to="/diagnosis"> Acepto </Link>
                     </div>

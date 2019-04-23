@@ -40,9 +40,9 @@
 }
 
 
-.resume-section > div > div{
+/* .resume-section > div > div{
   flex-grow: 1;
-}
+} */
 
 .content-nav {
   display: flex;
@@ -57,16 +57,50 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
+  position:relative;
+  opacity: 0.5;
+  transition: all 0.7s ease-in;
+
+
+}
+.content-nav span.active{
+  opacity: 1;
 }
 
-.content-nav span.AMBIENTAL {
+.content-nav span.active:after{
+  content:"";
+  position:absolute;
+  width: 2px;
+  height: 4px;
+  z-index:11111111;
+  bottom: 0;
+  left: 50%;
+  /* background: antiquewhite; */
+  border-top-width: 10px;
+  border-top-style: solid;
+  /* border-top: 10px solid; */
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  transform: translate(-50%,100%);
+}
+
+.content-nav span.AMBIENTAL{
   background-color: rgb(51, 133, 182);
 }
-.content-nav span.SOCIAL {
+.content-nav span.SOCIAL{
   background-color: rgb(235, 130, 40);
 }
-.content-nav span.ECONOMICO {
+.content-nav span.ECONOMICO{
   background-color: rgb(75,173,132);
+}
+.content-nav span.AMBIENTAL:after {
+  border-top-color: rgb(51, 133, 182);
+}
+.content-nav span.SOCIAL:after {
+  border-top-color: rgb(235, 130, 40);
+}
+.content-nav span.ECONOMICO:after {
+  border-top-color: rgb(75,173,132);
 }
 
 
@@ -76,6 +110,62 @@
   background: white;
   padding: 0.5rem;
 }
+
+
+.content-aspects ul li {
+  position:relative;
+  line-height: 2;
+  width: fit-content;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.content-aspects ul li:before {
+  position: absolute;
+  content:"Ver retos";
+  padding: 5px 7px;
+  top: 50%;
+  right: 0;
+  transform: translate(116%,-50%);
+  width: 70px;
+  line-height: 1;
+  color:white;
+}
+
+.content-aspects ul li:after {
+  position:absolute;
+  content:"";
+  top:0;
+  right: 0;
+  display: solid;
+  top: 50%;
+  transform: translate(200%, -50%);
+  border-right-width: 7px;
+  border-right-style: solid;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+
+.content-aspects ul.AMBIENTAL li:before {
+  background-color: rgb(51, 133, 182);
+}
+.content-aspects ul.SOCIAL li:before {
+  background-color: rgb(235, 130, 40);
+}
+.content-aspects ul.ECONOMICO li:before {
+  background-color: rgb(75,173,132);
+}
+.content-aspects ul.AMBIENTAL li:after {
+  border-right-color: rgb(51, 133, 182);
+}
+.content-aspects ul.SOCIAL li:after {
+  border-right-color: rgb(235, 130, 40);
+}
+.content-aspects ul.ECONOMICO li:after {
+  border-right-color: rgb(75,173,132);
+}
+
+
 
 .section-aspects .content-goals{
   min-height: 100px;
@@ -88,9 +178,11 @@
 .section-aspects{
   color: rgb(82, 84, 83);
   font-family: 'Heebo', sans-serif;
+  flex-grow: 1;
 }
-
 
 .section-aspects h3{
   margin: 0;
 }
+
+

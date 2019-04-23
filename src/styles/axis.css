@@ -1,6 +1,6 @@
 .poll-content{
     position: relative;
-    width: 100w;
+    width: 100vw;
     height: 100vh;
     /* overflow-y: scroll; */
     color: white;

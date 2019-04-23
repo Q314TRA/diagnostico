@@ -28,22 +28,9 @@ class QuestionContainerAxis extends Component {
 
     goToResume() {
         const { history } = this.props;
-        // this.setState({
-        //     unmount: true
-        // })
 
         history.push(`/resume`);
-        // this.scroll.deleteRef();
 
-        
-
-        // let mountNode = ReactDOM.findDOMNode(this.scroll);
-        // let unmount = ReactDOM.unmountComponentAtNode(mountNode);
-
-
-        // this.forceUpdate()
-        // setTimeout(() => {
-        // }, 100);
     }
 
     componentWillMount() {
@@ -51,7 +38,6 @@ class QuestionContainerAxis extends Component {
         if (!company.companyId) {
             history.push(`/`);
         }
-
     }
 
 
@@ -77,9 +63,7 @@ class QuestionContainerAxis extends Component {
             <div className={`poll-content ${currentAxis}`} >
                 {company.companyId &&
                     <Scroller
-                        scrollRef={(ref) => {
-                            this.scroll = ref
-                        }}
+                        scrollRef={(ref) => this.scroll = ref}
                         autoScroll={true}
                         autoFrame={true}
                         onScrollChange={(scroll) => {
@@ -90,29 +74,23 @@ class QuestionContainerAxis extends Component {
                                     let ofside = ((newScroll.viewHeight - scl.viewHeight) / 2);
                                     scl.start = scl.start - ofside;
                                 }
-
                                 return scl;
                             });
+
                             newScroll.children = newChildens;
-                            console.log(newScroll);
                             this.setState({ scroll: newScroll })
-                        }}
-                    >
+                        }}>
                         <TopSection />
-                        {
-                            _currentQuests.map((_quest) => (
-                                <AspectSection quest={_quest} />
-                            ))
-                        }
+                        {_currentQuests.map((_quest) => (
+                            <AspectSection quest={_quest} />
+                        ))}
                         <BottomSection goToResume={this.goToResume} gotScrollTop={() => this.scroll.scrollToPosition(scroll.start)} />
                     </Scroller>
                 }
                 <div className="navPanel">
-                    {
-                        scroll.children.map((child, i) =>
-                            <img onClick={() => this.scroll.scrollToPosition(child.start)} src={`resources/${child.active ? 'dot-active' : 'dot'}.svg`} />
-                        )
-                    }
+                    {scroll.children.map((child, i) =>
+                        <img onClick={() => this.scroll.scrollToPosition(child.start)} src={`resources/${child.active ? 'dot-active' : 'dot'}.svg`} />
+                    )}
                 </div>
 
 

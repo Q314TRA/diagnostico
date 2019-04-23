@@ -1,11 +1,45 @@
 import React, { Component } from 'react';
-import { PieChart, Pie, Sector } from 'recharts';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Sector } from 'recharts';
+
+
+import { setResumeCurrentAxis } from '../actions/actions';
+
+
 
 class ActiveShape extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            "AMBIENTAL": {
+                text: "ambiental",
+                icon: "resources/icono-ambiental.png",
+                color: "#0097c2"
+            },
+            "SOCIAL": {
+                text: "social",
+                icon: "resources/icono-social.png",
+                color: "#fe9601"
+            },
+            "ECONOMICO": {
+                text: "económico",
+                icon: "resources/icono-economico.png",
+                color: "#00b796"
+            }
+        }
+    }
+
+    componentDidMount(){
+        const { setResumeCurrentAxis, context: { name } } = this.props;
+        setResumeCurrentAxis(name);
+    }
+
     render() {
         const {
             context: { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
-                fill, payload, percent, value }
+                fill, payload, percent, value, name }
         } = this.props;
 
         const RADIAN = Math.PI / 180;
@@ -22,17 +56,23 @@ class ActiveShape extends Component {
         let _percent = (percent * 100).toFixed(2);
         let textStatus = "Alto"
 
-        if(_percent < 11){
+        if (_percent < 11) {
             textStatus = "Bajo"
-        }else if(_percent < 22){
+        } else if (_percent < 22) {
             textStatus = "Medio"
-        }else{
+        } else {
             textStatus = "Alto"
         }
 
+        let _fill = this.state[name].color;
+
         return (
             <g>
-                <text x={cx} y={cy} dy={8} style={{transform:"translateY(-34%)"}} textAnchor="middle" fill={fill}>{payload.name}</text>
+                <text x={cx} y={cy} dy={8} style={{
+                    transform: "translateY(-45%)",
+                    fontSize: "5vmin"
+                }}
+                    textAnchor="middle" fill={_fill}>{payload.name}</text>
                 <Sector
                     cx={cx}
                     cy={cy}
@@ -40,7 +80,7 @@ class ActiveShape extends Component {
                     outerRadius={outerRadius}
                     startAngle={startAngle}
                     endAngle={endAngle}
-                    fill={fill}
+                    fill={_fill}
                 />
                 <Sector
                     cx={cx}
@@ -49,10 +89,10 @@ class ActiveShape extends Component {
                     endAngle={endAngle}
                     innerRadius={outerRadius + 6}
                     outerRadius={outerRadius + 10}
-                    fill={fill}
+                    fill={_fill}
                 />
-                <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-                <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+                <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={_fill} fill="none" />
+                <circle cx={ex} cy={ey} r={2} fill={_fill} stroke="none" />
                 <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`# Nivel: ${textStatus}`}</text>
                 <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
                     {`(Pct ${_percent}%)`}
@@ -63,4 +103,14 @@ class ActiveShape extends Component {
     }
 }
 
-export default ActiveShape;
+
+const mapStateToProps = state => ({ });
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        setResumeCurrentAxis
+    }, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveShape);

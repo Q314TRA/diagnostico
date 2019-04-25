@@ -8,15 +8,15 @@ class topSection extends Component {
 
         this.state = {
             "AMBIENTAL": {
-                text: "ambiental",
+                text: "Ambiental",
                 icon: "resources/categoria-ambiental.png"
             },
             "SOCIAL": {
-                text: "social",
+                text: "Social",
                 icon: "resources/categoria-social.png"
             },
             "ECONOMICO": {
-                text: "económico",
+                text: "Económico",
                 icon: "resources/categoria-economico.png"
             },
         }

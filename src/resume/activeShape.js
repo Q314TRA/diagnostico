@@ -39,7 +39,7 @@ class ActiveShape extends Component {
     render() {
         const {
             context: { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
-                fill, payload, percent, value, name }
+                fill, payload, percent, value, name, realPercent }
         } = this.props;
 
         const RADIAN = Math.PI / 180;
@@ -56,15 +56,16 @@ class ActiveShape extends Component {
         let _percent = (percent * 100).toFixed(2);
         let textStatus = "Alto"
 
-        if (_percent < 11) {
+        if (realPercent < 30) {
             textStatus = "Bajo"
-        } else if (_percent < 22) {
+        } else if (realPercent < 70) {
             textStatus = "Medio"
         } else {
             textStatus = "Alto"
         }
 
         let _fill = this.state[name].color;
+        console.log(realPercent);
 
         return (
             <g>

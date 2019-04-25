@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Link } from 'react-router-dom'
 
-import { validateCompany } from "../actions/actions";
+import { validateCompany, setInterestGroup } from "../actions/actions";
 
 import '../styles/home.css';
 
@@ -13,18 +13,32 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hash: ""
+            hash: "",
+            interestGroup: "",
+            interestGroupError: false
         }
         this.validate = this.validate.bind(this);
+        this.initDiagnostic = this.initDiagnostic.bind(this);
+
     }
 
     validate() {
         const { validateCompany, history } = this.props;
         validateCompany(this.state.hash);
-
-
-        // history.push(`/diagnosis`);
     }
+
+    initDiagnostic() {
+        const { setInterestGroup, history } = this.props;
+        if (this.state.interestGroup != "") {
+            setInterestGroup(this.state.interestGroup);
+            history.push(`/diagnosis`);
+        } else {
+            this.setState({
+                interestGroupError: true
+            });
+        }
+    }
+
 
     render() {
         const { company, history } = this.props;
@@ -61,8 +75,15 @@ class Home extends Component {
     <br /><br />
                                 Debe seleccionar las preguntas para las cuales la respuesta sea SI, con total certeza.
                             </p>
+                            <div className={this.state.interestGroupError ? "input-inline error" : "input-inline"} >
+                                <label htmlFor="interestGroupTxt">Rol</label>
+                                <input onChange={(element) => this.setState({ interestGroup: element.target.value })}
+                                    name="interestGroupTxt" id="interestGroupTxt" placeholder="Director de la felicidad" />
+                            </div>
+
                         </div>
-                        <Link to="/diagnosis"> Acepto </Link>
+                        <button className="callback" onClick={this.initDiagnostic} >Acepto</button>
+                        {/* <Link to="/diagnosis"> Acepto </Link> */}
                     </div>
                 }
 
@@ -80,7 +101,8 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        validateCompany
+        validateCompany,
+        setInterestGroup
     }, dispatch)
 }
 

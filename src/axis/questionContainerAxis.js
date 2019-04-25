@@ -34,10 +34,12 @@ class QuestionContainerAxis extends Component {
     }
 
     componentWillMount() {
-        const { company, history } = this.props;
+        const { company, history, getAllQuestios, interestGroup } = this.props;
         if (!company.companyId) {
             history.push(`/`);
         }
+
+        getAllQuestios(company.companyId, interestGroup);
     }
 
 
@@ -104,7 +106,8 @@ const mapStateToProps = state => ({
     currentAxis: state.diagnosis.currentAxis,
     currentQuests: state.diagnosis.questions
         .filter(quest => quest.axis == state.diagnosis.currentAxis),
-    company: state.diagnosis.company
+    company: state.diagnosis.company,
+    interestGroup: state.diagnosis.interestGroup
 });
 
 function mapDispatchToProps(dispatch) {

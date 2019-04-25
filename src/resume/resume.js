@@ -49,11 +49,14 @@ class Resume extends Component {
 
         let result = Object.keys(axis).map(_axis => {
             let percent = ((axis[_axis].sumChecks * 100) / axis_resume[_axis].sumChecks);
+          
             let fragment = 100 / Object.keys(axis).length;
             let _percent = (fragment * percent) / 100;
+          
             return {
                 name: _axis,
-                value: _percent
+                value: _percent,
+                realPercent: percent
             }
         });
 

@@ -195,7 +195,7 @@
     left: 50vw;
     width: 40vw;
     min-width: 70vmin;
-    height: 300px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -220,7 +220,7 @@
   }
 
 
-  .modal a{
+  .modal .callback{
     padding: 0.7rem 1rem;
     color: white;
     background-color: #89bf11;
@@ -229,12 +229,73 @@
   }
 
 
-  .modal div{
-    height: 100px;
+  .modal > div{
+    height: fit-content;
     flex-grow: 1;
     padding: 1rem;
     color: rgb(82, 84, 83);
   }
   .modal div p{
     margin: 0;
+  }
+
+  .modal .input-inline{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(80, 172, 168, 0.3);
+    margin-top: 1rem;
+  }
+  
+  .modal .input-inline > *{
+    flex-grow: 1;
+    font-family: 'Heebo', sans-serif;
+  }
+ 
+  .modal .input-inline input{
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 14pt;
+    color: rgb(57, 133, 153);
+    width: 60%;
+  }
+
+  
+  .modal .input-inline.error{
+    animation: shake 1.3s cubic-bezier(.36,.07,.19,.97) both;
+  }
+  
+  .modal .input-inline.error label{
+    background-color: rgb(235, 130, 40);
+  }
+
+  .modal .input-inline label{
+    background-color: #398599;
+    color: white;
+    font-size: 14pt;
+    border: none;
+    padding: 0.5rem 0 0.5rem;
+    text-align: center;
+  }
+
+  .modal .input-inline input::placeholder{
+    color: rgba(57, 133, 153, 0.7);
+  }
+
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
   }

@@ -11,17 +11,17 @@ class Achievement extends Component {
         this.state = {
             axis: {
                 "AMBIENTAL": {
-                    text: "ambiental",
+                    text: "Ambiental",
                     icon: "resources/icono-ambiental.png",
                     color: "#8884d8"
                 },
                 "SOCIAL": {
-                    text: "social",
+                    text: "Social",
                     icon: "resources/icono-social.png",
                     color: "#8884d8"
                 },
                 "ECONOMICO": {
-                    text: "económico",
+                    text: "Económico",
                     icon: "resources/icono-economico.png",
                     color: "#8884d8"
                 }

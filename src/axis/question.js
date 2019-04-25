@@ -35,27 +35,29 @@ class Question extends Component {
         })
     }
 
-    putAnswer(idCompany, idQuestion) {
+    putAnswer(idCompany, idQuestion, interestGroup) {
         const { putAnswer } = this.props;
         putAnswer({
             "idCompany": idCompany,
-            "idQuestion": idQuestion
+            "idQuestion": idQuestion,
+            "interestGroup": interestGroup
         });
 
     }
 
-    deleteAnswer(idCompany, idQuestion) {
+    deleteAnswer(idCompany, idQuestion, interestGroup) {
         const { deleteAnswer } = this.props;
         deleteAnswer({
             "idCompany": idCompany,
-            "idQuestion": idQuestion
+            "idQuestion": idQuestion,
+            "interestGroup": interestGroup
         })
     }
 
 
 
     render() {
-        const { index, quest, company } = this.props;
+        const { index, quest, company, interestGroup } = this.props;
         return (
             <div className={`quest ${this.state.show ? "show" : ""} ${quest.selected ? "selected" : ""}`}  >
                 <div className="quest-text">
@@ -64,9 +66,9 @@ class Question extends Component {
                 </div>
                 <div className="quest-callback">
                     {quest.selected &&
-                        <img onClick={() => this.deleteAnswer(company.companyId, quest.id)} src={this.state.btnUnCheck.unChecked}></img>
+                        <img onClick={() => this.deleteAnswer(company.companyId, quest.id, interestGroup)} src={this.state.btnUnCheck.unChecked}></img>
                     }
-                    <img onClick={() => this.putAnswer(company.companyId, quest.id)}
+                    <img onClick={() => this.putAnswer(company.companyId, quest.id, interestGroup)}
                         src={quest.selected ? this.state.btnCheck.checked : this.state.btnCheck.unChecked}></img>
                 </div>
 
@@ -77,7 +79,8 @@ class Question extends Component {
 
 
 const mapStateToProps = state => ({
-    company: state.diagnosis.company
+    company: state.diagnosis.company,
+    interestGroup: state.diagnosis.interestGroup
 });
 
 function mapDispatchToProps(dispatch) {

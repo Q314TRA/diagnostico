@@ -13,10 +13,23 @@
   top: 0;
   left: 0;
   background: white;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .top-nav-content img{
-  height: 100%
+  height: 100%;
+  margin-left: 2rem;
+}
+
+.top-nav-content span{
+  margin-right: 2rem;
+  color: rgb(51, 133, 182);
+  /* color: #EA4933; */
+  cursor: pointer;
+  font-size: 18pt;
+  font-family: 'Heebo', sans-serif;
 }
 
 .resume-section{

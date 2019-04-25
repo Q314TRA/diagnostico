@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../styles/resumev2.css';
 
-import { setResumeCurrentAxis } from '../actions/actions';
+import { setResumeCurrentAxis, logOut } from '../actions/actions';
 
 import AspectChart from "./aspectChart";
 import Achievement from "./achievement";
@@ -20,6 +20,7 @@ class Resume extends Component {
         this.compileData = this.compileData.bind(this);
         this.getAspectMerge = this.getAspectMerge.bind(this);
         this.getMergeAspects = this.getMergeAspects.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
     componentWillMount() {
@@ -49,10 +50,10 @@ class Resume extends Component {
 
         let result = Object.keys(axis).map(_axis => {
             let percent = ((axis[_axis].sumChecks * 100) / axis_resume[_axis].sumChecks);
-          
+
             let fragment = 100 / Object.keys(axis).length;
             let _percent = (fragment * percent) / 100;
-          
+
             return {
                 name: _axis,
                 value: _percent,
@@ -124,6 +125,11 @@ class Resume extends Component {
 
     }
 
+    logOut() {
+        const { logOut , history} = this.props;
+        logOut();
+        history.push(`/`);
+    }
 
 
     render() {
@@ -141,6 +147,7 @@ class Resume extends Component {
 
                 <div className="top-nav-content">
                     <img src="resources/logo-biotica-color.png" />
+                    <span onClick={this.logOut}>Salir</span>
                 </div>
                 <div className="resume-section">
                     <div>
@@ -169,7 +176,8 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        setResumeCurrentAxis
+        setResumeCurrentAxis,
+        logOut
     }, dispatch)
 }
 

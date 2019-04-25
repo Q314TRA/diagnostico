@@ -1,6 +1,6 @@
 import { GET_ALL_QUESTIOS_SAGA, SET_CURRENT_AXIS, GET_VALIDATE_COMPANY_SAGA, 
     PUT_ANSWER_SAGA, DELETE_ANSWER_SAGA, SET_RESUME_CURRENT_AXIS,
-    SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP } from '../constantsGlobal'
+    SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP, LOG_OUT } from '../constantsGlobal'
 
 export function getAllQuestios(idCompany, interestGroup) {
     return { type: GET_ALL_QUESTIOS_SAGA, payload: {
@@ -35,6 +35,10 @@ export function setResumeCurrentAspect(axis) {
 
 export function setInterestGroup(interestGroup) {
     return { type: SET_INTEREST_GROUP, payload: interestGroup }
+}
+
+export function logOut() {
+    return { type: LOG_OUT}
 }
 
 

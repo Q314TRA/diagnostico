@@ -1,6 +1,6 @@
 import {
     SET_ALL_QUESTIOS, SET_CURRENT_AXIS, GET_VALIDATE_COMPANY,
-    SET_RESUME_CURRENT_AXIS, SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP
+    SET_RESUME_CURRENT_AXIS, SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP, LOG_OUT
 } from '../constantsGlobal';
 
 const initialState = {
@@ -39,6 +39,15 @@ function diagnosis(state = initialState, action) {
         case SET_INTEREST_GROUP:
             return Object.assign({}, state, {
                 interestGroup: action.payload
+            });
+        case LOG_OUT:
+            return Object.assign({}, state, {
+                company: {},
+                interestGroup: "",
+                questions: [],
+                currentAxis: "AMBIENTAL",
+                currentAxisResume: "",
+                currentAspectMerge: ""
             });
         default:
             return state

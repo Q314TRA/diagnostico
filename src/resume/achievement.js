@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import AspectBarChart from "./aspectBarChart";
+
 
 import { setResumeCurrentAxis, setResumeCurrentAspect } from '../actions/actions';
 
@@ -10,14 +12,14 @@ class Achievement extends Component {
         super(props);
         this.state = {
             axis: {
-                "AMBIENTAL": {
-                    text: "Ambiental",
-                    icon: "resources/icono-ambiental.png",
-                    color: "#8884d8"
-                },
                 "SOCIAL": {
                     text: "Social",
                     icon: "resources/icono-social.png",
+                    color: "#8884d8"
+                },
+                "AMBIENTAL": {
+                    text: "Ambiental",
+                    icon: "resources/icono-ambiental.png",
                     color: "#8884d8"
                 },
                 "ECONOMICO": {
@@ -40,7 +42,7 @@ class Achievement extends Component {
 
     selectAspectMerge(aspect) {
         const { setResumeCurrentAspect } = this.props;
-        setResumeCurrentAspect(aspect);
+        setResumeCurrentAspect(aspect.aspect);
     }
 
     render() {
@@ -58,14 +60,28 @@ class Achievement extends Component {
                     }
                 </div>
 
-                <div>
-                    <h3>Logros</h3>
-                    <ul className={currentAxisResume}>
+                <div className={currentAxisResume}>
+                    <h3>Capacidad</h3>
+                    <AspectBarChart
+                        data={mergeAspects}
+                        datakey="aspect"
+                        dataValue="percent"
+                        callback={(params) => this.selectAspectMerge(params)}
+                        styles={{
+                            width: 600,
+                            height: 300,
+                            margin: { top: 5, right: 30, left: 20, bottom: 5 },
+                            ywidth: 200
+
+                        }}
+                    />
+
+                    {/* <ul className={currentAxisResume}>
                         {mergeAspects.map(aspect => (
                             <li onClick={() => this.selectAspectMerge(aspect.aspect)}>{`${aspect.aspect ? String(aspect.aspect).toLowerCase() : ""} ${aspect.percent}%`}
                             </li>
                         ))}
-                    </ul>
+                    </ul> */}
 
                 </div>
             </div>

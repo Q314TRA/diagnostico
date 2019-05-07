@@ -8,7 +8,7 @@ const initialState = {
     interestGroup: "",
     questions: [],
     currentAxis: "AMBIENTAL",
-    currentAxisResume: "",
+    currentAxisResume: "SOCIAL",
     currentAspectMerge: ""
 }
 

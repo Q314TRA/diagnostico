@@ -5,7 +5,8 @@ import '../styles/resumev2.css';
 
 import { setResumeCurrentAxis, logOut } from '../actions/actions';
 
-import AspectChart from "./aspectChart";
+// import AspectChart from "./aspectChart";
+import AspectBarChart from "./aspectBarChart";
 import Achievement from "./achievement";
 import Challenge from "./challenge";
 
@@ -21,6 +22,7 @@ class Resume extends Component {
         this.getAspectMerge = this.getAspectMerge.bind(this);
         this.getMergeAspects = this.getMergeAspects.bind(this);
         this.logOut = this.logOut.bind(this);
+        this.selectPie = this.selectPie.bind(this);
     }
 
     componentWillMount() {
@@ -56,7 +58,7 @@ class Resume extends Component {
 
             return {
                 name: _axis,
-                value: _percent,
+                value: Math.round(_percent),
                 realPercent: percent
             }
         });
@@ -114,10 +116,14 @@ class Resume extends Component {
 
         let result = questions.filter(question => question.axis == currentAxisResume && question.aspectMerge == currentAspectMerge)
             .reduce((a, b) => {
-                a[b.macroChallenge] = Object.assign([], a[b.macroChallenge]);
-                if (a[b.macroChallenge].indexOf(b.challenge) == -1) {
-                    a[b.macroChallenge].push(b.challenge)
+                if(b.challenge){
+                    a[b.challenge] = Object.assign({}, a[b.challenge]);
+                    a[b.challenge] = b;
                 }
+                // if (!!a[b.macroChallenge][b.challenge]) {
+                //     a[b.macroChallenge][b.challenge] = b;
+                //     // a[b.macroChallenge].push(b.challenge)
+                // }
                 return a;
             }, {});
 
@@ -126,11 +132,15 @@ class Resume extends Component {
     }
 
     logOut() {
-        const { logOut , history} = this.props;
+        const { logOut, history } = this.props;
         logOut();
         history.push(`/`);
     }
 
+    selectPie(params) {
+        const { setResumeCurrentAxis } = this.props;
+        setResumeCurrentAxis(params.name);
+    }
 
     render() {
 
@@ -151,12 +161,28 @@ class Resume extends Component {
                 </div>
                 <div className="resume-section">
                     <div>
-                        <AspectChart data={data} />
+                        {/* <Aspect Chart data={data} /> */}
+                        <AspectBarChart
+                            data={data}
+                            datakey="name"
+                            dataValue="value"
+                            callback={(params) => this.selectPie(params)}
+                            indexColor={true}
+                            styles={{
+                                width: 600,
+                                height: 400,
+                                margin: { top: 5, right: 30, left: 20, bottom: 5 }
+
+                            }}
+                        />
+
+
+
                         <div className="section-aspects">
                             <Achievement mergeAspects={mergeAspects} />
-                            <Challenge macroChallenge={aspectMerge} />
-
                         </div>
+                        <Challenge macroChallenge={aspectMerge} />
+
                     </div>
                 </div>
             </div>

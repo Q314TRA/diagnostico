@@ -60,16 +60,16 @@ class AspectBarChart extends Component {
 
     callbackChart(params) {
         const { data, datakey, dataValue, callback, indexColor, styles } = this.props;
-        if (params && params.activePayload && params.activePayload.length > 0) {
+        if (callback && params && params.activePayload && params.activePayload.length > 0) {
             callback(params.activePayload[0].payload)
         }
     }
     // onClick={callback}
     render() {
-        const { data, datakey, dataValue, callback, indexColor, styles } = this.props;
+        const { data, datakey, dataValue, indexColor, styles, parentSyle } = this.props;
 
         return (
-            <div className="content-chart">
+            <div className="content-chart" style={parentSyle ? parentSyle : {}}>
                 <ResponsiveContainer>
                     <BarChart
                         layout='vertical'

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../styles/resumev2.css';
-import {Link} from 'react-router-dom';
-
 
 import { setResumeCurrentAxis, logOut } from '../actions/actions';
 
@@ -14,17 +12,32 @@ import Challenge from "./challenge";
 
 
 
-class Resume extends Component {
+class ExportResume extends Component {
 
 
     constructor(props) {
         super(props);
+        this.state = {
+            "AMBIENTAL": {
+                name: "Ambiental",
+                color: "#3485b6"
+            },
+            "ECONOMICO": {
+                name: "Económico",
+                color: "#55ad84"
+            },
+            "SOCIAL": {
+                name: "Social",
+                color: "#eb8232"
+            }
+        }
+
 
         this.compileData = this.compileData.bind(this);
         this.getAspectMerge = this.getAspectMerge.bind(this);
         this.getMergeAspects = this.getMergeAspects.bind(this);
-        this.logOut = this.logOut.bind(this);
-        this.selectPie = this.selectPie.bind(this);
+        this.getCompileResume = this.getCompileResume.bind(this);
+
     }
 
     componentWillMount() {
@@ -68,8 +81,8 @@ class Resume extends Component {
         return result;
     }
 
-    getMergeAspects() {
-        const { questions, currentAxisResume } = this.props;
+    getMergeAspects(currentAxisResume) {
+        const { questions } = this.props;
 
         let axis = questions.filter(question => question.axis == currentAxisResume);
 
@@ -113,14 +126,19 @@ class Resume extends Component {
         return compileMergeData;
     }
 
-    getAspectMerge() {
-        const { questions, currentAxisResume, currentAspectMerge } = this.props;
+    getAspectMerge(currentAxisResume) {
+        const { questions } = this.props;
 
-        let result = questions.filter(question => question.axis == currentAxisResume && question.aspectMerge == currentAspectMerge)
+        let result = questions.filter(question => question.axis == currentAxisResume)
             .reduce((a, b) => {
-                if(b.challenge){
+                if (b.challenge) {
                     a[b.challenge] = Object.assign({}, a[b.challenge]);
-                    a[b.challenge] = b;
+                    if (a[b.challenge].aspectMerge && a[b.challenge].aspectMerge.indexOf(b.aspectMerge.toLowerCase()) == -1 ) {
+                        a[b.challenge].aspectMerge +=  ", " + b.aspectMerge;
+                    } else {
+                        a[b.challenge] = b;
+                    }
+                    a[b.challenge].aspectMerge = String(a[b.challenge].aspectMerge).toLowerCase();
                 }
                 return a;
             }, {});
@@ -129,15 +147,19 @@ class Resume extends Component {
 
     }
 
-    logOut() {
-        const { logOut, history } = this.props;
-        logOut();
-        history.push(`/`);
-    }
+    getCompileResume() {
 
-    selectPie(params) {
-        const { setResumeCurrentAxis } = this.props;
-        setResumeCurrentAxis(params.name);
+        let resumeCompiled = Object.keys(this.state).reduce((a, b, i) => {
+            a[b] = {
+                capacity: this.getMergeAspects(b),
+                potentiality: this.getAspectMerge(b),
+                name: this.state[b].name,
+                color: this.state[b].color
+            };
+            return a;
+        }, {});
+
+        return resumeCompiled;
     }
 
     render() {
@@ -145,46 +167,58 @@ class Resume extends Component {
         //Chart
         const data = this.compileData();
         //achievement
-        const mergeAspects = this.getMergeAspects();
-        //challenge
-        const aspectMerge = this.getAspectMerge();
+        const compileResume = this.getCompileResume();
 
 
         return (
-            <div className="resume-content-v2">
-
-                <div className="top-nav-content">
-                    <img src="resources/logo-biotica-color.png" />
-
-                    <Link to="/exportResume" >Export </Link>
-
-                    <span onClick={this.logOut}>Salir</span>
-                </div>
-                <div className="resume-section">
-                    <div>
-                        {/* <Aspect Chart data={data} /> */}
-                        <AspectBarChart
-                            data={data}
-                            datakey="name"
-                            dataValue="value"
-                            callback={(params) => this.selectPie(params)}
-                            indexColor={true}
-                            styles={{
-                                width: 600,
-                                height: 400,
-                                margin: { top: 5, right: 30, left: 20, bottom: 5 }
-
-                            }}
-                        />
-
-
-
-                        <div className="section-aspects">
-                            <Achievement mergeAspects={mergeAspects} />
+            <div className="resume-compile-content">
+                <div>
+                    <div className="resume-compile-section resume-compile-section-h" >
+                        <div style={{ minWidth: "400px", height: "200px" }}>
+                            <h2>Ejes</h2>
+                            <AspectBarChart
+                                data={data}
+                                datakey="name"
+                                dataValue="value"
+                                indexColor={true}
+                                styles={{
+                                    width: 600,
+                                    height: 400,
+                                    margin: { top: 5, right: 30, left: 20, bottom: 5 }
+                                }}
+                                parentSyle={{ width: "100%", height: "100%" }}
+                            />
                         </div>
-                        <Challenge macroChallenge={aspectMerge} />
-
+                        <div>
+                            <p>
+                                <strong>Biotica</strong> <br /> Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500
+                            </p>
+                        </div>
                     </div>
+
+                    {Object.keys(compileResume).map(_axis => (
+                        <div className="resume-compile-section resume-compile-section-v">
+                            <h2 style={{ backgroundColor: compileResume[_axis].color }} className="section-header">{compileResume[_axis].name}</h2>
+
+                            <h3>Capacidad</h3>
+                            <div style={{ minWidth: "600px", height: "300px" }}>
+                                <AspectBarChart
+                                    data={compileResume[_axis].capacity}
+                                    datakey="aspect"
+                                    dataValue="percent"
+                                    styles={{
+                                        width: 600,
+                                        height: 300,
+                                        margin: { top: 5, right: 30, left: 20, bottom: 5 },
+                                        ywidth: 200
+                                    }}
+                                    parentSyle={{ width: "100%", height: "100%" }}
+                                />
+                            </div>
+                            <h3>Potencialidad</h3>
+                            <Challenge isExport={true} macroChallenge={compileResume[_axis].potentiality} />
+                        </div>
+                    ))}
                 </div>
             </div>
         )
@@ -209,4 +243,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Resume);
+export default connect(mapStateToProps, mapDispatchToProps)(ExportResume);

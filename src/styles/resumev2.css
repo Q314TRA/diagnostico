@@ -308,3 +308,73 @@
     padding: 0.5rem;
   }
 }
+
+
+.resume-compile-content{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #F1EEDD;
+}
+
+.resume-compile-content > div{
+  width: 100vmin;
+  display: block;
+  margin: auto;
+  background-color: #FFF;
+}
+
+.resume-compile-content .resume-compile-section{
+  display: flex;
+  padding: 2rem;
+}
+.resume-compile-content .resume-compile-section > div{
+  flex-grow: 1;
+}
+
+.resume-compile-content .resume-compile-section-h{
+  flex-direction: row;
+}.resume-compile-content .resume-compile-section-v{
+  flex-direction: column;
+}
+
+.resume-compile-content .resume-compile-section h2.section-header{
+  max-width: 100%;
+  line-height: 2;
+  padding: 0 0 0 1rem;
+  color: white;
+}
+
+.resume-compile-content h2{
+  font-size: 18pt;
+}
+.resume-compile-content h3{
+  font-size: 16pt;
+}
+
+.resume-compile-content .section-challenge {
+  border: none;
+  padding: 0;
+}
+
+.resume-compile-content .section-challenge .content-goals{
+  grid-gap: 1rem;
+  font-size: 10pt;
+}
+.resume-compile-content .section-challenge .content-goals span{
+  text-transform: capitalize;
+}
+
+.resume-compile-content .section-challenge .content-goals span + span{
+  display: block;
+  margin-top: 5px;
+}
+.resume-compile-content .section-challenge .section-content-table {
+  transform: translate(5% , -120%);
+}
+
+

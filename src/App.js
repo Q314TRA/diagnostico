@@ -7,6 +7,7 @@ import './styles/App.css';
 import Dashboard from "./dashboard/home";
 // import Resume from "./resume/contentResume";
 import Resume from "./resume/resume";
+import ExportResume from "./resume/exportResume";
 import Axis from "./axis/questionContainerAxis";
 
 // import { getAllQuestios } from './actions/actions'
@@ -45,6 +46,7 @@ class App extends Component {
           >
             <Route exact path='/' component={Dashboard}></Route>
             <Route exact path='/resume' component={Resume}></Route>
+            <Route exact path='/exportResume' component={ExportResume}></Route>
             <Route exact path='/diagnosis' component={Axis}></Route>
           </AnimatedSwitch>
           {/* </TransitionSwitch> */}

@@ -18,7 +18,7 @@ class Challenge extends Component {
                 }
 
                 {Object.keys(macroChallenge).length == 0 &&
-                    <p>Selecciona alguna de tus <span style="color: #D32F2F;">capacidades</span>.</p>
+                    <p>Selecciona alguna de tus <span style={{ color : "#D32F2F" }}>capacidades</span>.</p>
                 }
 
                 <div className="section-content-table">

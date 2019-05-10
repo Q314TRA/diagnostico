@@ -2,7 +2,9 @@ import {
   GET_ALL_QUESTIOS_SAGA, SET_ALL_QUESTIOS, GET_ALL_QUESTIOS_API,
   GET_VALIDATE_COMPANY_API, GET_VALIDATE_COMPANY_SAGA, GET_VALIDATE_COMPANY,
   PUT_ANSWER_SAGA, PUT_ANSWER_API,
-  DELETE_ANSWER_SAGA, DELETE_ANSWER_API
+  DELETE_ANSWER_SAGA, DELETE_ANSWER_API,
+  GENERATE_REPORT, PUT_REPORT_STATUS, PUT_DATA_REPORT,
+  GENERATE_BASE64, GET_BASE64_SVG, PUT_BASE_64
 } from '../constantsGlobal'
 
 import { call, put, takeEvery, takeLatest, fork, all } from 'redux-saga/effects'
@@ -55,6 +57,26 @@ function* deleteAnswer(action) {
   });
 }
 
+function* generateReport(action) {
+  const guid = yield call(axios.post, PUT_DATA_REPORT, action.payload);
+  yield put({ type: PUT_REPORT_STATUS, payload: PUT_DATA_REPORT + "/" + guid.data });
+}
+
+
+
+function* generateBase64(action) {
+
+  const base64png = yield call(axios.post,
+    GET_BASE64_SVG, action.payload.svg, { headers: { "Content-Type": "text/html", "charset": "utf-8" } });
+
+  yield put({
+    type: PUT_BASE_64, payload: {
+      key: action.payload.key,
+      base64: base64png.data
+    }
+  });
+}
+
 
 function* getQuestiosSaga() {
   yield takeLatest(GET_ALL_QUESTIOS_SAGA, getQuestios);
@@ -72,6 +94,14 @@ function* deleteAnswerSaga() {
   yield takeLatest(DELETE_ANSWER_SAGA, deleteAnswer);
 }
 
+function* genetareReportSaga() {
+  yield takeLatest(GENERATE_REPORT, generateReport);
+}
+
+function* generateBase64Saga() {
+  yield takeEvery(GENERATE_BASE64, generateBase64);
+}
+
 
 
 export default function* rootSaga() {
@@ -79,6 +109,8 @@ export default function* rootSaga() {
     fork(getQuestiosSaga),
     fork(getvalidateCompanySaga),
     fork(putAnswerSaga),
-    fork(deleteAnswerSaga)
+    fork(deleteAnswerSaga),
+    fork(genetareReportSaga),
+    fork(generateBase64Saga),
   ]);
 }

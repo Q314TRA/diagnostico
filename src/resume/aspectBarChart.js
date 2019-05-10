@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, LabelList, Cell, ResponsiveContainer } from 'recharts';
 
-import { setResumeCurrentAxis } from '../actions/actions';
+import { setResumeCurrentAxis, generateBase64, initBase64 } from '../actions/actions';
 import ActiveShape from './activeShape';
 
 const COLORS = {
@@ -29,6 +29,9 @@ class AspectBarChart extends Component {
         this.selectPie = this.selectPie.bind(this);
         this.renderCustomizedLabel = this.renderCustomizedLabel.bind(this);
         this.callbackChart = this.callbackChart.bind(this);
+        this.getSvgElement = this.getSvgElement.bind(this);
+
+        this.chartReport = React.createRef();
     }
 
     onPieEnter(data, index) {
@@ -64,12 +67,49 @@ class AspectBarChart extends Component {
             callback(params.activePayload[0].payload)
         }
     }
+
+    getSvgElement() {
+        if (!this.chartReport.current)
+            return "";
+
+        let svgElement = this.chartReport.current.getElementsByTagName("svg");
+        let htmlContent = "";
+
+        if (svgElement.length > 0 && svgElement[0]) {
+            svgElement[0].setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            htmlContent = svgElement[0].outerHTML;
+        }
+        return htmlContent;
+    }
+
+
+    componentDidMount() {
+        const { base64Name, generateBase64, initBase64 } = this.props;
+        if (base64Name) {
+            initBase64({
+                base64: "",
+                key: base64Name
+            });
+            new Promise((resolve) => setTimeout(resolve, 2000))
+                .then(() => {
+                    let svgElement = this.getSvgElement();
+                    generateBase64({
+                        svg: svgElement,
+                        key: base64Name
+                    });
+                })
+
+        }
+    }
+
+    // xmlns="http://www.w3.org/2000/svg"
+
     // onClick={callback}
     render() {
         const { data, datakey, dataValue, indexColor, styles, parentSyle } = this.props;
 
         return (
-            <div className="content-chart" style={parentSyle ? parentSyle : {}}>
+            <div className="content-chart" style={parentSyle ? parentSyle : {}} ref={this.chartReport}>
                 <ResponsiveContainer>
                     <BarChart
                         layout='vertical'
@@ -105,7 +145,9 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        setResumeCurrentAxis
+        setResumeCurrentAxis,
+        generateBase64, 
+        initBase64
     }, dispatch)
 }
 

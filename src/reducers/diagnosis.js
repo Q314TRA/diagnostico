@@ -1,6 +1,6 @@
 import {
     SET_ALL_QUESTIOS, SET_CURRENT_AXIS, GET_VALIDATE_COMPANY,
-    SET_RESUME_CURRENT_AXIS, SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP, LOG_OUT
+    SET_RESUME_CURRENT_AXIS, SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP, LOG_OUT, PUT_REPORT_STATUS, PUT_BASE_64
 } from '../constantsGlobal';
 
 const initialState = {
@@ -9,7 +9,11 @@ const initialState = {
     questions: [],
     currentAxis: "AMBIENTAL",
     currentAxisResume: "SOCIAL",
-    currentAspectMerge: ""
+    currentAspectMerge: "",
+    pathReport: null,
+    isGeneratingReport: false,
+    base64Charts: {},
+    allowDowunloadReport: false
 }
 
 function diagnosis(state = initialState, action) {
@@ -49,6 +53,23 @@ function diagnosis(state = initialState, action) {
                 currentAxisResume: "",
                 currentAspectMerge: ""
             });
+        case PUT_REPORT_STATUS:
+            return Object.assign({}, state, {
+                pathReport: action.payload,
+                isGeneratingReport: !!action.payload
+            });
+        case PUT_BASE_64:
+
+            let base64Charts = state.base64Charts;
+            base64Charts[action.payload.key] = action.payload.base64;
+            
+            let allowDowunloadReport = Object.keys(base64Charts).map(bName => {
+                return base64Charts[bName];
+            }).reduce((a, b, i) => {
+                return a && !!b ;
+            }, true);
+
+            return Object.assign({}, state, { base64Charts, allowDowunloadReport });
         default:
             return state
     }

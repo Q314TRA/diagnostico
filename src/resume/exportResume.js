@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import buildSvg from 'svg-to-dataurl';
+
 import '../styles/resumev2.css';
 
-import { setResumeCurrentAxis, logOut } from '../actions/actions';
+import { setResumeCurrentAxis, logOut, generateReport } from '../actions/actions';
 
 // import AspectChart from "./aspectChart";
 import AspectBarChart from "./aspectBarChart";
 import Achievement from "./achievement";
 import Challenge from "./challenge";
+import ReportResumeDownload from "./reportResumeDownload";
 
 
 
@@ -37,6 +40,7 @@ class ExportResume extends Component {
         this.getAspectMerge = this.getAspectMerge.bind(this);
         this.getMergeAspects = this.getMergeAspects.bind(this);
         this.getCompileResume = this.getCompileResume.bind(this);
+        this.generateReport = this.generateReport.bind(this);
 
     }
 
@@ -133,8 +137,8 @@ class ExportResume extends Component {
             .reduce((a, b) => {
                 if (b.challenge) {
                     a[b.challenge] = Object.assign({}, a[b.challenge]);
-                    if (a[b.challenge].aspectMerge && a[b.challenge].aspectMerge.indexOf(b.aspectMerge.toLowerCase()) == -1 ) {
-                        a[b.challenge].aspectMerge +=  ", " + b.aspectMerge;
+                    if (a[b.challenge].aspectMerge && a[b.challenge].aspectMerge.indexOf(b.aspectMerge.toLowerCase()) == -1) {
+                        a[b.challenge].aspectMerge += ", " + b.aspectMerge;
                     } else {
                         a[b.challenge] = b;
                     }
@@ -148,7 +152,6 @@ class ExportResume extends Component {
     }
 
     getCompileResume() {
-
         let resumeCompiled = Object.keys(this.state).reduce((a, b, i) => {
             a[b] = {
                 capacity: this.getMergeAspects(b),
@@ -162,8 +165,29 @@ class ExportResume extends Component {
         return resumeCompiled;
     }
 
+    generateReport(axis, aspects) {
+        const { generateReport, base64Charts } = this.props;
+
+        let _aspects =  Object.keys(aspects)
+            .map(_axis => ({ key: _axis, chart: base64Charts[_axis], value: aspects[_axis] }))
+            .map(item => {
+
+                item.value.potentiality = Object.keys(item.value.potentiality)
+                    .map((quest) => ({ key: quest, value: item.value.potentiality[quest] }));
+                return item;
+            })
+
+        let dataReport = {
+            aspects : _aspects,
+            axis: base64Charts.AXIS
+        };
+        console.log(dataReport);
+        generateReport(dataReport);
+    }
+
     render() {
 
+        const { pathReport, allowDowunloadReport, close } = this.props
         //Chart
         const data = this.compileData();
         //achievement
@@ -172,11 +196,19 @@ class ExportResume extends Component {
 
         return (
             <div className="resume-compile-content">
+                <span onClick={close} className="close-calback" >X</span>
+                {allowDowunloadReport && <span className="print-calback" onClick={() => this.generateReport(data, compileResume)} >
+                    <img src="resources/download.png" />
+                </span>}
+
+
+                {pathReport && <ReportResumeDownload />}
                 <div>
                     <div className="resume-compile-section resume-compile-section-h" >
-                        <div style={{ minWidth: "400px", height: "200px" }}>
+                        <div style={{ minWidth: "400px", height: "200px" }} ref={ch => this.chartAxis = ch}>
                             <h2>Ejes</h2>
                             <AspectBarChart
+                                base64Name="AXIS"
                                 data={data}
                                 datakey="name"
                                 dataValue="value"
@@ -203,6 +235,7 @@ class ExportResume extends Component {
                             <h3>Capacidad</h3>
                             <div style={{ minWidth: "600px", height: "300px" }}>
                                 <AspectBarChart
+                                    base64Name={_axis}
                                     data={compileResume[_axis].capacity}
                                     datakey="aspect"
                                     dataValue="percent"
@@ -232,13 +265,17 @@ const mapStateToProps = state => ({
     currentAxis: state.diagnosis.currentAxis,
     company: state.diagnosis.company,
     currentAxisResume: state.diagnosis.currentAxisResume,
-    currentAspectMerge: state.diagnosis.currentAspectMerge
+    currentAspectMerge: state.diagnosis.currentAspectMerge,
+    pathReport: state.diagnosis.pathReport,
+    base64Charts: state.diagnosis.base64Charts,
+    allowDowunloadReport: state.diagnosis.allowDowunloadReport
 });
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         setResumeCurrentAxis,
-        logOut
+        logOut,
+        generateReport
     }, dispatch)
 }
 

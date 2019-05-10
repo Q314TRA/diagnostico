@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../styles/resumev2.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 import { setResumeCurrentAxis, logOut } from '../actions/actions';
@@ -11,6 +11,7 @@ import { setResumeCurrentAxis, logOut } from '../actions/actions';
 import AspectBarChart from "./aspectBarChart";
 import Achievement from "./achievement";
 import Challenge from "./challenge";
+import ExportResume from "./exportResume";
 
 
 
@@ -19,6 +20,10 @@ class Resume extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            exportOpen: false
+        }
 
         this.compileData = this.compileData.bind(this);
         this.getAspectMerge = this.getAspectMerge.bind(this);
@@ -118,7 +123,7 @@ class Resume extends Component {
 
         let result = questions.filter(question => question.axis == currentAxisResume && question.aspectMerge == currentAspectMerge)
             .reduce((a, b) => {
-                if(b.challenge){
+                if (b.challenge) {
                     a[b.challenge] = Object.assign({}, a[b.challenge]);
                     a[b.challenge] = b;
                 }
@@ -153,14 +158,19 @@ class Resume extends Component {
         return (
             <div className="resume-content-v2">
 
+                {this.state.exportOpen &&
+                    <ExportResume close={() => this.setState({ exportOpen: false })} />}
+
                 <div className="top-nav-content">
                     <img src="resources/logo-biotica-color.png" />
 
-                    <Link to="/exportResume" >Export </Link>
-
-                    <span onClick={this.logOut}>Salir</span>
+                    <div>
+                        <span onClick={() => this.setState({ exportOpen: true })}>Vista completa</span>
+                        <span onClick={this.logOut}>Salir</span>
+                    </div>
                 </div>
                 <div className="resume-section">
+                    {/* <Link to="/exportResume" >Export </Link> */}
                     <div>
                         {/* <Aspect Chart data={data} /> */}
                         <AspectBarChart

@@ -16,7 +16,8 @@ class Home extends Component {
         this.state = {
             hash: "",
             interestGroup: "",
-            interestGroupError: false
+            interestGroupError: false,
+            submitValidate: false
         }
         this.validate = this.validate.bind(this);
         this.initDiagnostic = this.initDiagnostic.bind(this);
@@ -26,6 +27,9 @@ class Home extends Component {
     validate() {
         const { validateCompany, history } = this.props;
         validateCompany(this.state.hash);
+        setTimeout(() => this.setState({
+            submitValidate: true
+        }), 5000);
     }
 
     initDiagnostic(interestGroup) {
@@ -49,6 +53,13 @@ class Home extends Component {
                         <button onClick={() => this.validate()}>Iniciar</button>
                         {/* <Link to="/diagnosis"> Iniciar </Link> */}
                     </div>
+                    {this.state.submitValidate && !(company && company.companyId) &&
+                        <small style={{ 
+                            color: "#F44336",  
+                            marginLeft: "1rem",
+                            marginTop: "-0.5rem"
+                        }}>Código incorrecto, por favor verifique e intente de nuevo.</small>
+                    }
                 </div>
                 <div className="content_globe">
                     <img className="globle" src="MUNDO.png" />
@@ -58,7 +69,7 @@ class Home extends Component {
                     </div>
                 </div>
                 {
-                    company.companyId &&
+                    company && company.companyId &&
                     <Modal initDiagnostic={this.initDiagnostic} />
                 }
 

@@ -1,25 +1,27 @@
 export const API_SERVER = process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000";
 
 // API
-export const GET_ALL_QUESTIOS_API = API_SERVER + "/diagnosis/";
-export const GET_VALIDATE_COMPANY_API = API_SERVER + "/diagnosis/validateCompany";
-export const PUT_ANSWER_API = API_SERVER + "/diagnosis/";
-export const DELETE_ANSWER_API = API_SERVER + "/diagnosis/removeAnswer";
-export const PUT_DATA_REPORT = API_SERVER + "/diagnosis/generateReport";
-export const GET_BASE64_SVG = API_SERVER + "/diagnosis/getBase64SVG";
-export const GET_CONSOLIDATE_DIAGNOSIS = API_SERVER + "/diagnosis/getConsolidateCompanyDiagnosis";
-export const UPDATE_STATUS_CONTACT_CONSOLIDATE = API_SERVER + "/diagnosis/updateStatusContact";
+// export const GET_ALL_QUESTIOS_API = API_SERVER + "/diagnosis/";
+// export const GET_VALIDATE_COMPANY_API = API_SERVER + "/diagnosis/validateCompany";
+// export const PUT_ANSWER_API = API_SERVER + "/diagnosis/";
+// export const DELETE_ANSWER_API = API_SERVER + "/diagnosis/removeAnswer";
+// export const PUT_DATA_REPORT = API_SERVER + "/diagnosis/generateReport";
+// export const GET_BASE64_SVG = API_SERVER + "/diagnosis/getBase64SVG";
+// export const GET_CONSOLIDATE_DIAGNOSIS = API_SERVER + "/diagnosis/getConsolidateCompanyDiagnosis";
+// export const UPDATE_STATUS_CONTACT_CONSOLIDATE = API_SERVER + "/diagnosis/updateStatusContact";
 
 // {
 // 	"idCompany": 2
 // }
 
-// export const GET_ALL_QUESTIOS_API = "http://138.68.41.196:3000/diagnosis/" ;
-// export const GET_VALIDATE_COMPANY_API = "http://138.68.41.196:3000/diagnosis/validateCompany" ;
-// export const PUT_ANSWER_API = "http://138.68.41.196:3000/diagnosis/" ;
-// export const DELETE_ANSWER_API = "http://138.68.41.196:3000/diagnosis/removeAnswer" ;
-// export const PUT_DATA_REPORT = "http://138.68.41.196:3000/diagnosis/generateReport";
-// export const GET_BASE64_SVG = "http://138.68.41.196:3000/diagnosis/getBase64SVG";
+export const GET_ALL_QUESTIOS_API = "http://138.68.41.196:3000/diagnosis/";
+export const GET_VALIDATE_COMPANY_API = "http://138.68.41.196:3000/diagnosis/validateCompany";
+export const PUT_ANSWER_API = "http://138.68.41.196:3000/diagnosis/";
+export const DELETE_ANSWER_API = "http://138.68.41.196:3000/diagnosis/removeAnswer";
+export const PUT_DATA_REPORT = "http://138.68.41.196:3000/diagnosis/generateReport";
+export const GET_BASE64_SVG = "http://138.68.41.196:3000/diagnosis/getBase64SVG";
+export const GET_CONSOLIDATE_DIAGNOSIS = "http://138.68.41.196:3000/diagnosis/getConsolidateCompanyDiagnosis";
+export const UPDATE_STATUS_CONTACT_CONSOLIDATE = "http://138.68.41.196:3000/diagnosis/updateStatusContact";
 
 
 //SAGA -> REDUCERS

@@ -313,6 +313,7 @@
   }
   .contact-status-content > div > p{
     padding: 0.5rem;
+    width: calc(100% - 1rem);
   }
 
   .contact-status-content > div img{

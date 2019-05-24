@@ -11,6 +11,22 @@ class Challenge extends Component {
 
     render() {
         const { macroChallenge, isExport } = this.props;
+
+        let odsImg = {
+            "SALUD Y BIENESTAR": "ODS/goal_3.png",
+            "TRABAJO DECENTE Y CRECIMIENTO ECONÓMICO": "ODS/goal_8.png",
+            "EDUCACIÓN DE CALIDAD": "ODS/goal_4.png",
+            "IGUALDAD DE GÉNERO": "ODS/goal_5.png",
+            "FIN DE LA POBREZA": "ODS/goal_1.png",
+            "CIUDADES Y COMUNIDADES SOSTENIBLES": "ODS/goal_11.png",
+            "PRODUCCIÓN Y CONSUMO RESPONSABLE": "ODS/goal_12.png",
+            "AGUA LIMPIA Y SANAMIENTO": "ODS/goal_6.png",
+            "INDUSTRIA, INNOVACIÓN E INFRASTRUCTURA": "ODS/goal_9.png",
+            "ENERGIA ASEQUIBLE Y NO CONTAMINANTE": "ODS/goal_7.png",
+            "ZERO HAMBRE": "ODS/goal_2.png",
+            "PAZ, JUSTICIA E INSTITUCIONES SOLIDAS": "ODS/goal_16.png",
+        }
+
         return (
             <div className="section-challenge">
                 {!isExport &&
@@ -18,7 +34,7 @@ class Challenge extends Component {
                 }
 
                 {Object.keys(macroChallenge).length == 0 &&
-                    <p>Selecciona alguna de tus <span style={{ color : "#D32F2F" }}>capacidades</span>.</p>
+                    <p>Selecciona alguna de tus <span style={{ color: "#D32F2F" }}>capacidades</span>.</p>
                 }
 
                 <div className="section-content-table">
@@ -30,7 +46,7 @@ class Challenge extends Component {
                 <div className="content-goals">
                     {Object.keys(macroChallenge).map((macroCh) => (
                         <div className={`goal-type type-${macroChallenge[macroCh].type}`}>
-                            <h4>{macroCh}</h4>
+                            <h4>{macroChallenge[macroCh].challenge}</h4>
 
                             {isExport &&
                                 <span>
@@ -49,7 +65,7 @@ class Challenge extends Component {
 
                             <div>
                                 <span>{macroChallenge[macroCh].ODS}</span>
-                                <img src="ODS/goal_1.png" />
+                                <img src={odsImg[macroChallenge[macroCh].ODS]} />
                             </div>
                         </div>
                     ))}

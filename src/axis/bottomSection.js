@@ -62,7 +62,15 @@ class bottomSection extends Component {
                     <div >
                         <h4>felicitaciones</h4>
                         <p>Has terminado con el formulario {this.state[currentAxis].text}, <br />
-                            continua con la siguqiente categoría haciendo <br /> click en la flecha</p>
+                            continua con la siguqiente categoría haciendo 
+                            <br /> click en la flecha
+                            <br />
+                            <br /> 
+                            <small>si deseas finalizar la encuesta sin diligenciar las otras secciones
+                                da click <strong  className="link-resume-small"  onClick={goToResume}>aqui</strong>!
+                            </small>
+                            </p>
+
                     </div>
 
 

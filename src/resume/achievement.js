@@ -61,11 +61,12 @@ class Achievement extends Component {
                 </div>
 
                 <div className={currentAxisResume}>
-                    <h3>Capacidad</h3>
+                    <h3>Capacidad </h3>
+                    <small>Has click sobre las barras</small> 
                     <AspectBarChart
                         data={mergeAspects}
                         datakey="aspect"
-                        dataValue="percent"
+                        dataValue="realPercent"
                         callback={(params) => this.selectAspectMerge(params)}
                         styles={{
                             width: 600,

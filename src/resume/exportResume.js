@@ -5,15 +5,18 @@ import buildSvg from 'svg-to-dataurl';
 
 import '../styles/resumev2.css';
 
-import { setResumeCurrentAxis, logOut, generateReport } from '../actions/actions';
+import { setResumeCurrentAxis, logOut, generateReport, getConsolidateDiagnosis } from '../actions/actions';
 
 // import AspectChart from "./aspectChart";
 import AspectBarChart from "./aspectBarChart";
 import Achievement from "./achievement";
 import Challenge from "./challenge";
 import ReportResumeDownload from "./reportResumeDownload";
+import CalbackDownload from "./calbackDownload";
 
-
+import {
+    axisProcessData, aspectProcessData, getChallengeFromQuestions, prioritizationChallenges
+} from "../constantsGlobal"
 
 class ExportResume extends Component {
 
@@ -35,127 +38,28 @@ class ExportResume extends Component {
             }
         }
 
-
-        this.compileData = this.compileData.bind(this);
-        this.getAspectMerge = this.getAspectMerge.bind(this);
-        this.getMergeAspects = this.getMergeAspects.bind(this);
         this.getCompileResume = this.getCompileResume.bind(this);
         this.generateReport = this.generateReport.bind(this);
 
     }
 
     componentWillMount() {
-        const { company, history } = this.props;
+        const { company, history, getConsolidateDiagnosis } = this.props;
         if (!company.companyId) {
             history.push(`/`);
+            return;
         }
-    }
 
-    compileData() {
-        const { questions } = this.props;
-
-        let axis_resume = {};
-        questions.forEach(question => {
-            axis_resume[question.axis] = Object.assign({ numChecks: 0, sumChecks: 0 }, axis_resume[question.axis]);
-            axis_resume[question.axis].numChecks += 1;
-            axis_resume[question.axis].sumChecks += parseInt(question.weight ? question.weight : 0);
-        });
-
-        let axis = {};
-        questions.filter(question => question.selected)
-            .forEach(question => {
-                axis[question.axis] = Object.assign({ numChecks: 0, sumChecks: 0 }, axis[question.axis]);
-                axis[question.axis].numChecks += 1;
-                axis[question.axis].sumChecks += parseInt(question.weight ? question.weight : 0);
-            });
-
-        let result = Object.keys(axis).map(_axis => {
-            let percent = ((axis[_axis].sumChecks * 100) / axis_resume[_axis].sumChecks);
-
-            let fragment = 100 / Object.keys(axis).length;
-            let _percent = (fragment * percent) / 100;
-
-            return {
-                name: _axis,
-                value: Math.round(_percent),
-                realPercent: percent
-            }
-        });
-
-        return result;
-    }
-
-    getMergeAspects(currentAxisResume) {
-        const { questions } = this.props;
-
-        let axis = questions.filter(question => question.axis == currentAxisResume);
-
-        let resume = axis.reduce((a, b, i, o) => {
-
-            a[b.aspectMerge] = Object.assign({ numChecks: 0, sumChecks: 0 }, a[b.aspectMerge]);
-            a[b.aspectMerge].numChecks += 1;
-            a[b.aspectMerge].sumChecks += parseInt(b.weight);
-            return a;
-        }, {})
-
-        let mergeAspects = axis.filter(question => question.selected)
-            .reduce((a, b, i, o) => {
-                a[b.aspectMerge] = Object.assign({ numChecks: 0, sumChecks: 0 }, a[b.aspectMerge]);
-                a[b.aspectMerge].numChecks += 1;
-                a[b.aspectMerge].sumChecks += parseInt(b.weight);
-                return a;
-            }, {})
-
-        let compileMergeData = Object.keys(resume).map(aspect => {
-            let sumChecks = (mergeAspects[aspect] ? mergeAspects[aspect].sumChecks : 0);
-            let percent = ((sumChecks * 100) / resume[aspect].sumChecks);
-
-            return {
-                aspect,
-                percent: Math.floor(percent)
-            }
-        }).map((result, index, object) => {
-            let totalPercent = object.reduce((a, b, i, o) => {
-                return a + b.percent
-            }, 0);
-            let percent = (result.percent * 100) / totalPercent;
-
-            return {
-                axis: currentAxisResume,
-                aspect: result.aspect,
-                percent: Math.round(percent * 10) / 10
-            }
-        });
-
-        return compileMergeData;
-    }
-
-    getAspectMerge(currentAxisResume) {
-        const { questions } = this.props;
-
-        let result = questions.filter(question => question.axis == currentAxisResume)
-            .reduce((a, b) => {
-                if (b.challenge) {
-                    a[b.challenge] = Object.assign({}, a[b.challenge]);
-                    if (a[b.challenge].aspectMerge && a[b.challenge].aspectMerge.indexOf(b.aspectMerge.toLowerCase()) == -1) {
-                        a[b.challenge].aspectMerge += ", " + b.aspectMerge;
-                    } else {
-                        a[b.challenge] = b;
-                    }
-                    a[b.challenge].aspectMerge = String(a[b.challenge].aspectMerge).toLowerCase();
-                }
-                return a;
-            }, {});
-
-        return result;
-
+        getConsolidateDiagnosis(company.companyId);
     }
 
     getCompileResume() {
+        const { questions } = this.props;
+
         let resumeCompiled = Object.keys(this.state).reduce((a, b, i) => {
             a[b] = {
-                capacity: this.getMergeAspects(b),
-                potentiality: this.getAspectMerge(b),
+                capacity: aspectProcessData(questions, b),
+                potentiality: getChallengeFromQuestions(questions, b),
                 name: this.state[b].name,
                 color: this.state[b].color
             };
@@ -166,30 +70,35 @@ class ExportResume extends Component {
     }
 
     generateReport(axis, aspects) {
-        const { generateReport, base64Charts } = this.props;
+        const { generateReport, base64Charts, company } = this.props;
 
-        let _aspects =  Object.keys(aspects)
+        let _aspects = Object.keys(aspects)
             .map(_axis => ({ key: _axis, chart: base64Charts[_axis], value: aspects[_axis] }))
             .map(item => {
+                
+                // let potentiality = Object.keys(item.value.potentiality);
+                let potentiality = prioritizationChallenges(item.value.potentiality, item.value.capacity);
 
-                item.value.potentiality = Object.keys(item.value.potentiality)
-                    .map((quest) => ({ key: quest, value: item.value.potentiality[quest] }));
+                item.value.potentiality = potentiality.map((quest) => ({ key: quest.challenge, value: quest }));
+                
                 return item;
             })
 
         let dataReport = {
-            aspects : _aspects,
-            axis: base64Charts.AXIS
+            aspects: _aspects,
+            axis: base64Charts.AXIS,
+            companyName: company.name
         };
-        console.log(dataReport);
         generateReport(dataReport);
     }
 
     render() {
+        const { questions } = this.props;
 
         const { pathReport, allowDowunloadReport, close } = this.props
+
         //Chart
-        const data = this.compileData();
+        const data = axisProcessData(questions);
         //achievement
         const compileResume = this.getCompileResume();
 
@@ -197,13 +106,21 @@ class ExportResume extends Component {
         return (
             <div className="resume-compile-content">
                 <span onClick={close} className="close-calback" >X</span>
-                {allowDowunloadReport && <span className="print-calback" onClick={() => this.generateReport(data, compileResume)} >
-                    <img src="resources/download.png" />
-                </span>}
 
+                {allowDowunloadReport &&
+                    <CalbackDownload data={data}
+                        compileResume={compileResume} generateReport={this.generateReport} />
+                }
 
                 {pathReport && <ReportResumeDownload />}
+
                 <div>
+                    {!allowDowunloadReport &&
+                        <div className="content-spinner">
+                            <span>Generando informe </span> <div class="lds-dual-ring"></div>
+                        </div>
+                    }
+
                     <div className="resume-compile-section resume-compile-section-h" >
                         <div style={{ minWidth: "400px", height: "200px" }} ref={ch => this.chartAxis = ch}>
                             <h2>Ejes</h2>
@@ -211,7 +128,7 @@ class ExportResume extends Component {
                                 base64Name="AXIS"
                                 data={data}
                                 datakey="name"
-                                dataValue="value"
+                                dataValue="realPercent"
                                 indexColor={true}
                                 styles={{
                                     width: 600,
@@ -220,11 +137,6 @@ class ExportResume extends Component {
                                 }}
                                 parentSyle={{ width: "100%", height: "100%" }}
                             />
-                        </div>
-                        <div>
-                            <p>
-                                <strong>Biotica</strong> <br /> Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500
-                            </p>
                         </div>
                     </div>
 
@@ -238,7 +150,7 @@ class ExportResume extends Component {
                                     base64Name={_axis}
                                     data={compileResume[_axis].capacity}
                                     datakey="aspect"
-                                    dataValue="percent"
+                                    dataValue="realPercent"
                                     styles={{
                                         width: 600,
                                         height: 300,
@@ -249,7 +161,7 @@ class ExportResume extends Component {
                                 />
                             </div>
                             <h3>Potencialidad</h3>
-                            <Challenge isExport={true} macroChallenge={compileResume[_axis].potentiality} />
+                            <Challenge isExport={true} macroChallenge={prioritizationChallenges(compileResume[_axis].potentiality, compileResume[_axis].capacity)} />
                         </div>
                     ))}
                 </div>
@@ -261,7 +173,11 @@ class ExportResume extends Component {
 
 
 const mapStateToProps = state => ({
-    questions: state.diagnosis.questions,
+    questions: Object.assign([], state.diagnosis.questions).map((quest) => {
+        let selected = state.diagnosis.consolidateDiagnosis
+            .filter((response) => response.idQuestion == quest.id).length > 0;
+        return { ...quest, selected };
+    }),
     currentAxis: state.diagnosis.currentAxis,
     company: state.diagnosis.company,
     currentAxisResume: state.diagnosis.currentAxisResume,
@@ -275,7 +191,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         setResumeCurrentAxis,
         logOut,
-        generateReport
+        generateReport,
+        getConsolidateDiagnosis
     }, dispatch)
 }
 

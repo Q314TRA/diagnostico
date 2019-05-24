@@ -1,6 +1,8 @@
 import {
     SET_ALL_QUESTIOS, SET_CURRENT_AXIS, GET_VALIDATE_COMPANY,
-    SET_RESUME_CURRENT_AXIS, SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP, LOG_OUT, PUT_REPORT_STATUS, PUT_BASE_64
+    SET_RESUME_CURRENT_AXIS, SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP, 
+    LOG_OUT, PUT_REPORT_STATUS, PUT_BASE_64,
+    PUT_CONSOLIDATE_DIAGNOSIS
 } from '../constantsGlobal';
 
 const initialState = {
@@ -13,7 +15,8 @@ const initialState = {
     pathReport: null,
     isGeneratingReport: false,
     base64Charts: {},
-    allowDowunloadReport: false
+    allowDowunloadReport: false,
+    consolidateDiagnosis: []
 }
 
 function diagnosis(state = initialState, action) {
@@ -28,8 +31,7 @@ function diagnosis(state = initialState, action) {
             });
         case GET_VALIDATE_COMPANY:
             return Object.assign({}, state, {
-                company: action.payload,
-                interestGroup: ""
+                company: action.payload
             });
         case SET_RESUME_CURRENT_AXIS:
             return Object.assign({}, state, {
@@ -70,6 +72,10 @@ function diagnosis(state = initialState, action) {
             }, true);
 
             return Object.assign({}, state, { base64Charts, allowDowunloadReport });
+        case PUT_CONSOLIDATE_DIAGNOSIS:
+            return Object.assign({}, state, {
+                consolidateDiagnosis: action.payload
+            });
         default:
             return state
     }

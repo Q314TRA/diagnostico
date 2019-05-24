@@ -36,20 +36,23 @@ class Question extends Component {
     }
 
     putAnswer(idCompany, idQuestion, interestGroup) {
-        const { putAnswer } = this.props;
+        const { putAnswer, company } = this.props;
         putAnswer({
             "idCompany": idCompany,
             "idQuestion": idQuestion,
+            "industrialSector": company.industrialsector.name,
             "interestGroup": interestGroup
         });
 
     }
 
     deleteAnswer(idCompany, idQuestion, interestGroup) {
-        const { deleteAnswer } = this.props;
+        const { deleteAnswer, company } = this.props;
+
         deleteAnswer({
             "idCompany": idCompany,
             "idQuestion": idQuestion,
+            "industrialSector": company.industrialsector.name,
             "interestGroup": interestGroup
         })
     }

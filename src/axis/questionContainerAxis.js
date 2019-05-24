@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom'
 
 import '../styles/axis.css';
-import { setCurrentAxis, getAllQuestios } from '../actions/actions';
+import { setCurrentAxis, getAllQuestios, updateStatusContact } from '../actions/actions';
 import AspectSection from "./aspectSection";
 import TopSection from "./topSection";
 import BottomSection from "./bottomSection";
@@ -34,12 +34,20 @@ class QuestionContainerAxis extends Component {
     }
 
     componentWillMount() {
-        const { company, history, getAllQuestios, interestGroup } = this.props;
+        const { company, history, getAllQuestios, interestGroup, updateStatusContact } = this.props;
         if (!company.companyId) {
             history.push(`/`);
+            return;
         }
 
-        getAllQuestios(company.companyId, interestGroup);
+        getAllQuestios(company.companyId, interestGroup, company.industrialsector.name);
+
+        let contact = company.contactCompanies.find((contact) => contact.role == interestGroup);
+        updateStatusContact({
+            idContact: contact.id,
+            companyId: company.companyId,
+            nit: company.nit
+        })
     }
 
 
@@ -113,7 +121,8 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         setCurrentAxis,
-        getAllQuestios
+        getAllQuestios,
+        updateStatusContact
     }, dispatch)
 }
 

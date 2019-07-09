@@ -1,5 +1,19 @@
 export const API_SERVER = process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000";
 
+
+//CONFIGURATION
+export const LIMIT_ASPECTS_SELECTED = 3;
+
+export const PROFILE_LAB = "LAB";
+export const PROFILE_GENERIC = "GENERIC";
+
+
+export const CHALLENGE_TYPE_EXTERNO = "EXTERNO";
+export const CHALLENGE_TYPE_INTERNO = "INTERNO";
+
+
+
+
 // API
 // export const GET_ALL_QUESTIOS_API = API_SERVER + "/diagnosis/";
 // export const GET_VALIDATE_COMPANY_API = API_SERVER + "/diagnosis/validateCompany";
@@ -9,19 +23,39 @@ export const API_SERVER = process.env.HOST_API ? process.env.HOST_API : "http://
 // export const GET_BASE64_SVG = API_SERVER + "/diagnosis/getBase64SVG";
 // export const GET_CONSOLIDATE_DIAGNOSIS = API_SERVER + "/diagnosis/getConsolidateCompanyDiagnosis";
 // export const UPDATE_STATUS_CONTACT_CONSOLIDATE = API_SERVER + "/diagnosis/updateStatusContact";
+// export const SET_SELECT_ASEPECTS = API_SERVER + "/diagnosis/selectAspects";
+// export const GET_SELECT_ASEPECTS = API_SERVER + "/diagnosis/getSelectAspects";
+// export const GET_ALL_EXTERNAL_CHALLENGES = API_SERVER + "/diagnosis/getExternalChallenges";
+// export const GET_CALIFICATION_CHALLENGE = API_SERVER + "/diagnosis/getPrioritizationChallenges";
+// export const SET_CALIFICATION_CHALLENGE = API_SERVER + "/diagnosis/setPrioritizationChallenge";
+
 
 // {
 // 	"idCompany": 2
 // }
 
-export const GET_ALL_QUESTIOS_API = "http://138.68.41.196:3000/diagnosis/";
-export const GET_VALIDATE_COMPANY_API = "http://138.68.41.196:3000/diagnosis/validateCompany";
-export const PUT_ANSWER_API = "http://138.68.41.196:3000/diagnosis/";
-export const DELETE_ANSWER_API = "http://138.68.41.196:3000/diagnosis/removeAnswer";
-export const PUT_DATA_REPORT = "http://138.68.41.196:3000/diagnosis/generateReport";
-export const GET_BASE64_SVG = "http://138.68.41.196:3000/diagnosis/getBase64SVG";
-export const GET_CONSOLIDATE_DIAGNOSIS = "http://138.68.41.196:3000/diagnosis/getConsolidateCompanyDiagnosis";
-export const UPDATE_STATUS_CONTACT_CONSOLIDATE = "http://138.68.41.196:3000/diagnosis/updateStatusContact";
+export const GET_ALL_QUESTIOS_API = "http://138.68.41.196:3000" + "/diagnosis/";
+export const GET_VALIDATE_COMPANY_API = "http://138.68.41.196:3000" + "/diagnosis/validateCompany";
+export const PUT_ANSWER_API = "http://138.68.41.196:3000" + "/diagnosis/";
+export const DELETE_ANSWER_API = "http://138.68.41.196:3000" + "/diagnosis/removeAnswer";
+export const PUT_DATA_REPORT = "http://138.68.41.196:3000" + "/diagnosis/generateReport";
+export const GET_BASE64_SVG = "http://138.68.41.196:3000" + "/diagnosis/getBase64SVG";
+export const GET_CONSOLIDATE_DIAGNOSIS = "http://138.68.41.196:3000" + "/diagnosis/getConsolidateCompanyDiagnosis";
+export const UPDATE_STATUS_CONTACT_CONSOLIDATE = "http://138.68.41.196:3000" + "/diagnosis/updateStatusContact";
+export const SET_SELECT_ASEPECTS = "http://138.68.41.196:3000" + "/diagnosis/selectAspects";
+export const GET_SELECT_ASEPECTS = "http://138.68.41.196:3000" + "/diagnosis/getSelectAspects";
+export const GET_ALL_EXTERNAL_CHALLENGES = "http://138.68.41.196:3000" + "/diagnosis/getExternalChallenges";
+export const GET_CALIFICATION_CHALLENGE = "http://138.68.41.196:3000" + "/diagnosis/getPrioritizationChallenges";
+export const SET_CALIFICATION_CHALLENGE = "http://138.68.41.196:3000" + "/diagnosis/setPrioritizationChallenge";
+
+// export const GET_ALL_QUESTIOS_API = "http://138.68.41.196:3000/diagnosis/";
+// export const GET_VALIDATE_COMPANY_API = "http://138.68.41.196:3000/diagnosis/validateCompany";
+// export const PUT_ANSWER_API = "http://138.68.41.196:3000/diagnosis/";
+// export const DELETE_ANSWER_API = "http://138.68.41.196:3000/diagnosis/removeAnswer";
+// export const PUT_DATA_REPORT = "http://138.68.41.196:3000/diagnosis/generateReport";
+// export const GET_BASE64_SVG = "http://138.68.41.196:3000/diagnosis/getBase64SVG";
+// export const GET_CONSOLIDATE_DIAGNOSIS = "http://138.68.41.196:3000/diagnosis/getConsolidateCompanyDiagnosis";
+// export const UPDATE_STATUS_CONTACT_CONSOLIDATE = "http://138.68.41.196:3000/diagnosis/updateStatusContact";
 
 
 //SAGA -> REDUCERS
@@ -33,6 +67,13 @@ export const PUT_REPORT_STATUS = "PUT_REPORT_STATUS";
 export const PUT_BASE_64 = "PUT_BASE_64";
 export const PUT_CONSOLIDATE_DIAGNOSIS = "PUT_CONSOLIDATE_DIAGNOSIS";
 export const UPDATE_STATUS_CONSOLIDATE = "UPDATE_STATUS_CONSOLIDATE";
+export const SET_SELECT_ASPECT = "SET_SELECT_ASPECT";
+export const CLEAR_SELECT_ASPECT = "CLEAR_SELECT_ASPECT";
+export const SET_ALL_SELECTED_ASPECT = "SET_ALL_SELECTED_ASPECT";
+export const SET_PRIPORITAZATION_CHALLENGES = "SET_PRIPORITAZATION_CHALLENGES";
+export const PUT_EXTERNAL_CHALLENGES = "PUT_EXTERNAL_CHALLENGES";
+
+export const PUT_CURRENT_CHALLENGE_CALIFICATION = "PUT_CURRENT_CHALLENGE_CALIFICATION";
 
 // ACTIONS
 export const SET_ALL_QUESTIOS = "SET_ALL_QUESTIOS";
@@ -48,6 +89,17 @@ export const GENERATE_REPORT = "GENERATE_REPORT";
 export const GENERATE_BASE64 = "GENERATE_BASE64";
 export const GET_CONSOLIDATE = "GET_CONSOLIDATE";
 export const UPDATE_STATUS_CONTACT = "UPDATE_STATUS_CONTACT";
+export const TOOGLE_SELECT_ASPECT = "TOOGLE_SELECT_ASPECT";
+
+export const PUT_ALL_SELECT_ASPECT = "PUT_ALL_SELECT_ASPECT";
+export const GET_ALL_SELECT_ASPECT = "GET_ALL_SELECT_ASPECT";
+export const GET_PRIORITAZATION_CHALLENGES = "GET_PRIORITAZATION_CHALLENGES";
+export const GET_EXTERNAL_CHALLENGES = "GET_EXTERNAL_CHALLENGES";
+
+export const GET_CALIFICATION_COLABORATOR_CHALLENGE = "GET_CALIFICATION_COLABORATOR_CHALLENGE";
+export const SET_CALIFICATION_COLABORATOR_CHALLENGE = "SET_CALIFICATION_COLABORATOR_CHALLENGE";
+
+
 
 
 

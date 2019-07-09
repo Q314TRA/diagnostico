@@ -1,4 +1,5 @@
 import {
+  PROFILE_LAB, CHALLENGE_TYPE_EXTERNO, CHALLENGE_TYPE_INTERNO,
   GET_ALL_QUESTIOS_SAGA, SET_ALL_QUESTIOS, GET_ALL_QUESTIOS_API,
   GET_VALIDATE_COMPANY_API, GET_VALIDATE_COMPANY_SAGA, GET_VALIDATE_COMPANY,
   PUT_ANSWER_SAGA, PUT_ANSWER_API,
@@ -6,22 +7,31 @@ import {
   GENERATE_REPORT, PUT_REPORT_STATUS, PUT_DATA_REPORT,
   GENERATE_BASE64, GET_BASE64_SVG, PUT_BASE_64,
   PUT_CONSOLIDATE_DIAGNOSIS, GET_CONSOLIDATE_DIAGNOSIS, GET_CONSOLIDATE,
-  UPDATE_STATUS_CONTACT_CONSOLIDATE, UPDATE_STATUS_CONSOLIDATE, SET_INTEREST_GROUP
+  UPDATE_STATUS_CONTACT_CONSOLIDATE, UPDATE_STATUS_CONSOLIDATE,
+  TOOGLE_SELECT_ASPECT, SET_SELECT_ASPECT, CLEAR_SELECT_ASPECT,
+  PUT_ALL_SELECT_ASPECT, GET_ALL_SELECT_ASPECT, GET_SELECT_ASEPECTS, SET_SELECT_ASEPECTS,
+  SET_ALL_SELECTED_ASPECT, GET_PRIORITAZATION_CHALLENGES,
+  GET_EXTERNAL_CHALLENGES, PUT_EXTERNAL_CHALLENGES, GET_ALL_EXTERNAL_CHALLENGES,
+  GET_CALIFICATION_CHALLENGE,
+  PUT_CURRENT_CHALLENGE_CALIFICATION,
+  GET_CALIFICATION_COLABORATOR_CHALLENGE,
+  SET_CALIFICATION_CHALLENGE,
+  SET_CALIFICATION_COLABORATOR_CHALLENGE
 } from '../constantsGlobal'
 
-import { call, put, takeEvery, takeLatest, fork, all } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, fork, all, select } from 'redux-saga/effects'
 
 import axios from 'axios'
 
 function* getQuestios(action) {
   const questios = yield call(axios.post, GET_ALL_QUESTIOS_API, {
-    idCompany: action.payload.idCompany,
-    interestGroup: action.payload.interestGroup,
-    industrialSector: action.payload.industrialSector
+    companyId: action.payload.companyId,
+    colaboratorId: action.payload.colaboratorId
   });
+
   yield put({
     type: SET_ALL_QUESTIOS, payload: questios.data.map((item) => {
-      item.selected = !!item.companyDiagnosis;
+      item.selected = !!item.answers && item.answers.length > 0;
       return item;
     })
   });
@@ -32,7 +42,8 @@ function* getvalidateCompany(action) {
     hash: action.payload
   });
 
-  let _company = Object.assign([], company.data).pop();
+  let _company = Object.assign({}, company.data);
+  console.log(_company)
   yield put({ type: GET_VALIDATE_COMPANY, payload: _company });
   // yield put({ type: GET_ALL_QUESTIOS_SAGA, payload: company.data.companyId });
 }
@@ -40,12 +51,11 @@ function* getvalidateCompany(action) {
 function* putAnswer(action) {
   const company = yield call(axios.put, PUT_ANSWER_API, action.payload);
 
-  if (company.data.idCompany != undefined && company.data.idQuestion != undefined) {
+  if (company.data.companyId != undefined && company.data.questionId != undefined) {
     yield put({
       type: GET_ALL_QUESTIOS_SAGA, payload: {
-        idCompany: action.payload.idCompany,
-        industrialSector: action.payload.industrialSector,
-        interestGroup: action.payload.interestGroup
+        companyId: action.payload.companyId,
+        colaboratorId: action.payload.colaboratorId
       }
     });
   }
@@ -57,9 +67,8 @@ function* deleteAnswer(action) {
 
   yield put({
     type: GET_ALL_QUESTIOS_SAGA, payload: {
-      idCompany: action.payload.idCompany,
-      interestGroup: action.payload.interestGroup,
-      industrialSector: action.payload.industrialSector,
+      companyId: action.payload.companyId,
+      colaboratorId: action.payload.colaboratorId
     }
   });
 }
@@ -94,15 +103,138 @@ function* getConsolidateDiagnosis(action) {
 }
 
 function* updateStatusContact(action) {
+  const state = yield select();
+
   const consolidate = yield call(axios.post, UPDATE_STATUS_CONTACT_CONSOLIDATE, {
-    "idContact": action.payload.idContact,
-    "companyId": action.payload.companyId
+    "colaboratorId": action.payload.colaboratorId,
+    "status": action.payload.status
   });
 
-  yield put({ type: GET_VALIDATE_COMPANY_SAGA, payload: action.payload.nit });
+  yield put({ type: GET_VALIDATE_COMPANY_SAGA, payload: state.diagnosis.company.nit });
+}
+
+function* toogleAspectSelected(action) {
+  if (!action.payload.select) {
+    yield put({ type: SET_SELECT_ASPECT, payload: action.payload.aspect });
+  } else {
+    yield put({ type: CLEAR_SELECT_ASPECT, payload: action.payload.aspect });
+  }
 }
 
 
+function* putAllSelectAspect(action) {
+  const state = yield select();
+
+  let data = {
+    colaboratorId: state.diagnosis.interestGroup.id,
+    aspects: action.payload.map((aspect) => ({
+      aspectId: aspect.id,
+      colaboratorId: state.diagnosis.interestGroup.id
+    }))
+  };
+
+  const consolidate = yield call(axios.put, SET_SELECT_ASEPECTS, data);
+
+  yield put({ type: GET_ALL_SELECT_ASPECT, payload: state.diagnosis.interestGroup.id });
+
+}
+
+function* getAllSelectAspect(action) {
+  const _aspectsSelected = yield call(axios.post, GET_SELECT_ASEPECTS, {
+    colaboratorId: action.payload
+  });
+
+  let _aspects = _aspectsSelected.data.map(aspect => aspect.aspect);
+
+  yield put({ type: SET_ALL_SELECTED_ASPECT, payload: _aspects });
+
+}
+
+
+function* getPrioritizationChallenges(action) {
+  const _aspectsSelected = yield call(axios.post, GET_SELECT_ASEPECTS, {
+    colaboratorId: action.payload
+  });
+
+  let _aspects = _aspectsSelected.data.map(aspect => aspect.aspect);
+
+  yield put({ type: SET_ALL_SELECTED_ASPECT, payload: _aspects });
+
+}
+
+function* getExternalChallenges(action) {
+  const _externalChalleges = yield call(axios.post, GET_ALL_EXTERNAL_CHALLENGES, {
+    companyId: action.payload.companyId,
+    colaboratorId: action.payload.colaboratorId
+  });
+
+  // let _challenges = _externalChalleges.data;
+
+  yield put({ type: PUT_EXTERNAL_CHALLENGES, payload: _externalChalleges.data });
+
+}
+
+function* getCalificationChallenge(action) {
+
+  const _calificationChalleges = yield call(axios.post, GET_CALIFICATION_CHALLENGE, {
+    colaboratorId: action.payload.colaboratorId,
+    challengeId: action.payload.challengeId
+  });
+
+  let calificationChalleges = {
+    challengeId: action.payload.challengeId
+  }
+
+  if (_calificationChalleges.data && _calificationChalleges.data.prioritization) {
+    try {
+      calificationChalleges = Object.assign(calificationChalleges,
+        JSON.parse(_calificationChalleges.data.prioritization))
+
+    } catch (e) {
+      calificationChalleges["unset"] = true;
+    }
+  }
+  yield put({ type: PUT_CURRENT_CHALLENGE_CALIFICATION, payload: calificationChalleges });
+}
+
+function* setCalificationChallenge(action) {
+  const state = yield select();
+
+  const _calificationChalleges = yield call(axios.post, SET_CALIFICATION_CHALLENGE, {
+    colaboratorId: action.payload.colaboratorId,
+    challengeId: action.payload.challengeId,
+    prioritization: JSON.stringify({
+      fact: action.payload.fact,
+      est: action.payload.est
+    }),
+    type: state.diagnosis.profile == PROFILE_LAB ? CHALLENGE_TYPE_EXTERNO : CHALLENGE_TYPE_INTERNO
+  });
+
+  if (_calificationChalleges.data) {
+    if (state.diagnosis.profile == PROFILE_LAB && state.diagnosis.company) {
+      yield put({
+        type: GET_EXTERNAL_CHALLENGES, payload: {
+          companyId: state.diagnosis.company.id,
+          colaboratorId: action.payload.colaboratorId
+        }
+      });
+    }
+
+    yield put({ type: PUT_CURRENT_CHALLENGE_CALIFICATION, payload: {} });
+  }
+
+
+}
+
+
+// challengeId
+// colaboratorId
+// prioritization
+// type
+
+
+// SET_CALIFICATION_CHALLENGE
+// SET_CALIFICATION_COLABORATOR_CHALLENGE
 
 
 function* getQuestiosSaga() {
@@ -137,6 +269,39 @@ function* updateStatusContactSaga() {
   yield takeEvery(UPDATE_STATUS_CONSOLIDATE, updateStatusContact);
 }
 
+function* toogleAspectSelectedSaga() {
+  yield takeEvery(TOOGLE_SELECT_ASPECT, toogleAspectSelected);
+}
+
+
+
+
+function* putAllSelectAspectSaga() {
+  yield takeEvery(PUT_ALL_SELECT_ASPECT, putAllSelectAspect);
+}
+
+
+function* getAllSelectAspectSaga() {
+  yield takeEvery(GET_ALL_SELECT_ASPECT, getAllSelectAspect);
+}
+
+
+function* getPrioritizationChallengesSaga() {
+  yield takeEvery(GET_PRIORITAZATION_CHALLENGES, getPrioritizationChallenges);
+}
+
+function* getExternalChallengesSaga() {
+  yield takeEvery(GET_EXTERNAL_CHALLENGES, getExternalChallenges);
+}
+
+function* getCalificationChallengeSaga() {
+  yield takeEvery(GET_CALIFICATION_COLABORATOR_CHALLENGE, getCalificationChallenge);
+}
+
+function* setCalificationChallengeSaga() {
+  yield takeEvery(SET_CALIFICATION_COLABORATOR_CHALLENGE, setCalificationChallenge);
+}
+
 
 
 export default function* rootSaga() {
@@ -148,6 +313,13 @@ export default function* rootSaga() {
     fork(genetareReportSaga),
     fork(generateBase64Saga),
     fork(getConsolidateDiagnosisSaga),
-    fork(updateStatusContactSaga)
+    fork(updateStatusContactSaga),
+    fork(toogleAspectSelectedSaga),
+    fork(putAllSelectAspectSaga),
+    fork(getAllSelectAspectSaga),
+    fork(getPrioritizationChallengesSaga),
+    fork(getExternalChallengesSaga),
+    fork(getCalificationChallengeSaga),
+    fork(setCalificationChallengeSaga)
   ]);
 }

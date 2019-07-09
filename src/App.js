@@ -16,6 +16,11 @@ import Axis from "./axis/questionContainerAxis";
 import { AnimatedSwitch } from 'react-router-transition';
 // import TransitionSwitch from 'react-router-dom-transition';
 
+import AspectContent from './prioritization/aspectContent';
+import ChallengeContent from './prioritization/challenge/challengeContent';
+import PrioritizationFinal from './information/prioritizationFinal';
+
+
 
 // HashRouter as Router,
 import {
@@ -50,6 +55,12 @@ class App extends Component {
             <Route exact path='/exportResume' component={ExportResume}></Route>
             <Route exact path='/diagnosis' component={Axis}></Route>
             <Route exact path='/congratulations' component={Congratulations}></Route>
+            
+            <Route exact path='/aspects' component={AspectContent}></Route>
+            <Route exact path='/challenges' component={ChallengeContent}></Route>
+            
+            <Route exact path='/endPrioritization' component={PrioritizationFinal}></Route>
+          
           </AnimatedSwitch>
           {/* </TransitionSwitch> */}
         </Router>

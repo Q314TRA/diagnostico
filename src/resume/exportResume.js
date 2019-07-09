@@ -45,12 +45,12 @@ class ExportResume extends Component {
 
     componentWillMount() {
         const { company, history, getConsolidateDiagnosis } = this.props;
-        if (!company.companyId) {
+        if (!company.id) {
             history.push(`/`);
             return;
         }
 
-        getConsolidateDiagnosis(company.companyId);
+        getConsolidateDiagnosis(company.id);
     }
 
     getCompileResume() {

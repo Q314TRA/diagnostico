@@ -7,16 +7,17 @@ class Modal extends Component {
         super(props);
         this.state = {
             interestGroupError: false,
-            currentContactRole: ""
+            currentContactRole: null
         }
         this.initDiagnostic = this.initDiagnostic.bind(this);
 
     }
 
     initDiagnostic() {
-        const { setInterestGroup, history, initDiagnostic } = this.props;
-        if (this.state.currentContactRole != "") {
-            initDiagnostic(this.state.currentContactRole);
+        const { initDiagnostic } = this.props;
+
+        if (this.state.currentContact) {
+            initDiagnostic(this.state.currentContact);
         } else {
             this.setState({
                 interestGroupError: true
@@ -25,7 +26,7 @@ class Modal extends Component {
     }
 
     render() {
-        const { company, history } = this.props;
+        const { company } = this.props;
 
         let statusThumbBottomClass = {
             "pendiente": "pendiente",
@@ -51,19 +52,20 @@ class Modal extends Component {
                     <div className="aside-rigth">
                         <p className={this.state.interestGroupError ? "error" : ""}>Selecciona tu Rol.</p>
                         <div className="contact-status-content">
-                            {company.contactCompanies.map(contact => (
-                                <div className={this.state.currentContactRole == contact.role ? "active" : ""} onClick={() => this.setState({ currentContactRole: contact.role })}>
+                            {company.colaborators.map(contact => (
+                                <div className={
+                                    this.state.currentContact && this.state.currentContact.id == contact.id ? "active" : ""} onClick={() => this.setState({ currentContact: contact })}>
                                     <img src="resources/icono-aplica-activo.png"></img>
                                     <p>
                                         <strong>{contact.role}</strong> <br />
                                         <small>{contact.name}</small>
                                     </p>
-                                    {contact.diagnosisCompanyStatus &&
-                                        <div className={`bottom-section-status ${statusThumbBottomClass[contact.diagnosisCompanyStatus.status]}`}>
-                                            <p>{contact.diagnosisCompanyStatus.status}</p>
+                                    {contact.status &&
+                                        <div className={`bottom-section-status ${statusThumbBottomClass[contact.status.status]}`}>
+                                            <p>{contact.status.status}</p>
                                         </div>
                                     }
-                                    {!contact.diagnosisCompanyStatus &&
+                                    {!contact.status &&
                                         <div className="bottom-section-status">
                                             <p>Pendiente</p>
                                         </div>
@@ -71,25 +73,9 @@ class Modal extends Component {
                                 </div>
                             ))}
                         </div>
-                        {/* <div className="content-input">
 
-                            <div className={this.state.interestGroupError ? "input-inline error" : "input-inline"} >
-                                <label htmlFor="interestGroupTxt">Rol</label>
-                                <select className="input" onChange={(element) => this.setState({ interestGroup: element.target.value })}
-                                    name="interestGroupTxt" id="interestGroupTxt" placeholder="Director de la felicidad" >
-                                    <option disabled selected value>Selecciona una opcion</option>
-                                    {
-                                        company.contactCompanies.map(contact => (
-                                            <option value={contact.role} >{contact.name}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                        </div> */}
-                        {/* <input onChange={(element) => this.setState({ interestGroup: element.target.value })}
-                name="interestGroupTxt" id="interestGroupTxt" placeholder="Director de la felicidad" /> */}
                         <button className="callback" onClick={this.initDiagnostic} >Continuar</button>
-                        {/* <Link to="/diagnosis"> Acepto </Link> */}
+
                     </div>
 
                 </div>

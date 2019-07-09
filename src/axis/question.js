@@ -35,43 +35,41 @@ class Question extends Component {
         })
     }
 
-    putAnswer(idCompany, idQuestion, interestGroup) {
-        const { putAnswer, company } = this.props;
+    putAnswer(questionId ) {
+        const { putAnswer, company, interestGroup } = this.props;
         putAnswer({
-            "idCompany": idCompany,
-            "idQuestion": idQuestion,
-            "industrialSector": company.industrialsector.name,
-            "interestGroup": interestGroup
+            "companyId": company.id,
+            "colaboratorId": interestGroup.id,
+            "questionId": questionId
         });
 
     }
 
-    deleteAnswer(idCompany, idQuestion, interestGroup) {
-        const { deleteAnswer, company } = this.props;
+    deleteAnswer(questionId ) {
+        const { deleteAnswer, company, interestGroup } = this.props;
 
         deleteAnswer({
-            "idCompany": idCompany,
-            "idQuestion": idQuestion,
-            "industrialSector": company.industrialsector.name,
-            "interestGroup": interestGroup
+            "companyId": company.id,
+            "colaboratorId": interestGroup.id,
+            "questionId": questionId
         })
     }
 
 
 
     render() {
-        const { index, quest, company, interestGroup } = this.props;
+        const { quest } = this.props;
         return (
             <div className={`quest ${this.state.show ? "show" : ""} ${quest.selected ? "selected" : ""}`}  >
                 <div className="quest-text">
                     <span>{quest.questNumer}</span>
-                    <p>{quest.action}</p>
+                    <p>{quest.question}</p>
                 </div>
                 <div className="quest-callback">
                     {quest.selected &&
-                        <img onClick={() => this.deleteAnswer(company.companyId, quest.id, interestGroup)} src={this.state.btnUnCheck.unChecked}></img>
+                        <img onClick={() => this.deleteAnswer(quest.id)} src={this.state.btnUnCheck.unChecked}></img>
                     }
-                    <img onClick={() => this.putAnswer(company.companyId, quest.id, interestGroup)}
+                    <img onClick={() => this.putAnswer(quest.id)}
                         src={quest.selected ? this.state.btnCheck.checked : this.state.btnCheck.unChecked}></img>
                 </div>
 

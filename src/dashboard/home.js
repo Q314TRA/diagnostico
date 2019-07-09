@@ -33,9 +33,14 @@ class Home extends Component {
     }
 
     initDiagnostic(interestGroup) {
-        const { setInterestGroup, history } = this.props;
+        const { setInterestGroup, history, profile } = this.props;
         setInterestGroup(interestGroup);
-        history.push(`/diagnosis`);
+
+        if (profile == "LAB") {
+            history.push(`/challenges`);
+        } else {
+            history.push(`/diagnosis`);
+        }
     }
 
 
@@ -53,9 +58,9 @@ class Home extends Component {
                         <button onClick={() => this.validate()}>Iniciar</button>
                         {/* <Link to="/diagnosis"> Iniciar </Link> */}
                     </div>
-                    {this.state.submitValidate && !(company && company.companyId) &&
-                        <small style={{ 
-                            color: "#F44336",  
+                    {this.state.submitValidate && !(company && company.id) &&
+                        <small style={{
+                            color: "#F44336",
                             marginLeft: "1rem",
                             marginTop: "-0.5rem"
                         }}>Código incorrecto, por favor verifique e intente de nuevo.</small>
@@ -69,7 +74,7 @@ class Home extends Component {
                     </div>
                 </div>
                 {
-                    company && company.companyId &&
+                    company && company.id &&
                     <Modal initDiagnostic={this.initDiagnostic} />
                 }
 
@@ -82,7 +87,8 @@ class Home extends Component {
 
 
 const mapStateToProps = state => ({
-    company: state.diagnosis.company
+    company: state.diagnosis.company,
+    profile: state.diagnosis.profile,
 });
 
 function mapDispatchToProps(dispatch) {

@@ -37,7 +37,7 @@ class Resume extends Component {
 
     componentWillMount() {
         const { company, history, interestGroup, updateStatusContact } = this.props;
-        if (!company.companyId) {
+        if (!company.id) {
             history.push(`/`);
             return;
         }
@@ -45,7 +45,7 @@ class Resume extends Component {
 
         updateStatusContact({
             idContact: contact.id,
-            companyId: company.companyId,
+            companyId: company.id,
             nit: company.nit
         })
     }

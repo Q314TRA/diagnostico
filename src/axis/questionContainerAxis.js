@@ -29,24 +29,26 @@ class QuestionContainerAxis extends Component {
     goToResume() {
         const { history } = this.props;
 
-        history.push(`/resume`);
+        // history.push(`/resume`);
+        history.push(`/aspects`);
 
     }
 
     componentWillMount() {
         const { company, history, getAllQuestios, interestGroup, updateStatusContact } = this.props;
-        if (!company.companyId) {
+        if (!company.id) {
             history.push(`/`);
             return;
         }
+        // let contact = interestGroup;// company.colaborators.find((contact) => contact.role == interestGroup);
 
-        getAllQuestios(company.companyId, interestGroup, company.industrialsector.name);
+        getAllQuestios(company.id, interestGroup.id);
+        // en proceso
+        // finalizado
 
-        let contact = company.contactCompanies.find((contact) => contact.role == interestGroup);
         updateStatusContact({
-            idContact: contact.id,
-            companyId: company.companyId,
-            nit: company.nit
+            idContact: interestGroup.id,
+            status: "en proceso"
         })
     }
 
@@ -60,18 +62,33 @@ class QuestionContainerAxis extends Component {
         let nItems = this.state.numItemsPerSection;
 
         let _currentQuests = currentQuests
-            .sort((a, b) => a.aspect - b.aspect)
+        
+            .sort((a, b) =>  (a.id < b.id) ? -1 :  (a.id > b.id) ? 1: 0)
             .map((question, index) => {
-                question.questNumer = index + 1 < 10 ? `0${index + 1}` : `${index + 1}`;
+                question.questNumer = (index + 1) < 10 ? `0${index + 1}` : `${index + 1}`;
+                question.aspect = question.aspects.name;
                 return question;
             })
+            // .sort((a, b) => {
+            //     var aAspect = a.aspect;
+            //     var bAspect = b.aspect;
+            //     var aId = a.id;
+            //     var bId = b.id;
+
+            //     if (aAspect == bAspect) {
+            //         return (aId < bId) ? -1 : 0;
+            //     }
+            //     else {
+            //         return (aAspect < bAspect) ? -1 : 1;
+            //     }
+            // })
             .reduce((a, b, i, g) => !(i % nItems) ? a.concat([g.slice(i, i + nItems)]) : a, []);
 
         return (
 
 
             <div className={`poll-content ${currentAxis}`} >
-                {company.companyId &&
+                {company.id &&
                     <Scroller
                         scrollRef={(ref) => this.scroll = ref}
                         autoScroll={true}

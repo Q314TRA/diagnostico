@@ -2,15 +2,17 @@ import {
     GET_ALL_QUESTIOS_SAGA, SET_CURRENT_AXIS, GET_VALIDATE_COMPANY_SAGA,
     PUT_ANSWER_SAGA, DELETE_ANSWER_SAGA, SET_RESUME_CURRENT_AXIS,
     SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP, LOG_OUT, GENERATE_REPORT, PUT_REPORT_STATUS,
-    GENERATE_BASE64, PUT_BASE_64, GET_CONSOLIDATE, UPDATE_STATUS_CONSOLIDATE
+    GENERATE_BASE64, PUT_BASE_64, GET_CONSOLIDATE, UPDATE_STATUS_CONSOLIDATE,
+    TOOGLE_SELECT_ASPECT, PUT_ALL_SELECT_ASPECT, GET_PRIORITAZATION_CHALLENGES,
+    GET_EXTERNAL_CHALLENGES, GET_CALIFICATION_COLABORATOR_CHALLENGE, PUT_CURRENT_CHALLENGE_CALIFICATION,
+    SET_CALIFICATION_COLABORATOR_CHALLENGE
 } from '../constantsGlobal'
 
-export function getAllQuestios(idCompany, interestGroup, industrialSector) {
+export function getAllQuestios(companyId, colaboratorId) {
     return {
         type: GET_ALL_QUESTIOS_SAGA, payload: {
-            idCompany,
-            interestGroup,
-            industrialSector
+            companyId,
+            colaboratorId
         }
     }
 }
@@ -71,6 +73,41 @@ export function getConsolidateDiagnosis(idCompany) {
 
 export function updateStatusContact(contact) {
     return { type: UPDATE_STATUS_CONSOLIDATE, payload: contact }
+}
+
+
+export function toogleSelectAspect(aspect) {
+    return { type:TOOGLE_SELECT_ASPECT, payload: aspect }
+}
+
+export function setAllSelectAspect(aspects) {
+    return { type:PUT_ALL_SELECT_ASPECT, payload: aspects }
+}
+
+
+export function getPrioritizationChallenge(colaboratorId) {
+    return { type:GET_PRIORITAZATION_CHALLENGES, payload: colaboratorId }
+}
+
+export function getExternalChallengesSaga(payload) {
+    return { type:GET_EXTERNAL_CHALLENGES, payload: payload }
+}
+
+export function getCalificationChallenge(challege) {
+    return { type:GET_CALIFICATION_COLABORATOR_CHALLENGE, payload: challege }
+}
+
+export function setCalificationChallenge(challege) {
+    return { type:PUT_CURRENT_CHALLENGE_CALIFICATION, payload: challege }
+}
+
+export function clearCalificationChallenge() {
+    return { type:PUT_CURRENT_CHALLENGE_CALIFICATION, payload: {} }
+}
+
+
+export function saveCalificationChallenge(challege) {
+    return { type:SET_CALIFICATION_COLABORATOR_CHALLENGE, payload: challege }
 }
 
 

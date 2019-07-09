@@ -1,0 +1,294 @@
+.challenge-content{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(51, 133, 182);
+    box-sizing: border-box;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.challenge-content .main-content{
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+.challenge-content .footer-content{
+    background: white;
+    min-height: 10vmin;
+    flex-shrink: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.challenge-content .footer-content button{
+    margin: 0 2rem;
+    font-size: 16pt;
+    color: rgb(82, 84, 83);
+}
+
+
+
+.challenge-content h3{
+    color: white;
+}
+.challenge-content h1{
+    color: white;
+    font-size: 30pt;
+    margin-left: 0;
+}
+.challenge-content p{
+    color: white;
+    margin: 0;
+}
+.challenge-section-content > div{
+    margin-top: 3rem; 
+}
+
+.challenge_section {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+
+.item-section-challenge.problema h3{
+    color: white;
+    font-size: 16pt;
+    /* border-bottom: solid 1px #A8274E; */
+    line-height: 2;
+    text-transform: capitalize;
+}
+.item-section-challenge.necesidad h3{
+    color: white;
+    font-size: 16pt;
+    /* border-bottom: solid 1px #C08C30; */
+    line-height: 2;
+    text-transform: capitalize;
+}
+.item-section-challenge.oportunidad h3{
+    color:white;
+    font-size: 16pt;
+    /* border-bottom: solid 1px #4C9F38; */
+    line-height: 2;
+    text-transform: capitalize;
+}
+
+.item-section-challenge.problema .challenge_item {
+    background-color : #A8274E; 
+}
+.item-section-challenge.necesidad .challenge_item {
+    background-color : #C08C30;
+}
+.item-section-challenge.necesidad .challenge_item p {
+    color: white;
+}
+.item-section-challenge.oportunidad .challenge_item {
+    background-color : #4C9F38;
+}
+.item-section-challenge.oportunidad .challenge_item p {
+    color: white;
+}
+
+.challenge_item {
+    padding: 1rem;
+    background: white;
+}
+.challenge_item .item-footer-check{
+    display: none;
+}
+
+.challenge_item.chek-calification {
+    padding-bottom: 48px;
+    position: relative;
+}
+
+.challenge_item.chek-calification .item-footer-check{
+    display: inherit;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+}
+
+.challenge_item.chek-calification .item-footer-check img{
+    width: 29px;
+}
+/* 
+.challenge_item p{
+    color: rgb(82, 84, 83);
+    color: rgb(82, 84, 83);
+} */
+
+.challenge_item.selected{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+@media (min-width: 768px ){
+    .challenge_section {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) !important;
+        grid-gap: 1rem;
+        grid-auto-rows: minmax(100px, auto);
+    }
+}
+
+@media (min-width: 425px ){
+    .challenge_section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        grid-auto-rows: minmax(100px, auto);
+    }
+}
+
+
+/* background-color: #C08C30; -- naranja
+background-color: #A8274E; -- rojo
+background-color:#4C9F38; --verde */
+
+/*item-content-challenge*/
+.prioritization-item {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.prioritization-item > div {
+    flex-grow: 1;
+}
+
+.prioritization-item > div p{
+    line-height: 1.3;
+    font-size: 11pt;
+}
+
+.prioritization-item .doot-calification {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 50px;
+    flex-shrink: 1;
+    flex-grow: 0;
+    /* height: 100%; */
+}
+
+.prioritization-item .doot-calification span{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 5px;
+    line-height: 2;
+    border-radius: 25px;
+    border: solid 1px rgb(51, 133, 182);
+    color: rgb(51, 133, 182);
+}
+
+.prioritization-item .doot-calification span.active{
+    background-color :  rgb(51, 133, 182);
+    color: white;
+    transition: all ease-in 0.3s;
+}
+
+
+.prioritization-item h4{
+    margin: 0.2rem 0;
+}
+.prioritization-item h4 small{
+    color: #C08C30;
+    font-weight: 100;
+}
+
+.modal .modal-header.problema{
+    background-color: #A8274E;
+}
+.modal .modal-header.necesidad{
+    background-color: #C08C30;
+}
+.modal .modal-header.oportunidad{
+    background-color:#4C9F38;
+}
+
+
+
+/* background-color: #C08C30; -- naranja
+background-color: #A8274E; -- rojo
+background-color:#4C9F38; --verde */
+
+
+.modal-footer {
+    min-height: 60px;
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+    border-top: solid 0.5px rgba(82, 84, 83, 0.9);
+}
+
+.modal-footer button {
+    font-size: 12pt
+}
+
+.modal-footer button.cancel {
+    color: rgb(82, 84, 83)
+}
+
+.modal-footer button.success {
+    color: rgb(51, 133, 182)
+}
+
+/*MODAL*/
+
+.main-modal-content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal-fade{
+    z-index: 1;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+}
+.modal.main-content{
+    padding: 0;
+}
+
+
+.modal a.btn-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 50%);
+    font-size: 14pt;
+    color: white;
+}
+
+.modal .modal-header{
+    background-color: rgb(51, 133, 182);
+    min-height: 9vmin;
+    font-size: 17pt;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    text-transform: capitalize;
+}
+
+.modal .modal-body{
+    padding: 0.5rem 2rem;
+}
+
+.modal .modal-body p{
+    color: rgb(82, 84, 83);
+}
+

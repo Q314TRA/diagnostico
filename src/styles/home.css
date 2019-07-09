@@ -479,3 +479,17 @@ height: 5vmin;
   margin-left: 4px;
 }
 
+.congratulations-content button{
+  color: white;
+  font-size: 16pt;
+  border: solid 1px white;
+  background: none;
+  border-radius: 3px;
+  line-height: 2;
+  padding: 0 1rem;
+  margin: auto;
+  display: block;
+  cursor: pointer;
+}
+
+

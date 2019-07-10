@@ -261,6 +261,9 @@ background-color:#4C9F38; --verde */
     left: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 100;
+    box-sizing: border-box;
+    z-index: 100;
 }
 
 .modal-fade{

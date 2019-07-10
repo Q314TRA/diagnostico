@@ -524,6 +524,9 @@ height: 5vmin;
     box-sizing: border-box;
     overflow-y: scroll;
     z-index: 20;
+
+    box-sizing: border-box;
+    max-height: fit-content;
   }
 
   .modal .modalContent{

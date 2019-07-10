@@ -501,26 +501,29 @@ height: 5vmin;
   display: block;
   cursor: pointer;
 }
+.content_text .content-callback button{
+  flex-grow: 0;
+  padding: 0 5vmin;
+}
 
 @media only screen and (max-width: 600px){
   .content_text img.brand-logo{
     width: 60vmin !important;
     margin: 0 auto 5vmin auto !important;
   }
-  .content_text .content-callback button{
-    flex-grow: 0;
-    padding: 0 1rem;
-  }
+  
 
   .modal{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
+    -webkit-transform: none;
     transform: none;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     box-sizing: border-box;
     overflow-y: scroll;
+    z-index: 20;
   }
 
   .modal .modalContent{

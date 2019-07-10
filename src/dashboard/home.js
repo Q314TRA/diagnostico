@@ -54,7 +54,9 @@ class Home extends Component {
                     {/* <h1>BIOTICA</h1> */}
                     {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> */}
                     <div className="content-callback">
-                        <input placeholder="Insert su código" onChange={(element) => this.setState({ hash: element.target.value })} />
+                        <div>
+                            <input placeholder="Insert su código" onChange={(element) => this.setState({ hash: element.target.value })} />
+                        </div>
                         <button onClick={() => this.validate()}>Iniciar</button>
                         {/* <Link to="/diagnosis"> Iniciar </Link> */}
                     </div>

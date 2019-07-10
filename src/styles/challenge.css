@@ -132,7 +132,7 @@
 @media (min-width: 768px ){
     .challenge_section {
         display: grid;
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr) !important;
         grid-gap: 1rem;
         grid-auto-rows: minmax(100px, auto);
     }
@@ -141,9 +141,19 @@
 @media (min-width: 425px ){
     .challenge_section {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         grid-gap: 1rem;
         grid-auto-rows: minmax(100px, auto);
+    }
+}
+
+@media (max-width: 425px ){
+    .modal .modal-header{
+        min-height: 13vmin !important;
+    }
+
+    .challenge-content .footer-content{
+        min-height: 14vmin !important;
     }
 }
 
@@ -262,8 +272,18 @@ background-color:#4C9F38; --verde */
 }
 .modal.main-content{
     padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
+.modal.main-content > div{
+    flex-grow: 1;
+}
+.modal.main-content > div:first-child,
+.modal.main-content > div:last-child{
+    flex-grow: 0;
+    flex-shrink: 0;
+}
 
 .modal a.btn-close{
     position: absolute;

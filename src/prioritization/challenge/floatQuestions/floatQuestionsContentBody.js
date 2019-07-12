@@ -18,7 +18,7 @@ class FloatQuestionsContentBody extends Component {
             currentQuestionFloat: {},
             stepsQuestionFloat: 0,
             califications: {},
-            intevalQuestios: 8000
+            intevalQuestios: 16000
         };
 
         this.setCalification = this.setCalification.bind(this);

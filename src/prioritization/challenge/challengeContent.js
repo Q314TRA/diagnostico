@@ -63,13 +63,8 @@ class ChallengeContent extends Component {
                     <h1>Califica tus Retos</h1>
 
                     <p>
-                        A continuación, se le presentarán los retos que fueron elegidos por el Laboratorio de BIOTICA con el conocimiento que hemos adquirido de la empresa, del sector y con el conocimiento que tenemos en temas de sostenibilidad.
-                        <br/>
-                        El resto de retos se les entregará en un documento de trabajo para que sea su guía de trabajo posteriormente.
-                        <br/>
-                        El objetivo es que califique cada uno de los retos problema según si es factibilidad y estratégico para su empresa. 
-                        <br/>
-                        De esta manera los retos identificados serán priorizados.</p>
+                    Califica cada uno de los retos problema según si es factibile y estratégico para su empresa. De esta manera los retos identificados serán priorizados.
+                    </p>
 
                     <div className="challenge-section-content">
                         {Object.keys(challengeType).map(_challengeType => (

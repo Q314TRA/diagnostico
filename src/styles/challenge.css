@@ -389,7 +389,7 @@ background-color:#4C9F38; --verde */
     background-color: rgb(51, 133, 182); */
     border: solid 1.5px rgb(51, 133, 182);
     /* animation-fill-mode: forwards; */
-    animation: 8s "time-line";
+    animation: 16s "time-line";
     width: 0%;
     margin-top: 1rem;
     align-self: flex-start;

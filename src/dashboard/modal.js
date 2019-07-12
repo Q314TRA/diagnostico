@@ -44,9 +44,9 @@ class Modal extends Component {
                     <div className="aside-left">
                         <h3>Hola {company.name}</h3>
                         <p>
-                            Con el fin de identificar el estado actual de su empresa en términos ambientales, sociales y económicos es muy importante contestar las siguientes preguntas con total consciencia y con la transparencia necesaria, pues este será el insumo para avanzar con nuestro diagnóstico inicial.
+                        A continuación, se le presentarán los retos que fueron elegidos por el Laboratorio de BIOTICA con el conocimiento que hemos adquirido de la empresa, del sector y con el conocimiento que tenemos en temas de sostenibilidad.
                         <br /><br />
-                            Debe seleccionar las preguntas para las cuales la respuesta sea SI, con total certeza.
+                        El resto de retos se les entregará en un documento de trabajo para que sea su guía de trabajo posteriormente.
                         </p>
                     </div>
                     <div className="aside-rigth">

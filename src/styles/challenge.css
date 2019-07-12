@@ -136,6 +136,17 @@
         grid-gap: 1rem;
         grid-auto-rows: minmax(100px, auto);
     }
+    .modal .modal{
+        transform: translate(-100%, -100%);
+        top: 50vh;
+        left: 60vw;
+    }
+}
+
+@media (min-width: 425px ) and (max-width: 768px ){
+    .modal .modal{
+        transform: translate(-100%, -60%);
+    }
 }
 
 @media (min-width: 425px ){
@@ -145,6 +156,8 @@
         grid-gap: 1rem;
         grid-auto-rows: minmax(100px, auto);
     }
+
+    
 }
 
 @media (max-width: 425px ){
@@ -164,9 +177,13 @@ background-color:#4C9F38; --verde */
 
 /*item-content-challenge*/
 .prioritization-item {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     margin: 1rem 0;
+
+    background-color: rgb(51, 133, 182);
+    padding: 1rem;
+    display: block;
 }
 
 .prioritization-item > div {
@@ -207,12 +224,21 @@ background-color:#4C9F38; --verde */
 }
 
 
-.prioritization-item h4{
-    margin: 0.2rem 0;
+.prioritization-item  h4{
+    margin: 0;
+    text-transform: capitalize;
+    color: white;
 }
-.prioritization-item h4 small{
-    color: #C08C30;
+.prioritization-item > small{
+    /* color: #C08C30; */
     font-weight: 100;
+    display: block;
+    color: white;
+}
+.prioritization-item > img{
+    width: 6vmin;
+    float: right;
+    transform: translateY(-110%);
 }
 
 .modal .modal-header.problema{
@@ -297,7 +323,7 @@ background-color:#4C9F38; --verde */
     color: white;
 }
 
-.modal .modal-header{
+.modal > div.modal-header{
     background-color: rgb(51, 133, 182);
     min-height: 9vmin;
     font-size: 17pt;
@@ -305,6 +331,10 @@ background-color:#4C9F38; --verde */
     align-items: center;
     padding: 0 2rem;
     text-transform: capitalize;
+
+    flex-shrink: 1;
+    flex-grow: 0;
+    color: white;
 }
 
 .modal .modal-body{
@@ -315,3 +345,75 @@ background-color:#4C9F38; --verde */
     color: rgb(82, 84, 83);
 }
 
+.modal .modal-body small.md-up{
+    font-size: 11pt;
+}
+
+.modal .modal-body div.content-doot-quest{
+    margin-top: 2.5rem;
+    font-size: 14pt;
+}
+
+.modal .modal-body div.content-doot-quest > div{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    box-sizing: border-box;
+}
+
+
+.modal .modal-body div.content-doot-quest span{
+    font-size: 17pt;
+    padding: 0 1rem;
+    line-height: 2;
+    border-radius: 3rem;
+    border: solid 1px rgb(51, 133, 182);
+    color: rgb(51, 133, 182);
+}
+
+.modal .modal-body div.content-doot-quest span.active{
+    background-color :  rgb(51, 133, 182);
+    color: white;
+    transition: all ease-in 0.3s;
+}
+
+.content-doot-quest > hr{
+    opacity: 0;
+    border: transparent;
+    /* margin: inherit; */
+}
+.content-doot-quest > hr.time-line-indicator{
+    opacity: 1;
+    /* width: 100%; */
+    /* height: 2px;
+    background-color: rgb(51, 133, 182); */
+    border: solid 1.5px rgb(51, 133, 182);
+    /* animation-fill-mode: forwards; */
+    animation: 8s "time-line";
+    width: 0%;
+    margin-top: 1rem;
+    align-self: flex-start;
+}
+
+
+@keyframes time-line{
+    from{
+        width: 0%;
+    }
+    to{
+        width: 100%;
+    }
+}
+
+.modal-body.intro button{
+    color: rgb(51, 133, 182);
+    font-size: 16pt;
+    border: solid 1px rgb(51, 133, 182);
+    background: none;
+    border-radius: 3px;
+    line-height: 2;
+    padding: 0 1rem;
+    margin: 1rem auto;
+    display: block;
+    cursor: pointer;
+}

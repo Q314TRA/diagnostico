@@ -5,7 +5,7 @@ import {
     LOG_OUT, PUT_REPORT_STATUS, PUT_BASE_64,
     PUT_CONSOLIDATE_DIAGNOSIS, SET_SELECT_ASPECT, CLEAR_SELECT_ASPECT,
     SET_ALL_SELECTED_ASPECT, SET_PRIPORITAZATION_CHALLENGES, PUT_EXTERNAL_CHALLENGES,
-    PUT_CURRENT_CHALLENGE_CALIFICATION
+    PUT_CURRENT_CHALLENGE_CALIFICATION, PUT_QUESTIONS_FACT_EST
 } from '../constantsGlobal';
 
 const initialState = {
@@ -25,7 +25,8 @@ const initialState = {
     profile: PROFILE_LAB,
     challenges: [],
     externalChallenges: [],
-    currentChallengeCalification: []
+    currentChallengeCalification: {},
+    questionsFactEst: []
 }
 
 function diagnosis(state = initialState, action) {
@@ -120,7 +121,12 @@ function diagnosis(state = initialState, action) {
             return Object.assign({}, state, {
                 currentChallengeCalification: action.payload
             });
-            
+
+        case PUT_QUESTIONS_FACT_EST:
+            return Object.assign({}, state, {
+                questionsFactEst: action.payload
+            });
+
         default:
             return state
     }

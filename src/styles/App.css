@@ -9,3 +9,8 @@
 .switch-wrapper > div {
   position: absolute;
 }
+
+button {
+  background-color: unset;
+  border: unset;
+}

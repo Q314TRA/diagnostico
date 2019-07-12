@@ -24,23 +24,14 @@ class Challenge extends Component {
         this.setState({ modalCalificationOpen: isOpen });
     }
 
-
-    setCalification(fact, est) {
-        this.setState({
-            FACT: fact,
-            EST: est
-        })
-    }
-
-
     saveCalification(challenge, calification) {
         const { saveCalificationChallenge, interestGroup } = this.props;
 
         saveCalificationChallenge({
             colaboratorId: interestGroup.id,
             challengeId: challenge.id,
-            fact: calification.fact,
-            est: calification.est
+            factible: calification.factible,
+            estrategico: calification.estrategico
         })
 
         this.toogleModal(false);

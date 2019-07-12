@@ -26,7 +26,7 @@ class ChallengeContent extends Component {
         }
 
         getExternalChallengesSaga({
-            companyId: company.id, 
+            companyId: company.id,
             colaboratorId: interestGroup.id
         });
 
@@ -50,7 +50,7 @@ class ChallengeContent extends Component {
     render() {
         const { challenges, aspectSelected } = this.props;
         // dictionary challenge type
-        let challengeType = challenges.reduce((a,b,i)=>{
+        let challengeType = challenges.reduce((a, b, i) => {
             a[b.type] = Object.assign([], a[b.type]);
             a[b.type].push(b);
             return a;
@@ -62,7 +62,14 @@ class ChallengeContent extends Component {
                 <div className="main-content">
                     <h1>Califica tus Retos</h1>
 
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                    <p>
+                        A continuación, se le presentarán los retos que fueron elegidos por el Laboratorio de BIOTICA con el conocimiento que hemos adquirido de la empresa, del sector y con el conocimiento que tenemos en temas de sostenibilidad.
+                        <br/>
+                        El resto de retos se les entregará en un documento de trabajo para que sea su guía de trabajo posteriormente.
+                        <br/>
+                        El objetivo es que califique cada uno de los retos problema según si es factibilidad y estratégico para su empresa. 
+                        <br/>
+                        De esta manera los retos identificados serán priorizados.</p>
 
                     <div className="challenge-section-content">
                         {Object.keys(challengeType).map(_challengeType => (
@@ -91,14 +98,14 @@ const mapStateToProps = state => ({
     company: state.diagnosis.company,
     challenges: (state.diagnosis.profile == 'LAB' ?
         Object.assign([], state.diagnosis.externalChallenges) :
-        Object.assign([], state.diagnosis.challenges)) 
+        Object.assign([], state.diagnosis.challenges))
 });
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         setAllSelectAspect,
         getPrioritizationChallenge,
-        getExternalChallengesSaga, 
+        getExternalChallengesSaga,
         updateStatusContact
     }, dispatch)
 }

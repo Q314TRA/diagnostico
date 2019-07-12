@@ -5,7 +5,7 @@ import {
     GENERATE_BASE64, PUT_BASE_64, GET_CONSOLIDATE, UPDATE_STATUS_CONSOLIDATE,
     TOOGLE_SELECT_ASPECT, PUT_ALL_SELECT_ASPECT, GET_PRIORITAZATION_CHALLENGES,
     GET_EXTERNAL_CHALLENGES, GET_CALIFICATION_COLABORATOR_CHALLENGE, PUT_CURRENT_CHALLENGE_CALIFICATION,
-    SET_CALIFICATION_COLABORATOR_CHALLENGE
+    SET_CALIFICATION_COLABORATOR_CHALLENGE, GET_QUESTIONS_FACT_EST
 } from '../constantsGlobal'
 
 export function getAllQuestios(companyId, colaboratorId) {
@@ -77,37 +77,41 @@ export function updateStatusContact(contact) {
 
 
 export function toogleSelectAspect(aspect) {
-    return { type:TOOGLE_SELECT_ASPECT, payload: aspect }
+    return { type: TOOGLE_SELECT_ASPECT, payload: aspect }
 }
 
 export function setAllSelectAspect(aspects) {
-    return { type:PUT_ALL_SELECT_ASPECT, payload: aspects }
+    return { type: PUT_ALL_SELECT_ASPECT, payload: aspects }
 }
 
 
 export function getPrioritizationChallenge(colaboratorId) {
-    return { type:GET_PRIORITAZATION_CHALLENGES, payload: colaboratorId }
+    return { type: GET_PRIORITAZATION_CHALLENGES, payload: colaboratorId }
 }
 
 export function getExternalChallengesSaga(payload) {
-    return { type:GET_EXTERNAL_CHALLENGES, payload: payload }
+    return { type: GET_EXTERNAL_CHALLENGES, payload: payload }
 }
 
 export function getCalificationChallenge(challege) {
-    return { type:GET_CALIFICATION_COLABORATOR_CHALLENGE, payload: challege }
+    return { type: GET_CALIFICATION_COLABORATOR_CHALLENGE, payload: challege }
 }
 
 export function setCalificationChallenge(challege) {
-    return { type:PUT_CURRENT_CHALLENGE_CALIFICATION, payload: challege }
+    return { type: PUT_CURRENT_CHALLENGE_CALIFICATION, payload: challege }
 }
 
 export function clearCalificationChallenge() {
-    return { type:PUT_CURRENT_CHALLENGE_CALIFICATION, payload: {} }
+    return { type: PUT_CURRENT_CHALLENGE_CALIFICATION, payload: {} }
 }
 
 
 export function saveCalificationChallenge(challege) {
-    return { type:SET_CALIFICATION_COLABORATOR_CHALLENGE, payload: challege }
+    return { type: SET_CALIFICATION_COLABORATOR_CHALLENGE, payload: challege }
+}
+
+export function getQuestionsFactEst() {
+    return { type: GET_QUESTIONS_FACT_EST }
 }
 
 

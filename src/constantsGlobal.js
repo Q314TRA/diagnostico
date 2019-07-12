@@ -1,4 +1,5 @@
-export const API_SERVER = process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000";
+// export const API_SERVER = process.env.HOST_API ? process.env.HOST_API : "http://localhost:3000";
+export const API_SERVER = "http://138.68.41.196:3000";
 
 
 //CONFIGURATION
@@ -15,38 +16,42 @@ export const CHALLENGE_TYPE_INTERNO = "INTERNO";
 
 
 // API
-// export const GET_ALL_QUESTIOS_API = API_SERVER + "/diagnosis/";
-// export const GET_VALIDATE_COMPANY_API = API_SERVER + "/diagnosis/validateCompany";
-// export const PUT_ANSWER_API = API_SERVER + "/diagnosis/";
-// export const DELETE_ANSWER_API = API_SERVER + "/diagnosis/removeAnswer";
-// export const PUT_DATA_REPORT = API_SERVER + "/diagnosis/generateReport";
-// export const GET_BASE64_SVG = API_SERVER + "/diagnosis/getBase64SVG";
-// export const GET_CONSOLIDATE_DIAGNOSIS = API_SERVER + "/diagnosis/getConsolidateCompanyDiagnosis";
-// export const UPDATE_STATUS_CONTACT_CONSOLIDATE = API_SERVER + "/diagnosis/updateStatusContact";
-// export const SET_SELECT_ASEPECTS = API_SERVER + "/diagnosis/selectAspects";
-// export const GET_SELECT_ASEPECTS = API_SERVER + "/diagnosis/getSelectAspects";
-// export const GET_ALL_EXTERNAL_CHALLENGES = API_SERVER + "/diagnosis/getExternalChallenges";
-// export const GET_CALIFICATION_CHALLENGE = API_SERVER + "/diagnosis/getPrioritizationChallenges";
-// export const SET_CALIFICATION_CHALLENGE = API_SERVER + "/diagnosis/setPrioritizationChallenge";
+export const GET_ALL_QUESTIOS_API = API_SERVER + "/diagnosis/";
+export const GET_VALIDATE_COMPANY_API = API_SERVER + "/diagnosis/validateCompany";
+export const PUT_ANSWER_API = API_SERVER + "/diagnosis/";
+export const DELETE_ANSWER_API = API_SERVER + "/diagnosis/removeAnswer";
+export const PUT_DATA_REPORT = API_SERVER + "/diagnosis/generateReport";
+export const GET_BASE64_SVG = API_SERVER + "/diagnosis/getBase64SVG";
+export const GET_CONSOLIDATE_DIAGNOSIS = API_SERVER + "/diagnosis/getConsolidateCompanyDiagnosis";
+export const UPDATE_STATUS_CONTACT_CONSOLIDATE = API_SERVER + "/diagnosis/updateStatusContact";
+export const SET_SELECT_ASEPECTS = API_SERVER + "/diagnosis/selectAspects";
+export const GET_SELECT_ASEPECTS = API_SERVER + "/diagnosis/getSelectAspects";
+export const GET_ALL_EXTERNAL_CHALLENGES = API_SERVER + "/diagnosis/getExternalChallenges";
+export const GET_CALIFICATION_CHALLENGE = API_SERVER + "/diagnosis/getPrioritizationChallenges";
+export const SET_CALIFICATION_CHALLENGE = API_SERVER + "/diagnosis/setPrioritizationChallenge";
+export const GET_QUESTIONS_FACTIBLE_ESTRATEGICO = API_SERVER + "/diagnosis/getQuestionsFactEst";
 
 
 // {
 // 	"idCompany": 2
 // }
 
-export const GET_ALL_QUESTIOS_API = "http://138.68.41.196:3000" + "/diagnosis/";
-export const GET_VALIDATE_COMPANY_API = "http://138.68.41.196:3000" + "/diagnosis/validateCompany";
-export const PUT_ANSWER_API = "http://138.68.41.196:3000" + "/diagnosis/";
-export const DELETE_ANSWER_API = "http://138.68.41.196:3000" + "/diagnosis/removeAnswer";
-export const PUT_DATA_REPORT = "http://138.68.41.196:3000" + "/diagnosis/generateReport";
-export const GET_BASE64_SVG = "http://138.68.41.196:3000" + "/diagnosis/getBase64SVG";
-export const GET_CONSOLIDATE_DIAGNOSIS = "http://138.68.41.196:3000" + "/diagnosis/getConsolidateCompanyDiagnosis";
-export const UPDATE_STATUS_CONTACT_CONSOLIDATE = "http://138.68.41.196:3000" + "/diagnosis/updateStatusContact";
-export const SET_SELECT_ASEPECTS = "http://138.68.41.196:3000" + "/diagnosis/selectAspects";
-export const GET_SELECT_ASEPECTS = "http://138.68.41.196:3000" + "/diagnosis/getSelectAspects";
-export const GET_ALL_EXTERNAL_CHALLENGES = "http://138.68.41.196:3000" + "/diagnosis/getExternalChallenges";
-export const GET_CALIFICATION_CHALLENGE = "http://138.68.41.196:3000" + "/diagnosis/getPrioritizationChallenges";
-export const SET_CALIFICATION_CHALLENGE = "http://138.68.41.196:3000" + "/diagnosis/setPrioritizationChallenge";
+
+
+
+// export const GET_ALL_QUESTIOS_API = "http://138.68.41.196:3000" + "/diagnosis/";
+// export const GET_VALIDATE_COMPANY_API = "http://138.68.41.196:3000" + "/diagnosis/validateCompany";
+// export const PUT_ANSWER_API = "http://138.68.41.196:3000" + "/diagnosis/";
+// export const DELETE_ANSWER_API = "http://138.68.41.196:3000" + "/diagnosis/removeAnswer";
+// export const PUT_DATA_REPORT = "http://138.68.41.196:3000" + "/diagnosis/generateReport";
+// export const GET_BASE64_SVG = "http://138.68.41.196:3000" + "/diagnosis/getBase64SVG";
+// export const GET_CONSOLIDATE_DIAGNOSIS = "http://138.68.41.196:3000" + "/diagnosis/getConsolidateCompanyDiagnosis";
+// export const UPDATE_STATUS_CONTACT_CONSOLIDATE = "http://138.68.41.196:3000" + "/diagnosis/updateStatusContact";
+// export const SET_SELECT_ASEPECTS = "http://138.68.41.196:3000" + "/diagnosis/selectAspects";
+// export const GET_SELECT_ASEPECTS = "http://138.68.41.196:3000" + "/diagnosis/getSelectAspects";
+// export const GET_ALL_EXTERNAL_CHALLENGES = "http://138.68.41.196:3000" + "/diagnosis/getExternalChallenges";
+// export const GET_CALIFICATION_CHALLENGE = "http://138.68.41.196:3000" + "/diagnosis/getPrioritizationChallenges";
+// export const SET_CALIFICATION_CHALLENGE = "http://138.68.41.196:3000" + "/diagnosis/setPrioritizationChallenge";
 
 // export const GET_ALL_QUESTIOS_API = "http://138.68.41.196:3000/diagnosis/";
 // export const GET_VALIDATE_COMPANY_API = "http://138.68.41.196:3000/diagnosis/validateCompany";
@@ -72,8 +77,8 @@ export const CLEAR_SELECT_ASPECT = "CLEAR_SELECT_ASPECT";
 export const SET_ALL_SELECTED_ASPECT = "SET_ALL_SELECTED_ASPECT";
 export const SET_PRIPORITAZATION_CHALLENGES = "SET_PRIPORITAZATION_CHALLENGES";
 export const PUT_EXTERNAL_CHALLENGES = "PUT_EXTERNAL_CHALLENGES";
-
 export const PUT_CURRENT_CHALLENGE_CALIFICATION = "PUT_CURRENT_CHALLENGE_CALIFICATION";
+export const PUT_QUESTIONS_FACT_EST = "PUT_QUESTIONS_FACT_EST";
 
 // ACTIONS
 export const SET_ALL_QUESTIOS = "SET_ALL_QUESTIOS";
@@ -98,6 +103,7 @@ export const GET_EXTERNAL_CHALLENGES = "GET_EXTERNAL_CHALLENGES";
 
 export const GET_CALIFICATION_COLABORATOR_CHALLENGE = "GET_CALIFICATION_COLABORATOR_CHALLENGE";
 export const SET_CALIFICATION_COLABORATOR_CHALLENGE = "SET_CALIFICATION_COLABORATOR_CHALLENGE";
+export const GET_QUESTIONS_FACT_EST = "GET_QUESTIONS_FACT_EST";
 
 
 

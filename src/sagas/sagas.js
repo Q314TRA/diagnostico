@@ -16,12 +16,16 @@ import {
   PUT_CURRENT_CHALLENGE_CALIFICATION,
   GET_CALIFICATION_COLABORATOR_CHALLENGE,
   SET_CALIFICATION_CHALLENGE,
-  SET_CALIFICATION_COLABORATOR_CHALLENGE
+  SET_CALIFICATION_COLABORATOR_CHALLENGE,
+  GET_QUESTIONS_FACTIBLE_ESTRATEGICO,
+  PUT_QUESTIONS_FACT_EST,
+  GET_QUESTIONS_FACT_EST
 } from '../constantsGlobal'
 
 import { call, put, takeEvery, takeLatest, fork, all, select } from 'redux-saga/effects'
 
 import axios from 'axios'
+import { deprecate } from 'util';
 
 function* getQuestios(action) {
   const questios = yield call(axios.post, GET_ALL_QUESTIOS_API, {
@@ -174,27 +178,46 @@ function* getExternalChallenges(action) {
 
 }
 
+
+
+// @deprecate
 function* getCalificationChallenge(action) {
 
-  const _calificationChalleges = yield call(axios.post, GET_CALIFICATION_CHALLENGE, {
-    colaboratorId: action.payload.colaboratorId,
-    challengeId: action.payload.challengeId
-  });
+  let challengesColaborators = Object.assign([], action.payload.challengesColaborators);
+  console.log("prioritization.challengesColaborators", challengesColaborators);
+  let prioritization = challengesColaborators
+    .filter(element => element.prioritization && element.prioritization != "{}")
+    .reduce((a, b, i) => {
+      try {
+        return JSON.parse(b.prioritization);
+      } catch (error) {
+        return {};
+      }
+    }, {});
 
-  let calificationChalleges = {
-    challengeId: action.payload.challengeId
-  }
+  console.log("prioritization.prioritization", prioritization);
+  yield put({ type: PUT_CURRENT_CHALLENGE_CALIFICATION, payload: prioritization });
 
-  if (_calificationChalleges.data && _calificationChalleges.data.prioritization) {
-    try {
-      calificationChalleges = Object.assign(calificationChalleges,
-        JSON.parse(_calificationChalleges.data.prioritization))
+  // const _calificationChalleges = yield call(axios.post, GET_CALIFICATION_CHALLENGE, {
+  //   colaboratorId: action.payload.colaboratorId,
+  //   challengeId: action.payload.challengeId
+  // });
 
-    } catch (e) {
-      calificationChalleges["unset"] = true;
-    }
-  }
-  yield put({ type: PUT_CURRENT_CHALLENGE_CALIFICATION, payload: calificationChalleges });
+  // let calificationChalleges = {
+  //   challengeId: action.payload.challengeId
+  // }
+
+  // if (_calificationChalleges.data && _calificationChalleges.data.prioritization) {
+  //   try {
+  //     calificationChalleges = Object.assign(calificationChalleges,
+  //       JSON.parse(_calificationChalleges.data.prioritization))
+
+  //   } catch (e) {
+  //     calificationChalleges["unset"] = true;
+  //   }
+  // }
+
+  // yield put({ type: PUT_CURRENT_CHALLENGE_CALIFICATION, payload: calificationChalleges });
 }
 
 function* setCalificationChallenge(action) {
@@ -204,8 +227,8 @@ function* setCalificationChallenge(action) {
     colaboratorId: action.payload.colaboratorId,
     challengeId: action.payload.challengeId,
     prioritization: JSON.stringify({
-      fact: action.payload.fact,
-      est: action.payload.est
+      factible: action.payload.factible,
+      estrategico: action.payload.estrategico
     }),
     type: state.diagnosis.profile == PROFILE_LAB ? CHALLENGE_TYPE_EXTERNO : CHALLENGE_TYPE_INTERNO
   });
@@ -227,14 +250,15 @@ function* setCalificationChallenge(action) {
 }
 
 
-// challengeId
-// colaboratorId
-// prioritization
-// type
 
+function* getQuestionsFactEst(action) {
+  const _questionsFactEst = yield call(axios.post, GET_QUESTIONS_FACTIBLE_ESTRATEGICO);
 
-// SET_CALIFICATION_CHALLENGE
-// SET_CALIFICATION_COLABORATOR_CHALLENGE
+  let questionsFactEst = _questionsFactEst.data;
+
+  yield put({ type: PUT_QUESTIONS_FACT_EST, payload: questionsFactEst });
+
+}
 
 
 function* getQuestiosSaga() {
@@ -302,6 +326,10 @@ function* setCalificationChallengeSaga() {
   yield takeEvery(SET_CALIFICATION_COLABORATOR_CHALLENGE, setCalificationChallenge);
 }
 
+function* getQuestionsFactEstSaga() {
+  yield takeEvery(GET_QUESTIONS_FACT_EST, getQuestionsFactEst);
+}
+
 
 
 export default function* rootSaga() {
@@ -320,6 +348,7 @@ export default function* rootSaga() {
     fork(getPrioritizationChallengesSaga),
     fork(getExternalChallengesSaga),
     fork(getCalificationChallengeSaga),
-    fork(setCalificationChallengeSaga)
+    fork(setCalificationChallengeSaga),
+    fork(getQuestionsFactEstSaga)
   ]);
 }

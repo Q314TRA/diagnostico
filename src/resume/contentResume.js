@@ -74,8 +74,6 @@ class ContentResume extends Component {
             return a;
         }, {});
 
-        console.log(resumeStatusAxisAspectChartPendings);
-
         let currentDAta = Object.keys(resumeStatusAxis).map((axisName) => {
             return {
                 axisName,
@@ -85,8 +83,6 @@ class ContentResume extends Component {
                 aspectsPendings: resumeStatusAxisAspectChartPendings[axisName]
             }
         });
-
-        console.log(currentDAta);
 
         return currentDAta;
     }

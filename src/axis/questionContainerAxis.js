@@ -29,8 +29,8 @@ class QuestionContainerAxis extends Component {
     goToResume() {
         const { history } = this.props;
 
-        // history.push(`/resume`);
-        history.push(`/aspects`);
+        history.push(`/resume`);
+        // history.push(`/aspects`);
 
     }
 
@@ -47,7 +47,7 @@ class QuestionContainerAxis extends Component {
         // finalizado
 
         updateStatusContact({
-            idContact: interestGroup.id,
+            colaboratorId: interestGroup.id,
             status: "en proceso"
         })
     }

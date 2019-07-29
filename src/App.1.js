@@ -15,12 +15,6 @@ class App extends Component {
 
   }
 
-  componentDidMount() {
-    this.state.questions.forEach(element => {
-      /* console.log(element.ref.getBoundingClientRect());  */
-    });
-  }
-
   render() {
     return (
       <div className="App" >

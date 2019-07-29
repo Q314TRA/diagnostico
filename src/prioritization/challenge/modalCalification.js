@@ -34,8 +34,7 @@ class ModalCalification extends Component {
 
 
         this.closeFloatQuestiosModal();
-        // console.log(type, value);
-
+        
         setCalificationChallenge({
             challengeId: challenge.id,
             factible: type == "factible" ? value : calification.factible,
@@ -53,8 +52,6 @@ class ModalCalification extends Component {
     saveCalification(e) {
         const { saveCalification, challenge, calification } = this.props;
         e.stopPropagation();
-
-        console.log("saveCalification", challenge, calification)
 
         saveCalification(challenge, calification);
     }

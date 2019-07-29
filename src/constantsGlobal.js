@@ -150,18 +150,20 @@ export const aspectProcessData = (questions, currentAxisResume) => {
 
     //conteo y sumatoria para extraer porcentaje total
     let resume = axis.reduce((a, b, i, o) => {
-        a[b.aspectMerge] = Object.assign({ numChecks: 0, sumChecks: 0 }, a[b.aspectMerge]);
-        a[b.aspectMerge].numChecks += 1;
-        a[b.aspectMerge].sumChecks += parseInt(b.weight);
+        let aspectName = Object.assign({}, Object.assign([], b.aspects).pop()).name;
+        a[aspectName] = Object.assign({ numChecks: 0, sumChecks: 0 }, a[aspectName]);
+        a[aspectName].numChecks += 1;
+        a[aspectName].sumChecks += parseInt(b.weight);
         return a;
     }, {})
 
     //conteo y sumatoria para extraer porcentaje seleccionados
     let mergeAspects = axis.filter(question => question.selected)
         .reduce((a, b, i, o) => {
-            a[b.aspectMerge] = Object.assign({ numChecks: 0, sumChecks: 0 }, a[b.aspectMerge]);
-            a[b.aspectMerge].numChecks += 1;
-            a[b.aspectMerge].sumChecks += parseInt(b.weight);
+            let aspectName = Object.assign({}, Object.assign([], b.aspects).pop()).name;
+            a[aspectName] = Object.assign({ numChecks: 0, sumChecks: 0 }, a[aspectName]);
+            a[aspectName].numChecks += 1;
+            a[aspectName].sumChecks += parseInt(b.weight);
             return a;
         }, {})
 
@@ -197,14 +199,21 @@ export const aspectProcessData = (questions, currentAxisResume) => {
 export const getChallengeFromQuestions = (questions, currentAxisResume, currentAspectMerge) => {
 
     let result = questions.filter(question => {
+
+        let aspectName = Object.assign({}, Object.assign([], question.aspects).pop()).name;
+
         let criteriaAxis = currentAxisResume ? question.axis == currentAxisResume : true;
-        let criteriaAspect = currentAspectMerge ? question.aspectMerge == currentAspectMerge : true;
+        let criteriaAspect = currentAspectMerge ? aspectName == currentAspectMerge : true;
         return criteriaAxis && criteriaAspect
     }).reduce((a, b) => {
-        if (b.challenge) {
-            a[b.challenge] = Object.assign({}, a[b.challenge]);
-            a[b.challenge] = b;
-        }
+        let aspectName = Object.assign({}, Object.assign([], b.aspects).pop()).name;
+        b.challenges.forEach((challenge) => {
+            a[challenge.description] = Object.assign({}, a[challenge.description]);
+            a[challenge.description] = {
+                ...challenge,
+                aspect: aspectName
+            };
+        })
         return a;
     }, {});
 
@@ -228,8 +237,6 @@ export const prioritizationChallenges = (challenges, aspectData, axisData) => {
             percent: 100 - item.realPercent
         }
     })
-    console.log("GRILL", grill, _aspectData);
-
     let rankedChallenges = Object.keys(challenges)
         .map((challenge) => challenges[challenge])
         .map((challenge) => {
@@ -245,8 +252,6 @@ export const prioritizationChallenges = (challenges, aspectData, axisData) => {
                 ranck
             }
         })
-
-    console.log(rankedChallenges);
 
     rankedChallenges = rankedChallenges.sort((challenge_a, challenge_b) => {
         return challenge_a.ranck > challenge_b.ranck

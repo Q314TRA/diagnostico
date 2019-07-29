@@ -47,9 +47,7 @@ function* getvalidateCompany(action) {
   });
 
   let _company = Object.assign({}, company.data);
-  console.log(_company)
   yield put({ type: GET_VALIDATE_COMPANY, payload: _company });
-  // yield put({ type: GET_ALL_QUESTIOS_SAGA, payload: company.data.companyId });
 }
 
 function* putAnswer(action) {
@@ -184,7 +182,6 @@ function* getExternalChallenges(action) {
 function* getCalificationChallenge(action) {
 
   let challengesColaborators = Object.assign([], action.payload.challengesColaborators);
-  console.log("prioritization.challengesColaborators", challengesColaborators);
   let prioritization = challengesColaborators
     .filter(element => element.prioritization && element.prioritization != "{}")
     .reduce((a, b, i) => {
@@ -195,7 +192,7 @@ function* getCalificationChallenge(action) {
       }
     }, {});
 
-  console.log("prioritization.prioritization", prioritization);
+
   yield put({ type: PUT_CURRENT_CHALLENGE_CALIFICATION, payload: prioritization });
 
   // const _calificationChalleges = yield call(axios.post, GET_CALIFICATION_CHALLENGE, {

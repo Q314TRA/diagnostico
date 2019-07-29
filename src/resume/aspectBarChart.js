@@ -50,7 +50,6 @@ class AspectBarChart extends Component {
         const { x, y, width, height, value } = props;
         const radius = 10;
 
-        console.log(props);
         return (
             <g>
                 <circle cx={x + width + radius} cy={y + height / 2} r={radius} fill="#8884d8" />

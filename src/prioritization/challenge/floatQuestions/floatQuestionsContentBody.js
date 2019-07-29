@@ -67,11 +67,6 @@ class FloatQuestionsContentBody extends Component {
     setQuestion(step) {
         const { questionsFactEst } = this.props;
 
-        // if (!questionsFactEst[step]) {
-        //     this.finallySteps();
-        //     return;
-        // }
-        console.log("setQuestion", step, timeOutQuestions);
         this.setState({
             currentQuestionFloat: questionsFactEst[step],
             stepsQuestionFloat: step
@@ -81,7 +76,6 @@ class FloatQuestionsContentBody extends Component {
     finallySteps() {
         const { setCalification } = this.props;
         setCalification(this.state.califications);
-        console.log("finallySteps", timeOutQuestions)
         window.clearTimeout(timeOutQuestions);
     }
 

@@ -19,7 +19,6 @@ class FloatQuestion extends Component {
     }
 
     testLine(){
-        console.log("time-line-indicator");
         return <hr className="time-line-indicator"/>
     }
 
@@ -35,8 +34,6 @@ class FloatQuestion extends Component {
                 animationEnable: true
             }), 500)
         }
-
-        console.log("selectedValue", selectedValue)
 
         // yo del futuro perdoname por este collins
         return (

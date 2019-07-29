@@ -1,5 +1,5 @@
 import {
-    PROFILE_LAB,
+    PROFILE_GENERIC,
     SET_ALL_QUESTIOS, SET_CURRENT_AXIS, GET_VALIDATE_COMPANY,
     SET_RESUME_CURRENT_AXIS, SET_RESUME_CURRENT_ASPECT, SET_INTEREST_GROUP,
     LOG_OUT, PUT_REPORT_STATUS, PUT_BASE_64,
@@ -22,7 +22,7 @@ const initialState = {
     consolidateDiagnosis: [],
     aspectSelected: [],
     challengesCalification: [],
-    profile: PROFILE_LAB,
+    profile: "",
     challenges: [],
     externalChallenges: [],
     currentChallengeCalification: {},
@@ -41,7 +41,8 @@ function diagnosis(state = initialState, action) {
             });
         case GET_VALIDATE_COMPANY:
             return Object.assign({}, state, {
-                company: action.payload
+                company: action.payload,
+                profile: action.payload.product
             });
         case SET_RESUME_CURRENT_AXIS:
             return Object.assign({}, state, {
@@ -63,7 +64,8 @@ function diagnosis(state = initialState, action) {
                 questions: [],
                 currentAxis: "AMBIENTAL",
                 currentAxisResume: "",
-                currentAspectMerge: ""
+                currentAspectMerge: "",
+                profile: ""
             });
         case PUT_REPORT_STATUS:
             return Object.assign({}, state, {

@@ -101,8 +101,7 @@ class ExportResume extends Component {
         const data = axisProcessData(questions);
         //achievement
         const compileResume = this.getCompileResume();
-
-
+        
         return (
             <div className="resume-compile-content">
                 <span onClick={close} className="close-calback" >X</span>
@@ -175,7 +174,7 @@ class ExportResume extends Component {
 const mapStateToProps = state => ({
     questions: Object.assign([], state.diagnosis.questions).map((quest) => {
         let selected = state.diagnosis.consolidateDiagnosis
-            .filter((response) => response.idQuestion == quest.id).length > 0;
+            .filter((response) => response.questionId == quest.id).length > 0;
         return { ...quest, selected };
     }),
     currentAxis: state.diagnosis.currentAxis,

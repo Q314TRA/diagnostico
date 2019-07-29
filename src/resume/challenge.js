@@ -46,12 +46,12 @@ class Challenge extends Component {
                 <div className="content-goals">
                     {Object.keys(macroChallenge).map((macroCh) => (
                         <div className={`goal-type type-${macroChallenge[macroCh].type}`}>
-                            <h4>{macroChallenge[macroCh].challenge}</h4>
+                            <h4>{macroChallenge[macroCh].description}</h4>
 
                             {isExport &&
                                 <span>
                                     <strong>Grupos</strong> <br />
-                                    <small>{macroChallenge[macroCh].aspectMerge}</small>
+                                    <small>{macroChallenge[macroCh].aspect}</small>
                                 </span>
                             }
 
@@ -60,7 +60,10 @@ class Challenge extends Component {
                                 <small>{macroChallenge[macroCh].interestGroup}</small>
                             </span>
                             <p>
-                                <strong>Beneficios: </strong><br /> {macroChallenge[macroCh].profit}
+                                <strong>Beneficios: </strong>
+                                {macroChallenge[macroCh].profits && macroChallenge[macroCh].profits.map((profit) =>
+                                    <span><br /> {profit.smallDescription}</span>
+                                )}
                             </p>
 
                             <div>

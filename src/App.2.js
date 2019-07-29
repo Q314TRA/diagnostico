@@ -78,12 +78,6 @@ class App extends Component {
 
   }
 
-  componentDidMount() {
-    this.state.questions.forEach(element => {
-      /* console.log(element.ref.getBoundingClientRect());  */
-    });
-  }
-
   getStyleContent() {
     let currentQuest = this.state.questions.filter(quest => quest.eje == this.state.currentAxis);
 

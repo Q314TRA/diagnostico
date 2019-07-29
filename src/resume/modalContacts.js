@@ -29,19 +29,19 @@ class ModalContacts extends Component {
                     </p>
 
                     <div className="contact-status-content">
-                        {company.contactCompanies.map(contact => (
+                        {company.colaborators.map(contact => (
                             <div>
                                 <img src="resources/icono-aplica-activo.png"></img>
                                 <p>
                                     <strong>{contact.role}</strong> <br />
                                     <small>{contact.name}</small>
                                 </p>
-                                {contact.diagnosisCompanyStatus &&
-                                    <div className={`bottom-section-status ${statusThumbBottomClass[contact.diagnosisCompanyStatus.status]}`}>
-                                        <p>{contact.diagnosisCompanyStatus.status}</p>
+                                {contact.status &&
+                                    <div className={`bottom-section-status ${statusThumbBottomClass[contact.status.status]}`}>
+                                        <p>{contact.status.status}</p>
                                     </div>
                                 }
-                                {!contact.diagnosisCompanyStatus &&
+                                {!contact.status &&
                                     <div className="bottom-section-status">
                                         <p>Pendiente</p>
                                     </div>

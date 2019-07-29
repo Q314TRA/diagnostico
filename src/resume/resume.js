@@ -41,12 +41,10 @@ class Resume extends Component {
             history.push(`/`);
             return;
         }
-        let contact = company.contactCompanies.find((contact) => contact.role == interestGroup);
-
+        
         updateStatusContact({
-            idContact: contact.id,
-            companyId: company.id,
-            nit: company.nit
+            colaboratorId: interestGroup.id,
+            status: "finalizado"
         })
     }
 
@@ -78,11 +76,6 @@ class Resume extends Component {
         const mergeAspects = aspectProcessData(questions, currentAxisResume);
         //challenge
         const aspectMerge = getChallengeFromQuestions(questions, currentAxisResume, currentAspectMerge);
-
-        console.log("Chart", data);
-        console.log("achievement", mergeAspects);
-        console.log("challenges", aspectMerge);
-
         return (
             <div className="resume-content-v2">
                 {this.state.exportOpen &&

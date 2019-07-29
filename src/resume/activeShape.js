@@ -65,7 +65,6 @@ class ActiveShape extends Component {
         }
 
         let _fill = this.state[name].color;
-        console.log(realPercent);
 
         return (
             <g>
